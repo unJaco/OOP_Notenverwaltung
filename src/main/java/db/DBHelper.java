@@ -1,7 +1,6 @@
 package db;
 
 import classes.User;
-import classes.User;
 
 import java.sql.*;
 
@@ -22,6 +21,8 @@ public class DBHelper {
             " ROLE            INT     NOT NULL);";
 
     static final String sqlInsertUser = "INSERT INTO CREDENTIALS(EMAIL, PASSWORD) VALUES(?,?);";
+    static final String sqlDeleteUser = "DELETE FROM CREDENTIALS WHERE EMAIL = ?";
+    
 
     public static void connectToDb() throws SQLException {
 
@@ -31,7 +32,6 @@ public class DBHelper {
             c = DriverManager.getConnection("jdbc:sqlite:NOTENVERWALTUNG.db");
 
             System.out.println("lol");
-
 
             executeSqlStatement(sqlCredentials);
             executeSqlStatement(sqlUser);
@@ -78,4 +78,14 @@ public class DBHelper {
 
     }
 
+    public static boolean deleteUser(String email) throws SQLException {
+
+
+        PreparedStatement preparedStatement;
+        preparedStatement = c.prepareStatement(sqlDeleteUser);
+        // set the corresponding param
+        preparedStatement.setString(1, email);
+        // execute the delete statement
+        return preparedStatement.executeUpdate() == 1;
+    }
 }
