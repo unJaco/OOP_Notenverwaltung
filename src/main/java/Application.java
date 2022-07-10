@@ -1,3 +1,4 @@
+import classes.User;
 import db.DBHelper;
 
 import java.sql.SQLException;
@@ -6,13 +7,13 @@ import java.util.Scanner;
 public class Application {
 
     static boolean loggedIn = false;
+    static User user = null;
 
     public static void main(String[] args) throws SQLException {
 
         try {
             DBHelper.connectToDb();
         } catch (SQLException e){
-            System.out.println("Das jz blöd");
             System.exit(0);
         }
 
@@ -25,17 +26,16 @@ public class Application {
 
             String pass = scanner.next();
 
-            boolean success = DBHelper.tryToLogin(email, pass);
-            if(success){
-                loggedIn = success;
+            User userFromLogin = DBHelper.tryToLogin(email, pass);
+            if(userFromLogin != null){
+                loggedIn = true;
+                user = userFromLogin;
             } else {
                 System.out.println("Falsche Eingabe.\nBitte erneut eingeben!");
             }
 
         }
 
-        System.out.println("Successfully LoggedIn");
-
-
+        System.out.println("Success!");
     }
 }
