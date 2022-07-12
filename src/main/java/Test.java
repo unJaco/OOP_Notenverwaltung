@@ -1,6 +1,8 @@
-import classes.Admin;
-import classes.Role;
-import classes.User;
+package src.main.java;
+
+import src.main.java.classes.Admin;
+import src.main.java.classes.Role;
+import src.main.java.classes.User;
 
 
 public class Test {
