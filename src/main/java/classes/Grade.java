@@ -3,7 +3,7 @@ package classes;
 public class Grade {
     private int grade;
     private User user;
-    private Subject subject;
+    private SubjectOld subject;
 
     /**
      * @return int return the grade
@@ -36,18 +36,18 @@ public class Grade {
     /**
      * @return subject return the subject
      */
-    public Subject getSubject() {
+    public SubjectOld getSubject() {
         return subject;
     }
 
     /**
      * @param subject the subject to set
      */
-    public void setSubject(Subject subject) {
+    public void setSubject(SubjectOld subject) {
         this.subject = subject;
     }
 
-    public Grade(int grade, User user, Subject subject) {
+    public Grade(int grade, User user, SubjectOld subject) {
         this.grade = grade;
         this.user = user;
         this.subject = subject;

@@ -1,13 +1,18 @@
 package classes;
 
 public abstract class User {
-    private int id;
+    private Integer id;
     private String firstname;
     private String lastname;
 
-    private String email;
-
     private Role role;
+
+    public User(Integer id, String firstname, String lastname, Role role) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.role = role;
+    }
 
     /**
      * @return int return the id
@@ -54,23 +59,35 @@ public abstract class User {
     /**
      * @return String return the email
      */
-    public String getEmail() {
+    /*public String getEmail() {
         return email;
     }
 
     /**
      * @param email the lastname to set
      */
-    public void setEmail(String email) {
+    /*public void setEmail(String email) {
         this.email = email;
+    }*/
+    public Role getRole() {
+        return role;
     }
 
-    public User(int id, String firstname, String lastname, String email, Role role) {
-        this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
+    /**
+     * @param role the lastname to set
+     */
+    public void setRole(Role role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", role=" + role +
+                '}';
     }
 }
 
