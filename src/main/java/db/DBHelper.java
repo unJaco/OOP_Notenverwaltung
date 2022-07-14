@@ -56,7 +56,7 @@ public class DBHelper {
         statement.close();
     }
 
-    static ResultSet executeSqlSelectStatement(String sql) throws SQLException {
+    public static ResultSet executeSqlSelectStatement(String sql) throws SQLException {
 
         Statement statement;
         statement = c.createStatement();
