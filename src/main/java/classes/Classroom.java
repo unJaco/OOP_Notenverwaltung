@@ -1,4 +1,4 @@
-package classes;
+package src.main.java.classes;
 
 import java.lang.reflect.Array;
 

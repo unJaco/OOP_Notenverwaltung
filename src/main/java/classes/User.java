@@ -1,4 +1,4 @@
-package classes;
+package src.main.java.classes;
 
 public abstract class User implements OnLogin{
     

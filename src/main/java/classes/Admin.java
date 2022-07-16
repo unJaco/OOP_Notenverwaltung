@@ -1,6 +1,7 @@
-package classes;
+package src.main.java.classes;
 
-import db.DBHelper;
+
+import src.main.java.db.DBHelper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +23,7 @@ public class Admin extends User {
 
             case STUDENT -> toCreate = new Student(1, firstname, lastname, role);
 
-            case TEACHER -> toCreate = new Teacher(1, firstname, lastname,role, new SubjectOld[0]);
+            case TEACHER -> toCreate = new Teacher(1, firstname, lastname,role);
         }
 
         return DBHelper.insertUser(toCreate, email);

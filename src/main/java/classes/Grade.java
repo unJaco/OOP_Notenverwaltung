@@ -1,57 +1,55 @@
-package classes;
+package src.main.java.classes;
 
 public class Grade {
-    private int grade;
-    private User user;
+
+    private Integer grade_id;
+
+    private int grade_val;
+
+    private String grade_bez;
+
     private Subject subject;
 
-    /**
-     * @return int return the grade
-     */
-    public int getGrade() {
-        return grade;
+    public Grade(Integer grade_id, int grade_val, String grade_bez, Subject subject) {
+        this.grade_id = grade_id;
+        this.grade_val = grade_val;
+        this.grade_bez = grade_bez;
+        this.subject = subject;
     }
 
-    /**
-     * @param grade the grade to set
-     */
-    public void setGrade(int grade) {
-        this.grade = grade;
+    public int getGrade_id() {
+        return grade_id;
     }
 
-    /**
-     * @return user return the user
-     */
-    public User getUser() {
-        return user;
+    public void setGrade_id(int grade_id) {
+        this.grade_id = grade_id;
     }
 
-    /**
-     * @param user the user to set
-     */
-    public void setUser(User user) {
-        this.user = user;
+    public int getGrade_val() {
+        return grade_val;
     }
 
-    /**
-     * @return subject return the subject
-     */
+    public void setGrade_val(int grade_val) {
+        this.grade_val = grade_val;
+    }
+
+    public String getGrade_bez() {
+        return grade_bez;
+    }
+
+    public void setGrade_bez(String grade_bez) {
+        this.grade_bez = grade_bez;
+    }
+
     public Subject getSubject() {
         return subject;
     }
 
-    /**
-     * @param subject the subject to set
-     */
     public void setSubject(Subject subject) {
         this.subject = subject;
     }
 
-    public Grade(int grade, User user, Subject subject) {
-        this.grade = grade;
-        this.user = user;
-        this.subject = subject;
-    }
+
 
     /*
      * public boolean deleteGrade(){}

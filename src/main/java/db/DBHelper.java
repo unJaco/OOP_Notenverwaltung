@@ -1,6 +1,7 @@
-package db;
+package src.main.java.db;
 
-import classes.*;
+
+import src.main.java.classes.*;
 
 import java.sql.*;
 
@@ -19,11 +20,21 @@ public class DBHelper {
             " VORNAME           TEXT    NOT NULL, " +
             " ROLE            INT     NOT NULL);";
 
-    static final String sqlTableSchoolClasses = "CREATE TABLE IF NOT EXISTS SCHOOLCLASSES (BEZEICHNUNG TEXT UNIQUE NOT NULL, "
+    static final String sqlTableGrades = "CREATE TABLE IF NOT EXISTS GRADES " +
+            "(GRADE_ID INTEGER PRIMARY KEY AUTOINCREMENT " +
+            "USER_ID INT NOT NULL " +
+            "SCHOOLCLASS TEXT NOT NULL" +
+            "SUBJECT TEXT NOT NULL" +
+            "GRADE_BEZ TEXT NOT NULL" +
+            "GRADE_VAL INT NOT NULL);";
+
+    //static final String sqlTableSchoolClasses = "CREATE TABLE IF NOT EXISTS SCHOOLCLASSES (BEZEICHNUNG TEXT UNIQUE NOT NULL, "
 
     static final String sqlInsertUserCredentials = "INSERT INTO CREDENTIALS(EMAIL, PASSWORD) VALUES(?,?);";
 
     static final String sqlInsertUserData = "INSERT INTO USER(NAME, VORNAME, ROLE) VALUES(?,?,?);";
+
+    static final String sqlInsertGrade = "INSERT INTO GRADES(USER_ID, SCHOOLCLASS, SUBJECT, GRADE_BEZ, GRADE_VAL) VALUES(?,?,?,?,?);";
 
     public static void connectToDb() throws SQLException {
 
@@ -32,11 +43,14 @@ public class DBHelper {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:NOTENVERWALTUNG.db");
 
-            //executeSqlStatement("DROP TABLE CREDENTIALS");
+            executeSqlStatement("DROP TABLE CREDENTIALS");
             executeSqlStatement(sqlTableCredentials);
             executeSqlStatement(sqlTableUser);
+            executeSqlStatement(sqlTableGrades);
 
-            //insertUser(new Student(null, "Jac", "Mei", Role.STUDENT), "mail");
+
+            insertUser(new Student(null, "Jac", "Mei", Role.STUDENT), "mail");
+            insertUser(new Teacher(null, "Teacher", "Test", Role.TEACHER), "teacher");
 
         } catch (Exception e) {
 
@@ -89,8 +103,10 @@ public class DBHelper {
                 case "ADMIN" -> {
                     return new Admin(rsUser);
                 }
-                
-                default -> {return null;}
+
+                default -> {
+                    return null;
+                }
             }
         } else {
             return null;
@@ -119,7 +135,28 @@ public class DBHelper {
         pSData.close();
 
         return cred == 2 && data == 3;
+    }
 
+
+    /*
+        TODO subject and schoolclass
+    */
+    public static boolean insertGrade(Grade grade, Student student, Subject subject, String schoolclass) throws SQLException {
+
+        PreparedStatement pSGrade;
+
+        pSGrade = c.prepareStatement(sqlInsertGrade);
+
+        pSGrade.setInt(1, student.getId());
+        pSGrade.setString(2, schoolclass);
+        pSGrade.setString(3, subject.name());
+        pSGrade.setString(4, grade.getGrade_bez());
+        pSGrade.setInt(5, grade.getGrade_val());
+
+
+        int insertGrade = pSGrade.executeUpdate();
+
+        return insertGrade == 5;
     }
 
     public static boolean deleteUser(String email) throws SQLException {

@@ -1,4 +1,4 @@
-package classes;
+package src.main.java.classes;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import db.DBHelper;
@@ -41,12 +41,10 @@ public class Teacher extends User {
 
     public Teacher(int id, String firstname, String lastname,Role role, Subject[] subjects) {
         super(id, firstname, lastname, role);
-        this.subjects = subjects;
     }
 
     public Teacher(ResultSet resultSet) throws SQLException {
         super(resultSet.getInt("ID"), resultSet.getString("VORNAME"), resultSet.getString("NAME"),Role.valueOf(resultSet.getString("ROLE")));
-        this.subjects = null;
     }
 
     
