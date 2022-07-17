@@ -1,7 +1,6 @@
 package src.main.java.classes;
 
-
-import src.main.java.db.DBHelper;
+import src.main.java.db.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,16 +29,20 @@ public class Admin extends User {
 
     }
 
-    public boolean deleteUser(String email) throws SQLException {
-        return DBHelper.deleteUser(email);
+    @Override
+    public void onlogin(User user) throws SQLException {
+        // TODO Auto-generated method stub
+        
     }
 
-    // public boolean createClassroom(){}
+    //public boolean deleteUser(){}
 
-    // public boolean deleteClassroom(){}
+    //public boolean createClassroom(){}
 
-    // public boolean insertStudentToClassroom(){}
+    //public boolean deleteClassroom(){}
 
-    // public boolean deleteStudentFromClassroom(){}
+    //public boolean insertStudentToClassroom(){}
+
+    //public boolean deleteStudentFromClassroom(){}
 
 }
