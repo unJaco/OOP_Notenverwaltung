@@ -1,9 +1,13 @@
 package src.main.java.classes;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import db.DBHelper;
+import java.util.Arrays;
+
+import src.main.java.db.*;
 
 public class Teacher extends User {
+
+    private String[] classes;
 
     private Subject[] subjects;
     
@@ -13,17 +17,19 @@ public class Teacher extends User {
         ResultSet rs = DBHelper.executeSqlSelectStatement(sql);
 
         //TODO Ausgabe ändern
-        //BEZ könnte falsch sein
+        //BEZKL könnte falsch sein
 
         while (rs.next()) {
-            System.out.println(rs.getString("FIRSTNAME") + "   " + 
+            if (Arrays.asList(subjects).contains(rs.getString("SUBJECT")) && Arrays.asList(classes).contains(rs.getString("BEZKL"))) {
+               System.out.println(rs.getString("FIRSTNAME") + "   " + 
                                rs.getString("NAME") + "   " +
                                rs.getString("SUBJECT") + "   " +
-                               rs.getInt("GRADEVALUE")+ "   " +
-                               rs.getString("BEZ"));
+                               rs.getInt("GRADE_Val")+ "   " +
+                               rs.getString("GRADE_BEZ")); 
+            }
+            
         }
     }
-
 
     /**
      * @return Array return the subjects
@@ -39,7 +45,7 @@ public class Teacher extends User {
         this.subjects = subjects;
     }
 
-    public Teacher(int id, String firstname, String lastname,Role role, Subject[] subjects) {
+    public Teacher(int id, String firstname, String lastname, Role role, Subject[] subjects) {
         super(id, firstname, lastname, role);
     }
 

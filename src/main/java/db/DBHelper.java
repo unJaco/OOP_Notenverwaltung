@@ -50,7 +50,7 @@ public class DBHelper {
 
 
             insertUser(new Student(null, "Jac", "Mei", Role.STUDENT), "mail");
-            insertUser(new Teacher(null, "Teacher", "Test", Role.TEACHER), "teacher");
+            insertUser(new Teacher(null, "Teacher", "Test", Role.TEACHER, [Subject.MATHE]), "teacher");
 
         } catch (Exception e) {
 

@@ -2,7 +2,7 @@ package src.main.java.classes;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import db.DBHelper;
+import src.main.java.db.*;
 
 public class Student extends User {
 
