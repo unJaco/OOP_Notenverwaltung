@@ -1,4 +1,4 @@
-package src.main.java.classes;
+package classes;
 
 public enum Subject {
     DEUTSCH, MATHE, BIOLOGIE, ENGLISCH, SPORT, PHYSIK, INFORMATIK, KUNST, MUSIK

@@ -1,8 +1,8 @@
-package src.main.java.classes;
+package classes;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import src.main.java.db.*;
+import db.*;
 
 public class Student extends User {
 

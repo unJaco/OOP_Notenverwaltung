@@ -1,4 +1,4 @@
-package src.main.java.classes;
+package classes;
 
 
 import db.DBHelper;
@@ -43,9 +43,13 @@ public class Admin extends User {
     /*
         TODO delete stuff
      */
-    private boolean deleteUser(int uid){
 
+    public boolean deleteUser(int uid){
+
+        DBHelper.deleteUser(uid);
+        return true;
     }
+
     @Override
     public void onlogin(User user) throws SQLException {
         String sql = "SELECT * FROM sqlGrades AS g INNER JOIN sqlStudent AS s ON g.ID = s.ID INNER JOIN sqlTeacher AS t ON s.BEZKL = t.BEZKL INNER JOIN sqlUser AS u ON u.ID = s.ID";
@@ -64,12 +68,6 @@ public class Admin extends User {
         
     }
 
-    public boolean deleteUser(){
-
-
-        DBHelper.deleteUser(uid);
-        return true;
-    }
     //public boolean createClassroom(){}
 
     //public boolean deleteClassroom(){}

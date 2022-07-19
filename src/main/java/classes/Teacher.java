@@ -1,9 +1,9 @@
-package src.main.java.classes;
+package classes;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 
-import src.main.java.db.*;
+import db.*;
 
 public class Teacher extends User {
 
@@ -45,7 +45,11 @@ public class Teacher extends User {
         this.subjects = subjects;
     }
 
-    public Teacher(Integer id, String firstname, String lastname, Role role, Subject[] subjects) {
+
+    /*
+        maybe add subject ???
+     */
+    public Teacher(Integer id, String firstname, String lastname, Role role) {
         super(id, firstname, lastname, role);
     }
 
