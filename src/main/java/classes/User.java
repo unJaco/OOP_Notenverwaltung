@@ -1,4 +1,4 @@
-package src.main.java.classes;
+package classes;
 
 public abstract class User {
     private Integer id;

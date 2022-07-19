@@ -1,4 +1,4 @@
-package src.main.java.classes;
+package classes;
 
 import java.util.Map;
 

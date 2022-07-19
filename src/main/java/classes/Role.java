@@ -1,3 +1,3 @@
-package src.main.java.classes;
+package classes;
 
 public enum Role {STUDENT, TEACHER, ADMIN}
