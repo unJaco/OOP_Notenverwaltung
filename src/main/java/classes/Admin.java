@@ -1,7 +1,6 @@
 package src.main.java.classes;
 
-
-import src.main.java.db.DBHelper;
+import src.main.java.db.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,6 +27,24 @@ public class Admin extends User {
 
         return DBHelper.insertUser(toCreate, email);
 
+    }
+
+    @Override
+    public void onlogin(User user) throws SQLException {
+        String sql = "SELECT * FROM sqlGrades AS g INNER JOIN sqlStudent AS s ON g.ID = s.ID INNER JOIN sqlTeacher AS t ON s.BEZKL = t.BEZKL INNER JOIN sqlUser AS u ON u.ID = s.ID";
+        ResultSet rs = DBHelper.executeSqlSelectStatement(sql);
+
+        //TODO Ausgabe ändern
+        //BEZKL könnte falsch sein
+
+        while (rs.next()) { 
+               System.out.println(rs.getString("FIRSTNAME") + "   " + 
+                               rs.getString("NAME") + "   " +
+                               rs.getString("SUBJECT") + "   " +
+                               rs.getInt("GRADE_Val")+ "   " +
+                               rs.getString("GRADE_BEZ"));    
+        }
+        
     }
 
     //public boolean deleteUser(){}

@@ -50,7 +50,7 @@ public class DBHelper {
 
 
             insertUser(new Student(null, "Jac", "Mei", Role.STUDENT), "mail");
-            insertUser(new Teacher(null, "Teacher", "Test", Role.TEACHER), "teacher");
+            insertUser(new Teacher(null, "Teacher", "Test", Role.TEACHER, [Subject.MATHE]), "teacher");
 
         } catch (Exception e) {
 
@@ -70,7 +70,7 @@ public class DBHelper {
         statement.close();
     }
 
-    static ResultSet executeSqlSelectStatement(String sql) throws SQLException {
+    public static ResultSet executeSqlSelectStatement(String sql) throws SQLException {
 
         Statement statement;
         statement = c.createStatement();
@@ -159,4 +159,14 @@ public class DBHelper {
         return insertGrade == 5;
     }
 
+    public static boolean deleteUser(String email) throws SQLException {
+
+
+        PreparedStatement preparedStatement;
+        preparedStatement = c.prepareStatement(sqlDeleteUser);
+        // set the corresponding param
+        preparedStatement.setString(1, email);
+        // execute the delete statement
+        return preparedStatement.executeUpdate() == 1;
+    }
 }
