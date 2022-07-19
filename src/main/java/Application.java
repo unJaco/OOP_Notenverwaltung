@@ -1,5 +1,7 @@
+
 import classes.*;
 import db.DBHelper;
+
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -37,7 +39,6 @@ public class Application {
         }
 
         System.out.println("Success!");
-
         System.out.println("Actions... \n1 für Noten eintragen");
 
         Scanner scanner = new Scanner(System.in);
@@ -63,5 +64,6 @@ public class Application {
             }
             System.out.println("lol");
         }
+
     }
 }

@@ -1,7 +1,7 @@
-package db;
-
+package src.main.java.db;
 
 import classes.*;
+
 
 import java.sql.*;
 
@@ -21,6 +21,7 @@ public class DBHelper {
             " ROLE            INT     NOT NULL);";
 
     static final String sqlTableGrades = "CREATE TABLE IF NOT EXISTS GRADES " +
+
             "(GRADE_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "UID INT NOT NULL, " +
             "SCHOOLCLASS TEXT NOT NULL," +
@@ -37,6 +38,7 @@ public class DBHelper {
             "CLASS_ID TEXT NOT NULL," +
             "SUBJECT TEXT NOT NULL);";
 
+
     //static final String sqlTableSchoolClasses = "CREATE TABLE IF NOT EXISTS SCHOOLCLASSES (BEZEICHNUNG TEXT UNIQUE NOT NULL, "
 
     static final String sqlInsertUserCredentials = "INSERT INTO CREDENTIALS(EMAIL, PASSWORD) VALUES(?,?);";
@@ -48,6 +50,7 @@ public class DBHelper {
     static final String sqlAddStudentToClass = "INSERT INTO STUDENTS (UID, CLASS_ID) VALUES(?,?);";
 
     static final String sqlAddTeacherWithSubjectToClass = "INSERT INTO TEACHER (UID, CLASS_ID, SUBJECT) VALUES(?,?, ?);";
+
 
     public static void connectToDb() throws SQLException {
 
@@ -72,6 +75,8 @@ public class DBHelper {
             //insertUser(new Teacher(null, "T", "T", Role.TEACHER), "teacher");
             //insertUser(new Admin(null, "A", "A", Role.ADMIN), "admin");
 
+
+
         } catch (Exception e) {
 
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -90,7 +95,7 @@ public class DBHelper {
         statement.close();
     }
 
-    static ResultSet executeSqlSelectStatement(String sql) throws SQLException {
+    public static ResultSet executeSqlSelectStatement(String sql) throws SQLException {
 
         Statement statement;
         statement = c.createStatement();
@@ -154,14 +159,8 @@ public class DBHelper {
         int data = pSData.executeUpdate();
         pSData.close();
 
-
-        System.out.println(cred);
-
-        System.out.println(data);
-
         return cred == 1 && data == 1;
     }
-
 
     /*
         TODO subject and schoolclass
@@ -232,4 +231,14 @@ public class DBHelper {
         return "DELETE FROM " + table + " WEHERE UID =" + uid + ";";
     }
 
+    public static boolean deleteUser(String email) throws SQLException {
+
+
+        PreparedStatement preparedStatement;
+        preparedStatement = c.prepareStatement(sqlDeleteUser);
+        // set the corresponding param
+        preparedStatement.setString(1, email);
+        // execute the delete statement
+        return preparedStatement.executeUpdate() == 1;
+    }
 }
