@@ -31,7 +31,19 @@ public class Admin extends User {
 
     @Override
     public void onlogin(User user) throws SQLException {
-        // TODO Auto-generated method stub
+        String sql = "SELECT * FROM sqlGrades AS g INNER JOIN sqlStudent AS s ON g.ID = s.ID INNER JOIN sqlTeacher AS t ON s.BEZKL = t.BEZKL INNER JOIN sqlUser AS u ON u.ID = s.ID";
+        ResultSet rs = DBHelper.executeSqlSelectStatement(sql);
+
+        //TODO Ausgabe ändern
+        //BEZKL könnte falsch sein
+
+        while (rs.next()) { 
+               System.out.println(rs.getString("FIRSTNAME") + "   " + 
+                               rs.getString("NAME") + "   " +
+                               rs.getString("SUBJECT") + "   " +
+                               rs.getInt("GRADE_Val")+ "   " +
+                               rs.getString("GRADE_BEZ"));    
+        }
         
     }
 
