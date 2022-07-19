@@ -1,7 +1,7 @@
-package src.main.java.db;
+package db;
 
 
-import src.main.java.classes.*;
+import classes.*;
 
 import java.sql.*;
 
@@ -10,23 +10,32 @@ public class DBHelper {
     static Connection c = null;
 
     static final String sqlTableCredentials = "CREATE TABLE IF NOT EXISTS CREDENTIALS " +
-            "( ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "(UID INTEGER PRIMARY KEY AUTOINCREMENT," +
             "EMAIL           TEXT    UNIQUE NOT NULL, " +
             " PASSWORD           TEXT    NOT NULL);";
 
     static final String sqlTableUser = "CREATE TABLE IF NOT EXISTS USER " +
-            "(ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "(UID INTEGER PRIMARY KEY AUTOINCREMENT," +
             " NAME           TEXT    NOT NULL, " +
             " VORNAME           TEXT    NOT NULL, " +
             " ROLE            INT     NOT NULL);";
 
     static final String sqlTableGrades = "CREATE TABLE IF NOT EXISTS GRADES " +
-            "(GRADE_ID INTEGER PRIMARY KEY AUTOINCREMENT " +
-            "USER_ID INT NOT NULL " +
-            "SCHOOLCLASS TEXT NOT NULL" +
-            "SUBJECT TEXT NOT NULL" +
-            "GRADE_BEZ TEXT NOT NULL" +
+            "(GRADE_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "UID INT NOT NULL, " +
+            "SCHOOLCLASS TEXT NOT NULL," +
+            "SUBJECT TEXT NOT NULL," +
+            "GRADE_BEZ TEXT NOT NULL," +
             "GRADE_VAL INT NOT NULL);";
+
+    static final String sqlTableStudents = "CREATE TABLE IF NOT EXISTS STUDENTS " +
+            "(UID INT NOT NULL," +
+            "CLASS_ID TEXT NOT NULL);";
+
+    static final String sqlTableTeacher = "CREATE TABLE IF NOT EXISTS TEACHER " +
+            "(UID INT NOT NULL," +
+            "CLASS_ID TEXT NOT NULL," +
+            "SUBJECT TEXT NOT NULL);";
 
     //static final String sqlTableSchoolClasses = "CREATE TABLE IF NOT EXISTS SCHOOLCLASSES (BEZEICHNUNG TEXT UNIQUE NOT NULL, "
 
@@ -34,7 +43,11 @@ public class DBHelper {
 
     static final String sqlInsertUserData = "INSERT INTO USER(NAME, VORNAME, ROLE) VALUES(?,?,?);";
 
-    static final String sqlInsertGrade = "INSERT INTO GRADES(USER_ID, SCHOOLCLASS, SUBJECT, GRADE_BEZ, GRADE_VAL) VALUES(?,?,?,?,?);";
+    static final String sqlInsertGrade = "INSERT INTO GRADES(UID, SCHOOLCLASS, SUBJECT, GRADE_BEZ, GRADE_VAL) VALUES(?,?,?,?,?);";
+
+    static final String sqlAddStudentToClass = "INSERT INTO STUDENTS (UID, CLASS_ID) VALUES(?,?);";
+
+    static final String sqlAddTeacherWithSubjectToClass = "INSERT INTO TEACHER (UID, CLASS_ID, SUBJECT) VALUES(?,?, ?);";
 
     public static void connectToDb() throws SQLException {
 
@@ -43,14 +56,21 @@ public class DBHelper {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:NOTENVERWALTUNG.db");
 
-            executeSqlStatement("DROP TABLE CREDENTIALS");
+
+            //executeSqlStatement("DROP TABLE CREDENTIALS");
+            //executeSqlStatement("DROP TABLE USER");
+
+
             executeSqlStatement(sqlTableCredentials);
             executeSqlStatement(sqlTableUser);
             executeSqlStatement(sqlTableGrades);
+            executeSqlStatement(sqlTableStudents);
+            executeSqlStatement(sqlTableTeacher);
 
 
-            insertUser(new Student(null, "Jac", "Mei", Role.STUDENT), "mail");
-            insertUser(new Teacher(null, "Teacher", "Test", Role.TEACHER, [Subject.MATHE]), "teacher");
+            //insertUser(new Student(null, "S", "S", Role.STUDENT), "student");
+            //insertUser(new Teacher(null, "T", "T", Role.TEACHER), "teacher");
+            //insertUser(new Admin(null, "A", "A", Role.ADMIN), "admin");
 
         } catch (Exception e) {
 
@@ -70,7 +90,7 @@ public class DBHelper {
         statement.close();
     }
 
-    public static ResultSet executeSqlSelectStatement(String sql) throws SQLException {
+    static ResultSet executeSqlSelectStatement(String sql) throws SQLException {
 
         Statement statement;
         statement = c.createStatement();
@@ -83,10 +103,10 @@ public class DBHelper {
         ResultSet rsCred = executeSqlSelectStatement(sqlCred);
 
         if (rsCred.next()) {
-            String id = String.valueOf(rsCred.getInt("ID"));
+            String id = String.valueOf(rsCred.getInt("UID"));
             rsCred.close();
 
-            String sqlUser = "SELECT * FROM USER WHERE(ID = '" + id + "');";
+            String sqlUser = "SELECT * FROM USER WHERE(UID = '" + id + "');";
             ResultSet rsUser = executeSqlSelectStatement(sqlUser);
             String role = rsUser.getString("ROLE");
 
@@ -134,7 +154,12 @@ public class DBHelper {
         int data = pSData.executeUpdate();
         pSData.close();
 
-        return cred == 2 && data == 3;
+
+        System.out.println(cred);
+
+        System.out.println(data);
+
+        return cred == 1 && data == 1;
     }
 
 
@@ -156,17 +181,55 @@ public class DBHelper {
 
         int insertGrade = pSGrade.executeUpdate();
 
-        return insertGrade == 5;
+        return insertGrade == 1;
     }
 
-    public static boolean deleteUser(String email) throws SQLException {
+    public static boolean addStudentToClass(int studetnId, String class_id) throws SQLException {
 
+        PreparedStatement ps;
 
-        PreparedStatement preparedStatement;
-        preparedStatement = c.prepareStatement(sqlDeleteUser);
-        // set the corresponding param
-        preparedStatement.setString(1, email);
-        // execute the delete statement
-        return preparedStatement.executeUpdate() == 1;
+        ps = c.prepareStatement(sqlAddStudentToClass);
+
+        ps.setInt(1, studetnId);
+        ps.setString(2, class_id);
+
+        int i = ps.executeUpdate();
+
+        return i == 1;
     }
+
+    public static boolean addTeacherWithSubjectToClass(int teacherId, String class_id, Subject subject) throws SQLException {
+
+        PreparedStatement ps;
+
+        ps = c.prepareStatement(sqlAddTeacherWithSubjectToClass);
+
+        ps.setInt(1, teacherId);
+        ps.setString(2, class_id);
+        ps.setString(3, subject.name());
+
+        int i = ps.executeUpdate();
+
+        return i == 1;
+    }
+
+    /*
+        TODO finish Delete function
+     */
+    public static void deleteUser(int uid){
+
+        String credentials = deleteString("CREDENTIALS", uid);
+        String user = deleteString("USER", uid);
+        String grades = deleteString("GRADES", uid);
+        String students = deleteString("STUDENTS", uid);
+        String teacher = deleteString("TEACHER", uid);
+
+
+
+    }
+
+    private static String deleteString(String table, int uid){
+        return "DELETE FROM " + table + " WEHERE UID =" + uid + ";";
+    }
+
 }
