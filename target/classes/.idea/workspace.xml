@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="16045e34-ed57-469f-ac12-869f3d7028ea" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/OOP_Notenverwaltung.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/OOP_Notenverwaltung.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/176ff83a-d212-4dad-90a5-cedfd05d392d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/176ff83a-d212-4dad-90a5-cedfd05d392d.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NOTENVERWALTUNG.db" beforeDir="false" afterPath="$PROJECT_DIR$/NOTENVERWALTUNG.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/.idea/OOP_Notenverwaltung.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/.idea/dataSources/176ff83a-d212-4dad-90a5-cedfd05d392d.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/NOTENVERWALTUNG.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/src/main/java/Application.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/src/main/java/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/src/main/java/classes/Admin$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/src/main/java/classes/Admin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/src/main/java/classes/Classroom.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/src/main/java/classes/Grade.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/src/main/java/classes/Gui.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/src/main/java/classes/Role.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/src/main/java/classes/SchoolClass.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/src/main/java/classes/Student.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/src/main/java/classes/Subject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/src/main/java/classes/SubjectOld.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/src/main/java/classes/Teacher.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/src/main/java/classes/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/src/main/java/db/DBHelper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/target/Notenverwaltung_With_Maven-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_Notenverwaltung/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Classroom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Classroom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Grade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Grade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Gui.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/SchoolClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/SchoolClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Subject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/SubjectOld.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Teacher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/DBHelper.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2A3lYc78PSg9FalHGqUMWekRbzD" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jacob/Documents/GitHub/OOP_Notenverwaltung&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="Application" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Application" />
+      <module name="OOP_Notenverwaltung" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="16045e34-ed57-469f-ac12-869f3d7028ea" name="Changes" comment="" />
+      <created>1654246198035</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1654246198035</updated>
+      <workItem from="1654246199827" duration="76000" />
+      <workItem from="1657648816529" duration="71000" />
+      <workItem from="1658177785028" duration="70000" />
+      <workItem from="1658177864444" duration="1026000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
