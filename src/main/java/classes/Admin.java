@@ -1,7 +1,7 @@
-package classes;
+package src.main.java.classes;
 
 
-import db.DBHelper;
+import src.main.java.db.DBHelper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,7 +23,7 @@ public class Admin extends User {
 
             case STUDENT -> toCreate = new Student(1, firstname, lastname, role);
 
-            case TEACHER -> toCreate = new Teacher(1, firstname, lastname,role);
+            case TEACHER -> throw new SQLException();
         }
 
         return DBHelper.insertUser(toCreate, email);
@@ -34,10 +34,20 @@ public class Admin extends User {
         TODO DB add CLASS_IDS Table
      */
 
+    public boolean createUser(String firstname, String lastname, String email, Role role, Subject[] subjects) throws SQLException {
+        User toCreate = new Teacher(1, firstname, lastname, role, subjects);
+        return DBHelper.insertUser(toCreate, email);
+    }
+
+    @Override
+    public void onlogin(User user) throws SQLException {
+        String sql = "SELECT * FROM sqlGrades AS g INNER JOIN sqlStudent AS s ON g.ID = s.ID INNER JOIN sqlTeacher AS t ON s.BEZKL = t.BEZKL INNER JOIN sqlUser AS u ON u.ID = s.ID";
+        ResultSet rs = DBHelper.executeSqlSelectStatement(sql);}
+
     public boolean createClass_Id(String class_id){
 
         return false;
-    }
+        }
 
     /*
         TODO delete stuff

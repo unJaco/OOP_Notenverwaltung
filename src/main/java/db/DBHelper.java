@@ -1,9 +1,11 @@
-package db;
+package src.main.java.db;
 
 
-import classes.*;
+import src.main.java.classes.*;
 
 import java.sql.*;
+
+import javax.security.auth.Subject;
 
 public class DBHelper {
 
@@ -49,6 +51,10 @@ public class DBHelper {
 
     static final String sqlAddTeacherWithSubjectToClass = "INSERT INTO TEACHER (UID, CLASS_ID, SUBJECT) VALUES(?,?, ?);";
 
+    static final String sqlDeleteUserCredentials = "DELETE FROM CREDENTIALS WHERE ID=() Values(?);";
+
+    static final String sqlDeleteUserData = "DELETE FROM USER WHERE ID=() Values(?);";
+
     public static void connectToDb() throws SQLException {
 
         try {
@@ -71,6 +77,11 @@ public class DBHelper {
             //insertUser(new Student(null, "S", "S", Role.STUDENT), "student");
             //insertUser(new Teacher(null, "T", "T", Role.TEACHER), "teacher");
             //insertUser(new Admin(null, "A", "A", Role.ADMIN), "admin");
+            
+            insertUser(new Student(null, "Jac", "Mei", Role.STUDENT), "mail");
+
+            // subjets needs entire tree because javax.security.auth.Subject exists
+            insertUser(new Teacher(null, "Teacher", "Test", Role.STUDENT, new src.main.java.classes.Subject[]{}), "teacher");
 
         } catch (Exception e) {
 
@@ -166,7 +177,7 @@ public class DBHelper {
     /*
         TODO subject and schoolclass
     */
-    public static boolean insertGrade(Grade grade, Student student, Subject subject, String schoolclass) throws SQLException {
+    public static boolean insertGrade(Grade grade, Student student, src.main.java.classes.Subject subject, String schoolclass) throws SQLException {
 
         PreparedStatement pSGrade;
 
@@ -198,11 +209,13 @@ public class DBHelper {
         return i == 1;
     }
 
-    public static boolean addTeacherWithSubjectToClass(int teacherId, String class_id, Subject subject) throws SQLException {
+    public static boolean addTeacherWithSubjectToClass(int teacherId, String class_id, src.main.java.Subject subject) throws SQLException {
 
         PreparedStatement ps;
 
         ps = c.prepareStatement(sqlAddTeacherWithSubjectToClass);
+
+    
 
         ps.setInt(1, teacherId);
         ps.setString(2, class_id);
@@ -210,8 +223,20 @@ public class DBHelper {
 
         int i = ps.executeUpdate();
 
-        return i == 1;
-    }
+        return i == 1;}
+/* 
+    public static boolean deleteUser(int id) throws SQLException {
+        PreparedStatement preparedStatement;
+        preparedStatement = c.prepareStatement(sqlDeleteUserCredentials);
+        // set the corresponding param
+        preparedStatement.setInt(1, id);
+        // execute the delete statement
+        preparedStatement = c.prepareStatement(sqlDeleteUserCredentials);
+        // set the corresponding param
+        preparedStatement.setInt(1, id);
+        // execute the delete statement
+        return preparedStatement.executeUpdate() == 2;
+    }*/
 
     /*
         TODO finish Delete function
