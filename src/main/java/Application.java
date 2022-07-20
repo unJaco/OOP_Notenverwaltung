@@ -47,7 +47,12 @@ public class Application {
         int input = scanner.nextInt();
 
         if(input == 1){
+
             Student student = (Student) user;
+
+            student.onLogin();
+
+
             DBHelper.insertGrade(new Grade(null, 6, "Klassenarbeit", Subject.ENGLISCH), student, Subject.ENGLISCH, "7B");
 
         } else if(input == 2){

@@ -7,18 +7,18 @@ import db.*;
 public class Student extends User {
 
     @Override
-    public void onlogin(User user) throws SQLException {
-        String sql = "SELECT * FROM sqlGrades";
+    public void onLogin() throws SQLException {
+        String sql = "SELECT * FROM GRADES";
         ResultSet rs = DBHelper.executeSqlSelectStatement(sql);
 
         //TODO Ausgabe ändern
         //BEZ könnte falsch sein
 
         while (rs.next()) {
-            if (rs.getInt("ID") == user.getId()) {
+            if (rs.getInt("UID") == this.getId()) {
                     System.out.println(rs.getString("SUBJECT") + "   " + 
-                               rs.getInt("GRADEVALUE") + "   " +
-                               rs.getString("BEZ"));
+                               rs.getInt("GRADE_VAL") + "   " +
+                               rs.getString("GRADE_BEZ"));
             }
             
         }

@@ -51,7 +51,7 @@ public class Admin extends User {
     }
 
     @Override
-    public void onlogin(User user) throws SQLException {
+    public void onLogin() throws SQLException {
         String sql = "SELECT * FROM sqlGrades AS g INNER JOIN sqlStudent AS s ON g.ID = s.ID INNER JOIN sqlTeacher AS t ON s.BEZKL = t.BEZKL INNER JOIN sqlUser AS u ON u.ID = s.ID";
         ResultSet rs = DBHelper.executeSqlSelectStatement(sql);
 

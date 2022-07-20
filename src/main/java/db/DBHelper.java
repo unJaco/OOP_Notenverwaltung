@@ -223,15 +223,13 @@ public class DBHelper {
         String students = deleteString("STUDENTS", uid);
         String teacher = deleteString("TEACHER", uid);
 
-
-
     }
 
     private static String deleteString(String table, int uid){
         return "DELETE FROM " + table + " WEHERE UID =" + uid + ";";
     }
 
-    public static boolean deleteUser(String email) throws SQLException {
+    /*public static boolean deleteUser(String email) throws SQLException {
 
 
         PreparedStatement preparedStatement;
@@ -240,5 +238,5 @@ public class DBHelper {
         preparedStatement.setString(1, email);
         // execute the delete statement
         return preparedStatement.executeUpdate() == 1;
-    }
+    }*/
 }
