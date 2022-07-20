@@ -1,8 +1,16 @@
 package src.main.java.classes;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
+
+import src.main.java.db.DBHelper;
 
 public class Teacher extends User {
+
+    private Subject[] subjects;
+
+    private String[] classes;
 
     public void onlogin(User user) throws SQLException {
         String sql = "SELECT * FROM sqlGrades AS g INNER JOIN sqlStudent AS s ON g.ID = s.ID INNER JOIN sqlTeacher AS t ON s.BEZKL = t.BEZKL INNER JOIN sqlUser AS u ON u.ID = s.ID";

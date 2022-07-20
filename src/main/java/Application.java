@@ -1,5 +1,7 @@
-import classes.*;
-import db.DBHelper;
+package src.main.java;
+
+import src.main.java.classes.*;
+import src.main.java.db.*;
 
 import java.sql.SQLException;
 import java.util.Scanner;
