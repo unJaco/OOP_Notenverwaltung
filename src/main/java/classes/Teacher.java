@@ -14,14 +14,14 @@ public class Teacher extends User {
 
     @Override
     public void onLogin() throws SQLException {
-        String sql = "SELECT * FROM sqlGrades AS g INNER JOIN sqlStudent AS s ON g.ID = s.ID INNER JOIN sqlTeacher AS t ON s.BEZKL = t.BEZKL INNER JOIN sqlUser AS u ON u.ID = s.ID";
+        String sql = "SELECT * FROM GRADES AS g INNER JOIN STUDENTS AS s ON g.UID = s.UID INNER JOIN TEACHER AS t ON s.CLASS_ID = t.CLASS_ID INNER JOIN USER AS u ON u.UID = s.UID";
         ResultSet rs = DBHelper.executeSqlSelectStatement(sql);
 
         //TODO Ausgabe ändern
-        //BEZKL könnte falsch sein
 
+        
         while (rs.next()) {
-            if (Arrays.asList(subjects).contains(rs.getString("SUBJECT")) && Arrays.asList(classes).contains(rs.getString("BEZKL"))) {
+            if (Arrays.asList(subjects).contains(rs.getString("SUBJECT")) && Arrays.asList(classes).contains(rs.getString("CLASS_ID"))) {
                System.out.println(rs.getString("FIRSTNAME") + "   " + 
                                rs.getString("NAME") + "   " +
                                rs.getString("SUBJECT") + "   " +

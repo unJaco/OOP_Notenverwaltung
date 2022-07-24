@@ -44,21 +44,21 @@ public class Application {
         Scanner scanner = new Scanner(System.in);
 
 
+        user.onLogin();
         int input = scanner.nextInt();
+
 
         if(input == 1){
 
             Student student = (Student) user;
 
-            student.onLogin();
+            //user.onLogin();
 
 
-            DBHelper.insertGrade(new Grade(null, 6, "Klassenarbeit", Subject.ENGLISCH), student, Subject.ENGLISCH, "7B");
+            //DBHelper.insertGrade(new Grade(null, 6, "Klassenarbeit", Subject.ENGLISCH), student, Subject.ENGLISCH, "7B");
 
         } else if(input == 2){
-            System.out.println("dage");
             if(user.getClass() == Admin.class){
-                System.out.println("huh");
                 Admin admin = (Admin) user;
 
                 boolean b = admin.createUser("S3", "S3", "student3", Role.STUDENT);
@@ -67,7 +67,6 @@ public class Application {
 
                 System.out.println("You're not authorized to do that!");
             }
-            System.out.println("lol");
         }
 
     }
