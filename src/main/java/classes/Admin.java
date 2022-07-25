@@ -17,7 +17,8 @@ public class Admin extends User {
         super(resultSet.getInt("UID"), resultSet.getString("VORNAME"), resultSet.getString("NAME"),Role.valueOf(resultSet.getString("ROLE")));
     }
 
-    public boolean createUser(String firstname, String lastname, String email, Role role) throws SQLException {
+    public boolean createUser(String firstname, String lastname, String email, Role role, String class_id) throws SQLException {
+
         User toCreate = null;
         switch (role){
             case ADMIN -> toCreate = new Admin(1,firstname, lastname, role);
@@ -27,7 +28,7 @@ public class Admin extends User {
             case TEACHER -> toCreate = new Teacher(1, firstname, lastname,role);
         }
 
-        return DBHelper.insertUser(toCreate, email);
+        return DBHelper.insertUser(toCreate, email, class_id);
 
     }
 
@@ -52,7 +53,7 @@ public class Admin extends User {
 
     @Override
     public void onLogin() throws SQLException {
-        String sql = "SELECT * FROM sqlGrades AS g INNER JOIN sqlStudent AS s ON g.ID = s.ID INNER JOIN sqlTeacher AS t ON s.BEZKL = t.BEZKL INNER JOIN sqlUser AS u ON u.ID = s.ID";
+        String sql = "SELECT * FROM GRADES AS g INNER JOIN GRADES AS s ON g.UID = s.UID INNER JOIN TEACHER AS t ON s.CLASS_ID = t.CLASS_ID INNER JOIN USER AS u ON u.UID = s.UID";
         ResultSet rs = DBHelper.executeSqlSelectStatement(sql);
 
         //TODO Ausgabe ändern
