@@ -15,16 +15,15 @@ public class DBHelper {
             " PASSWORD           TEXT    NOT NULL);";
 
     static final String sqlTableUser = "CREATE TABLE IF NOT EXISTS USER " +
-            "(UID INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "(UID INTEGER UNIQUE NOT NULL," +
             " NAME           TEXT    NOT NULL, " +
             " VORNAME           TEXT    NOT NULL, " +
             " ROLE            INT     NOT NULL);";
 
     static final String sqlTableGrades = "CREATE TABLE IF NOT EXISTS GRADES " +
-
             "(GRADE_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
             "UID INT NOT NULL, " +
-            "SCHOOLCLASS TEXT NOT NULL," +
+            "CLASS_ID TEXT NOT NULL," +
             "SUBJECT TEXT NOT NULL," +
             "GRADE_BEZ TEXT NOT NULL," +
             "GRADE_VAL INT NOT NULL);";
@@ -38,14 +37,11 @@ public class DBHelper {
             "CLASS_ID TEXT NOT NULL," +
             "SUBJECT TEXT NOT NULL);";
 
-
-    //static final String sqlTableSchoolClasses = "CREATE TABLE IF NOT EXISTS SCHOOLCLASSES (BEZEICHNUNG TEXT UNIQUE NOT NULL, "
-
     static final String sqlInsertUserCredentials = "INSERT INTO CREDENTIALS(EMAIL, PASSWORD) VALUES(?,?);";
 
-    static final String sqlInsertUserData = "INSERT INTO USER(NAME, VORNAME, ROLE) VALUES(?,?,?);";
+    static final String sqlInsertUserData = "INSERT INTO USER(UID, NAME, VORNAME, ROLE) VALUES(?,?,?,?);";
 
-    static final String sqlInsertGrade = "INSERT INTO GRADES(UID, SCHOOLCLASS, SUBJECT, GRADE_BEZ, GRADE_VAL) VALUES(?,?,?,?,?);";
+    static final String sqlInsertGrade = "INSERT INTO GRADES(UID, CLASS_ID, SUBJECT, GRADE_BEZ, GRADE_VAL) VALUES(?,?,?,?,?);";
 
     static final String sqlAddStudentToClass = "INSERT INTO STUDENTS (UID, CLASS_ID) VALUES(?,?);";
 
@@ -59,23 +55,24 @@ public class DBHelper {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:NOTENVERWALTUNG.db");
 
-
-            //executeSqlStatement("DROP TABLE CREDENTIALS");
-            //executeSqlStatement("DROP TABLE USER");
-
+        /*
+            executeSqlStatement("DROP TABLE GRADES");
+            executeSqlStatement("DROP TABLE USER");
+            executeSqlStatement("DROP TABLE CREDENTIALS");
+            executeSqlStatement("DROP TABLE STUDENTS");
+            executeSqlStatement("DROP TABLE TEACHER");
+        */
 
             executeSqlStatement(sqlTableCredentials);
             executeSqlStatement(sqlTableUser);
             executeSqlStatement(sqlTableGrades);
             executeSqlStatement(sqlTableStudents);
             executeSqlStatement(sqlTableTeacher);
-
-
-            //insertUser(new Student(null, "S", "S", Role.STUDENT), "student");
-            //insertUser(new Teacher(null, "T", "T", Role.TEACHER), "teacher");
-            //insertUser(new Admin(null, "A", "A", Role.ADMIN), "admin");
-
-
+        /*
+            insertUser(new Student(null, "S", "S", Role.STUDENT), "student", "7B");
+            insertUser(new Teacher(null, "T", "T", Role.TEACHER), "teacher", null);
+            insertUser(new Admin(null, "A", "A", Role.ADMIN), "admin", null);
+        */
 
         } catch (Exception e) {
 
@@ -138,41 +135,90 @@ public class DBHelper {
         }
     }
 
-    public static boolean insertUser(User user, String email) throws SQLException {
+    public static boolean insertUser(User user, String email, String class_id) throws SQLException {
 
-        PreparedStatement pSCred;
-        PreparedStatement pSData;
+        PreparedStatement pSCredentials;
+        PreparedStatement pSUserData;
 
-        pSCred = c.prepareStatement(sqlInsertUserCredentials);
-        pSData = c.prepareStatement(sqlInsertUserData);
 
-        pSCred.setString(1, email);
-        pSCred.setString(2, user.getFirstname() + "." + user.getLastname());
+        pSCredentials = c.prepareStatement(sqlInsertUserCredentials);
+        pSUserData = c.prepareStatement(sqlInsertUserData);
 
-        pSData.setString(1, user.getFirstname());
-        pSData.setString(2, user.getLastname());
-        pSData.setString(3, user.getRole().name());
+        pSCredentials.setString(1, email);
+        pSCredentials.setString(2, user.getFirstname() + "." + user.getLastname());
 
-        int cred = pSCred.executeUpdate();
-        pSCred.close();
+        boolean credentialsSuccess = pSCredentials.execute();
 
-        int data = pSData.executeUpdate();
-        pSData.close();
+        pSCredentials.close();
 
-        return cred == 1 && data == 1;
+        ResultSet rs = executeSqlSelectStatement("SELECT * FROM CREDENTIALS WHERE (EMAIL = '" + email + "');");
+        int uid = rs.getInt("UID");
+
+        user.setId(uid);
+
+        pSUserData.setInt(1, user.getId());
+        pSUserData.setString(2, user.getFirstname());
+        pSUserData.setString(3, user.getLastname());
+        pSUserData.setString(4, user.getRole().name());
+
+
+        pSUserData.execute();
+
+        boolean userSpecificSuccess = true;
+
+        switch (user.getRole()){
+
+            case STUDENT -> {
+                userSpecificSuccess = addStudentToClass((Student) user, class_id);
+            }
+            case TEACHER -> {
+                System.out.println("TEACHER");
+            }
+        }
+
+        /*
+            TODO low importance - both bools are false lol
+         */
+        return userSpecificSuccess && credentialsSuccess;
+    }
+
+    private static boolean addStudentToClass(Student student, String class_id) throws SQLException {
+
+        PreparedStatement pSAddStudentToClass;
+        pSAddStudentToClass = c.prepareStatement(sqlAddStudentToClass);
+
+        pSAddStudentToClass.setInt(1, student.getId());
+        pSAddStudentToClass.setString(2, class_id);
+
+        boolean studentToClassSuccess = pSAddStudentToClass.execute();
+        pSAddStudentToClass.close();
+
+        return studentToClassSuccess;
     }
 
     /*
-        TODO subject and schoolclass
+        TODO high important - add Teacher to a class with Subject
+     */
+
+    private static boolean addTeacherToClass(Teacher teacher) throws SQLException {
+
+        PreparedStatement pSAddTeacherToClass;
+        pSAddTeacherToClass = c.prepareStatement(sqlAddTeacherWithSubjectToClass);
+
+        return false;
+    }
+
+    /*
+        TODO subject and class_id
     */
-    public static boolean insertGrade(Grade grade, Student student, Subject subject, String schoolclass) throws SQLException {
+    public static boolean insertGrade(Grade grade, Student student, Subject subject, String class_id) throws SQLException {
 
         PreparedStatement pSGrade;
 
         pSGrade = c.prepareStatement(sqlInsertGrade);
 
         pSGrade.setInt(1, student.getId());
-        pSGrade.setString(2, schoolclass);
+        pSGrade.setString(2, class_id);
         pSGrade.setString(3, subject.name());
         pSGrade.setString(4, grade.getGrade_bez());
         pSGrade.setInt(5, grade.getGrade_val());

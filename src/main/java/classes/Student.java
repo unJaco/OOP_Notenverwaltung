@@ -2,27 +2,14 @@ package classes;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import db.*;
 
 public class Student extends User {
 
-    @Override
-    public void onLogin() throws SQLException {
-        String sql = "SELECT * FROM GRADES";
-        ResultSet rs = DBHelper.executeSqlSelectStatement(sql);
-
-        //TODO Ausgabe ändern
-        //BEZ könnte falsch sein
-
-        while (rs.next()) {
-            if (rs.getInt("UID") == this.getId()) {
-                    System.out.println(rs.getString("SUBJECT") + "   " + 
-                               rs.getInt("GRADE_VAL") + "   " +
-                               rs.getString("GRADE_BEZ"));
-            }
-            
-        }
-    }
+    ArrayList<Grade> grades;
 
     //when creating User manually there is no Id - so Id is manually set to null therefore the Type needs to be Integer not int
     public Student(Integer id, String firstname, String lastname, Role role) {
@@ -30,13 +17,32 @@ public class Student extends User {
     }
 
     public Student(ResultSet resultSet) throws SQLException {
-
-        super(resultSet.getInt("UID"), resultSet.getString("VORNAME"), resultSet.getString("NAME"),Role.valueOf(resultSet.getString("ROLE")));
-
-
-
+        super(resultSet.getInt("UID"), resultSet.getString("VORNAME"), resultSet.getString("NAME"), Role.valueOf(resultSet.getString("ROLE")));
     }
 
-    
+    @Override
+    public void onLogin() throws SQLException {
+        String sql = "SELECT * FROM GRADES WHERE UID = '" + this.getId() + "';";
+        ResultSet rs = DBHelper.executeSqlSelectStatement(sql);
+
+        this.grades = new ArrayList<>();
+
+        if (rs.isClosed()) {
+            return;
+        }
+        while (rs.next()) {
+            grades.add(new Grade(rs));
+        }
+        System.out.println(grades);
+    }
+
+    public List<Grade> displayGrades(Subject subject){
+        return grades.stream().filter(grade -> grade.getSubject() == subject).toList();
+    }
+
+    public double calcAverage(List<Grade> grades){
+        return  (double) grades.stream().mapToInt(Grade::getGrade_val).sum() / grades.size();
+    }
+
 
 }

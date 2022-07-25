@@ -1,5 +1,8 @@
 package classes;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Grade {
 
     private Integer grade_id;
@@ -15,6 +18,18 @@ public class Grade {
         this.grade_val = grade_val;
         this.grade_bez = grade_bez;
         this.subject = subject;
+    }
+
+    /*
+        TODO what if resultset wrong string for subject
+     */
+    public Grade(ResultSet resultSet) throws SQLException {
+
+        this.grade_id = resultSet.getInt("GRADE_ID");
+        this.grade_val = resultSet.getInt("GRADE_VAL");
+        this.grade_bez = resultSet.getString("GRADE_BEZ");
+        this.subject = Subject.valueOf(resultSet.getString("SUBJECT"));
+
     }
 
     public int getGrade_id() {
@@ -49,7 +64,15 @@ public class Grade {
         this.subject = subject;
     }
 
-
+    @Override
+    public String toString() {
+        return "Grade{" +
+                "grade_id=" + grade_id +
+                ", grade_val=" + grade_val +
+                ", grade_bez='" + grade_bez + '\'' +
+                ", subject=" + subject +
+                '}';
+    }
 
     /*
      * public boolean deleteGrade(){}

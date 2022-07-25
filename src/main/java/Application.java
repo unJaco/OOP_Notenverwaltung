@@ -4,6 +4,7 @@ import db.DBHelper;
 
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Application {
@@ -15,12 +16,12 @@ public class Application {
 
         try {
             DBHelper.connectToDb();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.exit(0);
         }
 
         System.out.println("Email und Passwort eingeben:");
-        while (!loggedIn){
+        while (!loggedIn) {
 
             Scanner scanner = new Scanner(System.in);
 
@@ -29,7 +30,7 @@ public class Application {
             String pass = scanner.next();
 
             User userFromLogin = DBHelper.tryToLogin(email, pass);
-            if(userFromLogin != null){
+            if (userFromLogin != null) {
                 loggedIn = true;
                 user = userFromLogin;
             } else {
@@ -43,30 +44,33 @@ public class Application {
 
         Scanner scanner = new Scanner(System.in);
 
-
         user.onLogin();
         int input = scanner.nextInt();
 
-
-        if(input == 1){
+        if (input == 1) {
 
             Student student = (Student) user;
 
-            //user.onLogin();
+            List g = student.displayGrades(Subject.INFORMATIK);
 
+            double d = student.calcAverage(g);
 
-            //DBHelper.insertGrade(new Grade(null, 6, "Klassenarbeit", Subject.ENGLISCH), student, Subject.ENGLISCH, "7B");
-
-        } else if(input == 2){
-            if(user.getClass() == Admin.class){
+            System.out.println(g);
+            System.out.println(d);
+        } else if (input == 2) {
+            if (user.getClass() == Admin.class) {
                 Admin admin = (Admin) user;
 
-                boolean b = admin.createUser("S3", "S3", "student3", Role.STUDENT);
+                boolean b = admin.createUser("S3", "S3", "student3", Role.STUDENT, "7A");
                 System.out.println(b);
             } else {
-
                 System.out.println("You're not authorized to do that!");
             }
+        } else if (input == 3) {
+
+            DBHelper.insertGrade(new Grade(null, 2, "TEST", Subject.INFORMATIK), (Student) user, Subject.INFORMATIK, "7B");
+            DBHelper.insertGrade(new Grade(null, 1, "KLASSENARBEIT", Subject.INFORMATIK), (Student) user, Subject.INFORMATIK, "7B");
+            DBHelper.insertGrade(new Grade(null, 3, "KLASSENARBEIT", Subject.DEUTSCH), (Student) user, Subject.DEUTSCH, "7B");
         }
 
     }
