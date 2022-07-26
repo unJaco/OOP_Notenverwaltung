@@ -5,18 +5,18 @@ import java.sql.SQLException;
 
 public class Grade {
 
-    private Integer grade_id;
+    private Integer gradeId;
 
-    private int grade_val;
+    private int gradeVal;
 
-    private String grade_bez;
+    private String gradeBez;
 
     private Subject subject;
 
-    public Grade(Integer grade_id, int grade_val, String grade_bez, Subject subject) {
-        this.grade_id = grade_id;
-        this.grade_val = grade_val;
-        this.grade_bez = grade_bez;
+    public Grade(Integer gradeId, int gradeVal, String gradeBez, Subject subject) {
+        this.gradeId = gradeId;
+        this.gradeVal = gradeVal;
+        this.gradeBez = gradeBez;
         this.subject = subject;
     }
 
@@ -25,35 +25,35 @@ public class Grade {
      */
     public Grade(ResultSet resultSet) throws SQLException {
 
-        this.grade_id = resultSet.getInt("GRADE_ID");
-        this.grade_val = resultSet.getInt("GRADE_VAL");
-        this.grade_bez = resultSet.getString("GRADE_BEZ");
+        this.gradeId = resultSet.getInt("GRADE_ID");
+        this.gradeVal = resultSet.getInt("GRADE_VAL");
+        this.gradeBez = resultSet.getString("GRADE_BEZ");
         this.subject = Subject.valueOf(resultSet.getString("SUBJECT"));
 
     }
 
-    public int getGrade_id() {
-        return grade_id;
+    public int getGradeId() {
+        return gradeId;
     }
 
-    public void setGrade_id(int grade_id) {
-        this.grade_id = grade_id;
+    public void setGradeId(int gradeId) {
+        this.gradeId = gradeId;
     }
 
-    public int getGrade_val() {
-        return grade_val;
+    public int getGradeVal() {
+        return gradeVal;
     }
 
-    public void setGrade_val(int grade_val) {
-        this.grade_val = grade_val;
+    public void setGradeVal(int gradeVal) {
+        this.gradeVal = gradeVal;
     }
 
-    public String getGrade_bez() {
-        return grade_bez;
+    public String getGradeBez() {
+        return gradeBez;
     }
 
-    public void setGrade_bez(String grade_bez) {
-        this.grade_bez = grade_bez;
+    public void setGradeBez(String gradeBez) {
+        this.gradeBez = gradeBez;
     }
 
     public Subject getSubject() {
@@ -67,9 +67,9 @@ public class Grade {
     @Override
     public String toString() {
         return "Grade{" +
-                "grade_id=" + grade_id +
-                ", grade_val=" + grade_val +
-                ", grade_bez='" + grade_bez + '\'' +
+                "grade_id=" + gradeId +
+                ", grade_val=" + gradeVal +
+                ", grade_bez='" + gradeBez + '\'' +
                 ", subject=" + subject +
                 '}';
     }
