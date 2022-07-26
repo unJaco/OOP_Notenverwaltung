@@ -1,6 +1,6 @@
 package classes;
 
-public abstract class User implements OnLogin{
+public abstract class User implements OnCreation {
     
     private Integer id;
     private String firstname;

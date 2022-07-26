@@ -21,7 +21,7 @@ public class Student extends User {
     }
 
     @Override
-    public void onLogin() throws SQLException {
+    public void onCreation() throws SQLException {
         String sql = "SELECT * FROM GRADES WHERE UID = '" + this.getId() + "';";
         ResultSet rs = DBHelper.executeSqlSelectStatement(sql);
 
@@ -33,7 +33,6 @@ public class Student extends User {
         while (rs.next()) {
             grades.add(new Grade(rs));
         }
-        System.out.println(grades);
     }
 
     public List<Grade> displayGrades(Subject subject){
@@ -41,8 +40,6 @@ public class Student extends User {
     }
 
     public double calcAverage(List<Grade> grades){
-        return  (double) grades.stream().mapToInt(Grade::getGrade_val).sum() / grades.size();
+        return  (double) grades.stream().mapToInt(Grade::getGradeVal).sum() / grades.size();
     }
-
-
 }
