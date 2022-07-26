@@ -182,6 +182,27 @@ public class DBHelper {
         return userSpecificSuccess && credentialsSuccess;
     }
 
+
+    public static User getUser(int uid) throws SQLException {
+
+        String sql = "SELECT * FROM USER WHERE (UID = '" + uid + "');";
+
+        ResultSet rs = executeSqlSelectStatement(sql);
+
+        Role role = Role.valueOf(rs.getString("ROLE"));
+
+        switch (role){
+
+            case STUDENT -> {return new Student(rs);}
+
+            case TEACHER -> {return new Teacher(rs);}
+
+            case ADMIN -> {return new Admin(rs);}
+
+            default -> {return null;}
+        }
+    }
+
     private static boolean addStudentToClass(Student student, String class_id) throws SQLException {
 
         PreparedStatement pSAddStudentToClass;
@@ -211,17 +232,17 @@ public class DBHelper {
     /*
         TODO subject and class_id
     */
-    public static boolean insertGrade(Grade grade, Student student, Subject subject, String class_id) throws SQLException {
+    public static boolean insertGrade(String class_id, int studentID,  Grade grade) throws SQLException {
 
         PreparedStatement pSGrade;
 
         pSGrade = c.prepareStatement(sqlInsertGrade);
 
-        pSGrade.setInt(1, student.getId());
+        pSGrade.setInt(1, studentID);
         pSGrade.setString(2, class_id);
-        pSGrade.setString(3, subject.name());
-        pSGrade.setString(4, grade.getGrade_bez());
-        pSGrade.setInt(5, grade.getGrade_val());
+        pSGrade.setString(3, grade.getSubject().name());
+        pSGrade.setString(4, grade.getGradeBez());
+        pSGrade.setInt(5, grade.getGradeVal());
 
 
         int insertGrade = pSGrade.executeUpdate();
@@ -245,18 +266,21 @@ public class DBHelper {
 
     public static boolean addTeacherWithSubjectToClass(int teacherId, String class_id, Subject subject) throws SQLException {
 
-        PreparedStatement ps;
+        PreparedStatement pS;
 
-        ps = c.prepareStatement(sqlAddTeacherWithSubjectToClass);
+        pS = c.prepareStatement(sqlAddTeacherWithSubjectToClass);
 
-        ps.setInt(1, teacherId);
-        ps.setString(2, class_id);
-        ps.setString(3, subject.name());
+        pS.setInt(1, teacherId);
+        pS.setString(2, class_id);
+        pS.setString(3, subject.name());
 
-        int i = ps.executeUpdate();
+        int i = pS.executeUpdate();
+        pS.close();
 
         return i == 1;
     }
+
+
 
     /*
         TODO finish Delete function
