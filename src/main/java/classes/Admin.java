@@ -32,6 +32,11 @@ public class Admin extends User {
 
     }
 
+    public boolean addSubjectToTeacher(int teacherId, Subject subject, String class_id) throws SQLException {
+
+        return DBHelper.addTeacherWithSubjectToClass(teacherId, class_id, subject);
+    }
+
     /*
         TODO DB add CLASS_IDS Table
      */
@@ -52,7 +57,7 @@ public class Admin extends User {
     }
 
     @Override
-    public void onLogin() throws SQLException {
+    public void onCreation() throws SQLException {
         String sql = "SELECT * FROM GRADES AS g INNER JOIN GRADES AS s ON g.UID = s.UID INNER JOIN TEACHER AS t ON s.CLASS_ID = t.CLASS_ID INNER JOIN USER AS u ON u.UID = s.UID";
         ResultSet rs = DBHelper.executeSqlSelectStatement(sql);
 
@@ -60,7 +65,7 @@ public class Admin extends User {
         //BEZKL könnte falsch sein
 
         while (rs.next()) { 
-               System.out.println(rs.getString("FIRSTNAME") + "   " + 
+               System.out.println(rs.getString("VORNAME") + "   " +
                                rs.getString("NAME") + "   " +
                                rs.getString("SUBJECT") + "   " +
                                rs.getInt("GRADE_Val")+ "   " +
