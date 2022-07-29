@@ -46,12 +46,13 @@ public class Teacher extends User {
 
 
         if(!subjectsInClasses.contains(sic)){
-            System.out.println("You dont have that Subject in this Class");
+            System.out.println("You dont have that Subject in this Class!");
             return false;
         }
 
         if(!schoolClassMap.containsKey(class_id)){
-            getSchoolClass(class_id);
+            System.out.println("You dont have that Class!");
+            return false;
         }
 
         schoolClassMap.get(class_id).studentMap.get(studentId);
@@ -63,6 +64,10 @@ public class Teacher extends User {
     /*
         TODO delete Grade
      */
+
+    public void deleteGrade(int gradeId, int uid) throws SQLException {
+        DBHelper.deleteGrade(gradeId, uid);
+    }
 
     private void getSchoolClass(String classId) throws SQLException {
 
@@ -90,9 +95,6 @@ public class Teacher extends User {
         }
 
         schoolClassMap.put(classId, schoolClass);
-
-        List l = schoolClassMap.get("7B").getStudent(1).displayGrades(Subject.DEUTSCH);
-        System.out.println(l);
     }
 
 
@@ -102,23 +104,18 @@ public class Teacher extends User {
 
         getClassesAndSubjectsFromTeacher();
 
+        for (SubjectInClass s: subjectsInClasses) {
+            if(!schoolClassMap.containsKey(s.getClassId())){
+                getSchoolClass(s.getClassId());
+            }
+        }
+
         String sql = "SELECT * FROM GRADES AS g INNER JOIN STUDENTS AS s ON g.UID = s.UID INNER JOIN TEACHER AS t ON s.CLASS_ID = t.CLASS_ID INNER JOIN USER AS u ON u.UID = s.UID";
         ResultSet rs = DBHelper.executeSqlSelectStatement(sql);
 
         //TODO Ausgabe ändern
 
 
-        
-        while (rs.next()) {
-            if (subjectsInClasses.stream().map(subjectInClass -> subjectInClass.getSubject().name()).toList().contains(rs.getString("SUBJECT")) && subjectsInClasses.stream().map(SubjectInClass::getClass_id).toList().contains(rs.getString("CLASS_ID"))) {
-               System.out.println(rs.getString("VORNAME") + "   " +
-                               rs.getString("NAME") + "   " +
-                               rs.getString("SUBJECT") + "   " +
-                               rs.getInt("GRADE_Val")+ "   " +
-                               rs.getString("GRADE_BEZ")); 
-            }
-            
-        }
     }
 
 
