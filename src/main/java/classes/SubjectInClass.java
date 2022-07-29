@@ -6,26 +6,26 @@ import java.util.Objects;
 
 public class SubjectInClass {
 
-    private String class_id;
+    private String classId;
     private Subject subject;
 
 
-    public SubjectInClass(String class_id, Subject subject) {
-        this.class_id = class_id;
+    public SubjectInClass(String classId, Subject subject) {
+        this.classId = classId;
         this.subject = subject;
     }
 
     public SubjectInClass(ResultSet resultSet) throws SQLException {
-        this.class_id = resultSet.getString("class_id");
+        this.classId = resultSet.getString("class_id");
         this.subject = Subject.valueOf(resultSet.getString("SUBJECT"));
     }
 
-    public String getClass_id() {
-        return class_id;
+    public String getClassId() {
+        return classId;
     }
 
-    public void setClass_id(String class_id) {
-        this.class_id = class_id;
+    public void setClassId(String classId) {
+        this.classId = classId;
     }
 
     public Subject getSubject() {
@@ -41,14 +41,14 @@ public class SubjectInClass {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SubjectInClass that = (SubjectInClass) o;
-        return Objects.equals(class_id, that.class_id) && subject == that.subject;
+        return Objects.equals(classId, that.classId) && subject == that.subject;
     }
 
 
     @Override
     public String toString() {
         return "SubjectWithClass{" +
-                "class_id='" + class_id + '\'' +
+                "class_id='" + classId + '\'' +
                 ", subject=" + subject +
                 '}';
     }
