@@ -84,12 +84,11 @@ public class DBHelper {
 
     }
 
-    public static void executeSqlStatement(String sql) throws SQLException {
+    public static boolean executeSqlStatement(String sql) throws SQLException {
 
         Statement statement;
         statement = c.createStatement();
-        statement.executeUpdate(sql);
-        statement.close();
+        return statement.execute(sql);
     }
 
     public static ResultSet executeSqlSelectStatement(String sql) throws SQLException {
@@ -135,7 +134,7 @@ public class DBHelper {
         }
     }
 
-    public static boolean insertUser(User user, String email, String class_id) throws SQLException {
+    public static boolean insertUser(User user, String email, String classId) throws SQLException {
 
         PreparedStatement pSCredentials;
         PreparedStatement pSUserData;
@@ -169,7 +168,7 @@ public class DBHelper {
         switch (user.getRole()){
 
             case STUDENT -> {
-                userSpecificSuccess = addStudentToClass((Student) user, class_id);
+                userSpecificSuccess = addStudentToClass((Student) user, classId);
             }
             case TEACHER -> {
                 System.out.println("TEACHER");
@@ -203,13 +202,13 @@ public class DBHelper {
         }
     }
 
-    private static boolean addStudentToClass(Student student, String class_id) throws SQLException {
+    private static boolean addStudentToClass(Student student, String classId) throws SQLException {
 
         PreparedStatement pSAddStudentToClass;
         pSAddStudentToClass = c.prepareStatement(sqlAddStudentToClass);
 
         pSAddStudentToClass.setInt(1, student.getId());
-        pSAddStudentToClass.setString(2, class_id);
+        pSAddStudentToClass.setString(2, classId);
 
         boolean studentToClassSuccess = pSAddStudentToClass.execute();
         pSAddStudentToClass.close();
@@ -230,16 +229,16 @@ public class DBHelper {
     }
 
     /*
-        TODO subject and class_id
+        TODO subject and classId
     */
-    public static boolean insertGrade(String class_id, int studentID,  Grade grade) throws SQLException {
+    public static boolean insertGrade(String classId, int studentID,  Grade grade) throws SQLException {
 
         PreparedStatement pSGrade;
 
         pSGrade = c.prepareStatement(sqlInsertGrade);
 
         pSGrade.setInt(1, studentID);
-        pSGrade.setString(2, class_id);
+        pSGrade.setString(2, classId);
         pSGrade.setString(3, grade.getSubject().name());
         pSGrade.setString(4, grade.getGradeBez());
         pSGrade.setInt(5, grade.getGradeVal());
@@ -250,28 +249,34 @@ public class DBHelper {
         return insertGrade == 1;
     }
 
-    public static boolean addStudentToClass(int studetnId, String class_id) throws SQLException {
+    public static boolean deleteGrade(int gradeId, int uid) throws SQLException {
+
+        String sql = "DELETE FROM GRADES WHERE (GRADE_ID = '" + gradeId + "' AND UID = '" + uid + "');";
+        return executeSqlStatement(sql);
+    }
+
+    public static boolean addStudentToClass(int studetnId, String classId) throws SQLException {
 
         PreparedStatement ps;
 
         ps = c.prepareStatement(sqlAddStudentToClass);
 
         ps.setInt(1, studetnId);
-        ps.setString(2, class_id);
+        ps.setString(2, classId);
 
         int i = ps.executeUpdate();
 
         return i == 1;
     }
 
-    public static boolean addTeacherWithSubjectToClass(int teacherId, String class_id, Subject subject) throws SQLException {
+    public static boolean addTeacherWithSubjectToClass(int teacherId, String classId, Subject subject) throws SQLException {
 
         PreparedStatement pS;
 
         pS = c.prepareStatement(sqlAddTeacherWithSubjectToClass);
 
         pS.setInt(1, teacherId);
-        pS.setString(2, class_id);
+        pS.setString(2, classId);
         pS.setString(3, subject.name());
 
         int i = pS.executeUpdate();
