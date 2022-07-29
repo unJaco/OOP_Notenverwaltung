@@ -42,4 +42,8 @@ public class Student extends User {
     public double calcAverage(List<Grade> grades){
         return  (double) grades.stream().mapToInt(Grade::getGradeVal).sum() / grades.size();
     }
+
+    public List<Grade> showAllGrades(){
+        return grades;
+    }
 }
