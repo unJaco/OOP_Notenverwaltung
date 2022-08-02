@@ -26,7 +26,7 @@ public class MainApplication extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
 
         try {
             DBHelper.connectToDb();
@@ -48,8 +48,9 @@ public class MainApplication extends Application {
         return user;
     }
 
-    public static void setUser(User user) {
+    public static void setUser(User user) throws SQLException {
         MainApplication.user = user;
+        user.onCreation();
     }
 }
 
