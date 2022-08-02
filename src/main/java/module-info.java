@@ -11,5 +11,7 @@ module OOP_Notenverwaltung {
     opens controller to javafx.controls, javafx.fxml;
     exports controller;
 
+    opens classes to javafx.base;
+
 
 }
