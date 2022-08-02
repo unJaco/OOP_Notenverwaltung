@@ -12,8 +12,20 @@ import java.sql.SQLException;
 
 public class MainApplication extends Application {
 
-    public static User user = null;
+    private static User user = null;
     private static Stage stage;
+
+
+    public static void main(String[] args) {
+        try {
+            DBHelper.connectToDb();
+        } catch (SQLException e) {
+            System.out.println("Die Verbindung mit der Datenbank konnte nicht hergestellt werden!");
+            e.printStackTrace();
+            System.exit(0);
+        }
+        launch();
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -25,18 +37,6 @@ public class MainApplication extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-    public static void main(String[] args) {
-
-        try {
-            DBHelper.connectToDb();
-        } catch (SQLException e) {
-            System.exit(0);
-        }
-        launch();
-    }
-
-
 
     public static void changeScene(String fxml, String newTitle) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource(fxml));

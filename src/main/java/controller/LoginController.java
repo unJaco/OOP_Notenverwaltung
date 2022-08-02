@@ -31,10 +31,10 @@ public class LoginController {
            user  = DBHelper.tryToLogin(mailField.getText(), passField.getText());
            if(user!=null){
                MainApplication.setUser(user);
-               MainApplication.changeScene("menu-view.fxml", "Deine Noten");
+               MainApplication.changeScene("menu-view-student.fxml", "Deine Noten");
                return;
            }
-           labelText = "Leider stimmen deine Anmeldedaten nicht. Probiere es erneut";
+           labelText = "Anmeldedaten nicht korrekt!";
 
         } catch (SQLException e){
 
