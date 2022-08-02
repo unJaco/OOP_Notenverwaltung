@@ -31,7 +31,7 @@ public class LoginController {
            user  = DBHelper.tryToLogin(mailField.getText(), passField.getText());
            if(user!=null){
                MainApplication.setUser(user);
-               MainApplication.changeScene("menu-view.fxml");
+               MainApplication.changeScene("menu-view.fxml", "Deine Noten");
                return;
            }
            labelText = "Leider stimmen deine Anmeldedaten nicht. Probiere es erneut";

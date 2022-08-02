@@ -5,21 +5,34 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="controller.MenuController">
+<VBox maxWidth="1.7976931348623157E308" prefWidth="500.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
    <children>
-      <ChoiceBox fx:id="choiceBox" prefWidth="150.0" />
+      <HBox alignment="CENTER_RIGHT">
+         <children>
+            <ChoiceBox fx:id="choiceBox" prefWidth="150.0" />
+         </children>
+      </HBox>
       <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0">
         <columns>
-          <TableColumn fx:id="bezCol" prefWidth="92.0" text="Bezeichnung" />
+          <TableColumn fx:id="bezCol" prefWidth="140.0" text="Bezeichnung" />
           <TableColumn fx:id="valCol" prefWidth="58.0" text="Note" />
         </columns>
       </TableView>
-      <Label contentDisplay="RIGHT" prefHeight="18.0" prefWidth="174.0" text="ø :" textAlignment="RIGHT" />
-      <Label fx:id="avgLabel" />
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label contentDisplay="RIGHT" text="ø :" textAlignment="RIGHT">
+               <padding>
+                  <Insets right="50.0" />
+               </padding>
+            </Label>
+            <Label fx:id="avgLabel" />
+         </children>
+      </HBox>
    </children>
 </VBox>

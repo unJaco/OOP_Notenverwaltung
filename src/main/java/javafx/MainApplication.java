@@ -38,10 +38,11 @@ public class MainApplication extends Application {
 
 
 
-    public static void changeScene(String fxml) throws IOException {
+    public static void changeScene(String fxml, String newTitle) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource(fxml));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
+        stage.setTitle(newTitle);
     }
 
     public static User getUser() {
