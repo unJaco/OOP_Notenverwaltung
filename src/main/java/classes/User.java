@@ -1,6 +1,6 @@
 package classes;
 
-public abstract class User implements OnCreation {
+public abstract class User implements OnCreation, SwitchScene {
     
     private Integer id;
     private String firstname;

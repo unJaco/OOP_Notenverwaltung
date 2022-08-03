@@ -22,22 +22,19 @@ public class LoginController {
     private TextField passField;
 
     @FXML
-    protected void onLoginButtonClick() throws IOException {
+    protected void onLoginButtonClick() {
 
         User user;
         String labelText;
 
         try{
            user  = DBHelper.tryToLogin(mailField.getText(), passField.getText());
-           if(user!=null){
+           if(user != null){
                MainApplication.setUser(user);
-               MainApplication.changeScene("menu-view-student.fxml", "Deine Noten");
                return;
            }
            labelText = "Anmeldedaten nicht korrekt!";
-
-        } catch (SQLException e){
-
+        } catch (SQLException | IOException e){
             labelText = "Es gibt ein Fehler im System. Probieren Sie die Application neu zu starten";
         }
 

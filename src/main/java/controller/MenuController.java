@@ -43,13 +43,13 @@ public class MenuController implements Initializable {
     public void initialize(URL url, ResourceBundle resources) {
 
         choiceBox.setItems(subjectList);
-        
+
 
         /*
             TODO only works if a student logs in
          */
 
-        Student student = (Student) MainApplication.user;
+        Student student = (Student) MainApplication.getUser();
 
         bezCol.setCellValueFactory(new PropertyValueFactory<>("gradeBez"));
         valCol.setCellValueFactory(new PropertyValueFactory<>("gradeVal"));

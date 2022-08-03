@@ -1,4 +1,5 @@
 package classes;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
@@ -115,6 +116,11 @@ public class Teacher extends User {
 
         //TODO Ausgabe ändern
 
+
+    }
+
+    @Override
+    public void switchScene() throws IOException {
 
     }
 

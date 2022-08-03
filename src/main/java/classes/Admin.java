@@ -4,6 +4,7 @@ package classes;
 import db.DBHelper;
 
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -72,6 +73,11 @@ public class Admin extends User {
                                rs.getString("GRADE_BEZ"));    
         }
         
+    }
+
+    @Override
+    public void switchScene() throws IOException {
+
     }
 
     //public boolean createClassroom(){}

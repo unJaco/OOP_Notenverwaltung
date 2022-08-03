@@ -49,8 +49,9 @@ public class MainApplication extends Application {
         return user;
     }
 
-    public static void setUser(User user) throws SQLException {
-        MainApplication.user = user;
+    public static void setUser(User newUser) throws SQLException, IOException {
+        user = newUser;
+        user.switchScene();
         user.onCreation();
     }
 }

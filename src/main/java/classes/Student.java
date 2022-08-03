@@ -1,11 +1,13 @@
 package classes;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import db.*;
+import javafx.MainApplication;
 
 public class Student extends User {
 
@@ -45,5 +47,10 @@ public class Student extends User {
 
     public List<Grade> showAllGrades(){
         return grades;
+    }
+
+    @Override
+    public void switchScene() throws IOException {
+        MainApplication.changeScene("menu-view-student.fxml", "Deine Noten");
     }
 }
