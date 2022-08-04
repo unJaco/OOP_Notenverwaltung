@@ -47,9 +47,6 @@ public class SubjectInClass {
 
     @Override
     public String toString() {
-        return "SubjectWithClass{" +
-                "class_id='" + classId + '\'' +
-                ", subject=" + subject +
-                '}';
+        return classId + " - " + subject;
     }
 }

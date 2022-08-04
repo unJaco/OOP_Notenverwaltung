@@ -19,12 +19,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class MenuController implements Initializable {
+public class StudentMenuController implements Initializable {
 
 
     ObservableList<Subject> subjectList = FXCollections.observableList(Arrays.stream(Subject.values()).toList());
     @FXML
-    private ChoiceBox<Subject> choiceBox;
+    private ChoiceBox<Subject> subjectChoiceBox;
 
     @FXML
     private TableView<Grade> tableView;
@@ -42,22 +42,17 @@ public class MenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resources) {
 
-        choiceBox.setItems(subjectList);
-
-
-        /*
-            TODO only works if a student logs in
-         */
+        subjectChoiceBox.setItems(subjectList);
 
         Student student = (Student) MainApplication.getUser();
 
         bezCol.setCellValueFactory(new PropertyValueFactory<>("gradeBez"));
         valCol.setCellValueFactory(new PropertyValueFactory<>("gradeVal"));
 
-        choiceBox.setOnAction(actionEvent -> {
+        subjectChoiceBox.setOnAction(actionEvent -> {
 
             tableView.getItems().clear();
-            Subject selectedSubject = choiceBox.getValue();
+            Subject selectedSubject = subjectChoiceBox.getValue();
             List<Grade> grades = student.displayGrades(selectedSubject);
             tableView.getItems().addAll(grades);
             avgLabel.setText(String.valueOf(student.calcAverage(grades)));

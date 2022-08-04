@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 import db.*;
+import javafx.MainApplication;
 
 public class Teacher extends User {
 
@@ -28,6 +29,14 @@ public class Teacher extends User {
 
     public void setSubjectsInClasses(ArrayList<SubjectInClass> subjectsInClasses) {
         this.subjectsInClasses = subjectsInClasses;
+    }
+
+    public Map<String, SchoolClass> getSchoolClassMap(){
+        return  schoolClassMap;
+    }
+
+    public void setSchoolClassMap(Map<String, SchoolClass> schoolClassMap){
+        this.schoolClassMap = schoolClassMap;
     }
 
     private void getClassesAndSubjectsFromTeacher() throws SQLException {
@@ -111,8 +120,15 @@ public class Teacher extends User {
             }
         }
 
+
+        /*
+            TODO is this necessary
+         */
+
+        /*
+
         String sql = "SELECT * FROM GRADES AS g INNER JOIN STUDENTS AS s ON g.UID = s.UID INNER JOIN TEACHER AS t ON s.CLASS_ID = t.CLASS_ID INNER JOIN USER AS u ON u.UID = s.UID";
-        ResultSet rs = DBHelper.executeSqlSelectStatement(sql);
+        ResultSet rs = DBHelper.executeSqlSelectStatement(sql);*/
 
         //TODO Ausgabe ändern
 
@@ -121,18 +137,9 @@ public class Teacher extends User {
 
     @Override
     public void switchScene() throws IOException {
-
+        MainApplication.changeScene("menu-view-teacher.fxml", "Ihre Klassen");
     }
 
-
-    /*
-    public Subject[] getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(Subject[] subjects) {
-        this.subjects = subjects;
-    }*/
 
 }
 
