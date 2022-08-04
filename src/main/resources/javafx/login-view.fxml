@@ -25,5 +25,5 @@
     <Label fx:id="loginLabel"/>
 
 
-    <Button text="Login" onAction="#onLoginButtonClick"/>
+    <Button text="Login" onAction="#onLoginButtonClick" fx:id="loginButton"/>
 </VBox>
