@@ -8,6 +8,8 @@ public abstract class User implements OnCreation, SwitchScene {
 
     private Role role;
 
+    public User(){}
+
     public User(Integer id, String firstname, String lastname, Role role) {
         this.id = id;
         this.firstname = firstname;
@@ -83,12 +85,7 @@ public abstract class User implements OnCreation, SwitchScene {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", role=" + role +
-                '}';
+        return firstname + " " + lastname;
     }
 }
 

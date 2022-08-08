@@ -4,9 +4,10 @@ import classes.*;
 import db.DBHelper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import javafx.stage.WindowEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -14,7 +15,6 @@ public class MainApplication extends Application {
 
     private static User user = null;
     private static Stage stage;
-
 
     public static void main(String[] args) {
         try {
@@ -43,6 +43,11 @@ public class MainApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.setTitle(newTitle);
+        stage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, MainApplication::onWindowClose);
+    }
+
+    public static void onWindowClose(WindowEvent windowEvent){
+        System.exit(0);
     }
 
     public static User getUser() {

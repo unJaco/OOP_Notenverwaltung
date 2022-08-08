@@ -255,6 +255,18 @@ public class DBHelper {
         return executeSqlStatement(sql);
     }
 
+    public static boolean updateGradeVal(Grade grade) throws SQLException {
+
+        String sql = "UPDATE GRADES SET GRADE_VAL = '" + grade.getGradeVal() + "' WHERE GRADE_ID = '" + grade.getGradeId() + "'";
+        return executeSqlStatement(sql);
+    }
+
+    public static boolean updateGradeBez(Grade grade) throws SQLException {
+
+        String sql = "UPDATE GRADES SET GRADE_BEZ = '" + grade.getGradeBez() + "' WHERE GRADE_ID = '" + grade.getGradeId() + "'";
+        return executeSqlStatement(sql);
+    }
+
     public static boolean addStudentToClass(int studetnId, String classId) throws SQLException {
 
         PreparedStatement ps;

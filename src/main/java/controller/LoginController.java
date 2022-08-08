@@ -35,6 +35,8 @@ public class LoginController {
            }
            labelText = "Anmeldedaten nicht korrekt!";
         } catch (SQLException | IOException e){
+
+            e.printStackTrace();
             labelText = "Es gibt ein Fehler im System. Probieren Sie die Application neu zu starten";
         }
 

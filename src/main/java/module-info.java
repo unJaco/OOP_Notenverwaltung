@@ -5,13 +5,13 @@ module OOP_Notenverwaltung {
     requires java.sql;
 
 
-    opens javafx to javafx.fxml;
     exports javafx;
 
     opens controller to javafx.controls, javafx.fxml;
     exports controller;
 
     opens classes to javafx.base;
+    opens javafx to javafx.controls, javafx.fxml;
 
 
 }

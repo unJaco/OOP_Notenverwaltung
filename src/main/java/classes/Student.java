@@ -3,6 +3,7 @@ package classes;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,10 @@ import javafx.MainApplication;
 public class Student extends User {
 
     ArrayList<Grade> grades;
+
+    DecimalFormat df = new DecimalFormat("#.##");
+
+    public Student(){}
 
     //when creating User manually there is no Id - so Id is manually set to null therefore the Type needs to be Integer not int
     public Student(Integer id, String firstname, String lastname, Role role) {
@@ -42,7 +47,7 @@ public class Student extends User {
     }
 
     public double calcAverage(List<Grade> grades){
-        return  (double) grades.stream().mapToInt(Grade::getGradeVal).sum() / grades.size();
+        return (double) grades.stream().mapToInt(Grade::getGradeVal).sum() / grades.size();
     }
 
     public List<Grade> showAllGrades(){
@@ -52,5 +57,10 @@ public class Student extends User {
     @Override
     public void switchScene() throws IOException {
         MainApplication.changeScene("menu-view-student.fxml", "Deine Noten");
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

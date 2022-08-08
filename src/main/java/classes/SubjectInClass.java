@@ -10,6 +10,7 @@ public class SubjectInClass {
     private Subject subject;
 
 
+    public SubjectInClass(){}
     public SubjectInClass(String classId, Subject subject) {
         this.classId = classId;
         this.subject = subject;

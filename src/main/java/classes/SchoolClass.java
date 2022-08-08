@@ -3,11 +3,11 @@ package classes;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 
 public class SchoolClass {
 
     private String class_id;
-
     Map<Integer, Student> studentMap;
 
 
@@ -41,4 +41,12 @@ public class SchoolClass {
     }
 
 
+    //to check if a SchoolClass is the same you need to comapare the classId's
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SchoolClass that = (SchoolClass) o;
+        return Objects.equals(class_id, that.class_id);
+    }
 }

@@ -1,4 +1,5 @@
 package classes;
+
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +20,7 @@ public class Teacher extends User {
 
     public Teacher(ResultSet resultSet) throws SQLException {
 
-        super(resultSet.getInt("UID"), resultSet.getString("VORNAME"), resultSet.getString("NAME"),Role.valueOf(resultSet.getString("ROLE")));
+        super(resultSet.getInt("UID"), resultSet.getString("VORNAME"), resultSet.getString("NAME"), Role.valueOf(resultSet.getString("ROLE")));
 
     }
 
@@ -31,11 +32,11 @@ public class Teacher extends User {
         this.subjectsInClasses = subjectsInClasses;
     }
 
-    public Map<String, SchoolClass> getSchoolClassMap(){
-        return  schoolClassMap;
+    public Map<String, SchoolClass> getSchoolClassMap() {
+        return schoolClassMap;
     }
 
-    public void setSchoolClassMap(Map<String, SchoolClass> schoolClassMap){
+    public void setSchoolClassMap(Map<String, SchoolClass> schoolClassMap) {
         this.schoolClassMap = schoolClassMap;
     }
 
@@ -44,7 +45,7 @@ public class Teacher extends User {
         String sql = "SELECT * FROM TEACHER WHERE (UID = '" + super.getId() + "');";
         ResultSet rs = DBHelper.executeSqlSelectStatement(sql);
 
-        while (rs.next()){
+        while (rs.next()) {
             subjectsInClasses.add(new SubjectInClass(rs));
         }
 
@@ -55,12 +56,12 @@ public class Teacher extends User {
         SubjectInClass sic = new SubjectInClass(class_id, subject);
 
 
-        if(!subjectsInClasses.contains(sic)){
+        if (!subjectsInClasses.contains(sic)) {
             System.out.println("You dont have that Subject in this Class!");
             return false;
         }
 
-        if(!schoolClassMap.containsKey(class_id)){
+        if (!schoolClassMap.containsKey(class_id)) {
             System.out.println("You dont have that Class!");
             return false;
         }
@@ -88,16 +89,16 @@ public class Teacher extends User {
 
         List<Integer> idList = new ArrayList<>();
 
-        while (rs.next()){
+        while (rs.next()) {
             idList.add(rs.getInt("UID"));
         }
         rs.close();
 
-        for (int id : idList){
+        for (int id : idList) {
 
             User user = DBHelper.getUser(id);
-            if(user != null){
-                if(user.getClass() == Student.class){
+            if (user != null) {
+                if (user.getClass() == Student.class) {
                     user.onCreation();
                     schoolClass.addStudent((Student) user);
                 }
@@ -108,18 +109,16 @@ public class Teacher extends User {
     }
 
 
-
     @Override
     public void onCreation() throws SQLException {
 
         getClassesAndSubjectsFromTeacher();
 
-        for (SubjectInClass s: subjectsInClasses) {
-            if(!schoolClassMap.containsKey(s.getClassId())){
+        for (SubjectInClass s : subjectsInClasses) {
+            if (!schoolClassMap.containsKey(s.getClassId())) {
                 getSchoolClass(s.getClassId());
             }
         }
-
 
         /*
             TODO is this necessary
