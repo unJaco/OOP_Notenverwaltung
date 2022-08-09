@@ -14,6 +14,7 @@ public class Teacher extends User {
 
     private Map<String, SchoolClass> schoolClassMap = new HashMap<>();
 
+    public Teacher(){}
     public Teacher(Integer id, String firstname, String lastname, Role role) {
         super(id, firstname, lastname, role);
     }
@@ -42,6 +43,8 @@ public class Teacher extends User {
 
     private void getClassesAndSubjectsFromTeacher() throws SQLException {
 
+        subjectsInClasses = new ArrayList<>();
+
         String sql = "SELECT * FROM TEACHER WHERE (UID = '" + super.getId() + "');";
         ResultSet rs = DBHelper.executeSqlSelectStatement(sql);
 
@@ -53,7 +56,7 @@ public class Teacher extends User {
 
     public boolean insertGrade(String class_id, Subject subject, int studentId, int gradeVal, String gradeBez) throws SQLException {
 
-        SubjectInClass sic = new SubjectInClass(class_id, subject);
+        SubjectInClass sic = new SubjectInClass(null, class_id, subject);
 
 
         if (!subjectsInClasses.contains(sic)) {
