@@ -5,17 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="16045e34-ed57-469f-ac12-869f3d7028ea" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/176ff83a-d212-4dad-90a5-cedfd05d392d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/176ff83a-d212-4dad-90a5-cedfd05d392d.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NOTENVERWALTUNG.db" beforeDir="false" afterPath="$PROJECT_DIR$/NOTENVERWALTUNG.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classes/SubjectInClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/SubjectInClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Teacher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/AdminMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AdminMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/StudentMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/StudentMenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/TeacherMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/TeacherMenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/db/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/DBHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/MainApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/javafx/menu-view-admin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javafx/menu-view-admin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javafx/menu-view-student.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javafx/menu-view-student.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javafx/menu-view-teacher.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javafx/menu-view-teacher.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/classes/AdminTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/classes/AdminTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/classes/TeacherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/classes/TeacherTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/javafx/menu-view-admin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/javafx/menu-view-admin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/javafx/menu-view-student.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/javafx/menu-view-student.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/javafx/menu-view-teacher.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/javafx/menu-view-teacher.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,37 +40,18 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="useMavenConfig" value="true" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="ProjectId" id="2A3lYc78PSg9FalHGqUMWekRbzD" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/jacob/Documents/GitHub/OOP_Notenverwaltung&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
-  }
-}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="javafx" />
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Application">
     <configuration name="Application" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="javafx.MainApplication" />
       <module name="OOP_Notenverwaltung" />
@@ -74,6 +59,101 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AdminTest.tryCreateExistingUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="OOP_Notenverwaltung" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="classes.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="classes" />
+      <option name="MAIN_CLASS_NAME" value="classes.AdminTest" />
+      <option name="METHOD_NAME" value="tryCreateExistingUser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in OOP_Notenverwaltung" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="OOP_Notenverwaltung" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DBHelperTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="OOP_Notenverwaltung" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="db.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="db" />
+      <option name="MAIN_CLASS_NAME" value="db.DBHelperTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TeacherTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="OOP_Notenverwaltung" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="classes.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="classes" />
+      <option name="MAIN_CLASS_NAME" value="classes.TeacherTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TeacherTest.insertGrade" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="OOP_Notenverwaltung" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="classes.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="classes" />
+      <option name="MAIN_CLASS_NAME" value="classes.TeacherTest" />
+      <option name="METHOD_NAME" value="insertGrade" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TeacherTest.insertGradeInWrongClass" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="OOP_Notenverwaltung" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="classes.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="classes" />
+      <option name="MAIN_CLASS_NAME" value="classes.TeacherTest" />
+      <option name="METHOD_NAME" value="insertGradeInWrongClass" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.AdminTest.tryCreateExistingUser" />
+        <item itemvalue="JUnit.DBHelperTest" />
+        <item itemvalue="JUnit.TeacherTest" />
+        <item itemvalue="JUnit.TeacherTest.insertGradeInWrongClass" />
+        <item itemvalue="JUnit.TeacherTest.insertGrade" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -112,5 +192,20 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.sqlite.SQLiteException" package="org.sqlite" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.sql.SQLException" package="java.sql" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

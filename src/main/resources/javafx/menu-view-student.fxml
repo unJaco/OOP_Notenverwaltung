@@ -1,33 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox maxWidth="1.7976931348623157E308" prefWidth="500.0" spacing="20.0" xmlns="http://javafx.com/javafx/18"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentMenuController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentMenuController">
+   <Tab text="Schüler">
+   <VBox alignment="CENTER" spacing="20.0">
    <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
    <HBox alignment="CENTER_RIGHT">
-      <ChoiceBox fx:id="subjectChoiceBox" prefWidth="150.0"/>
+      <ChoiceBox fx:id="subjectChoiceBox" prefWidth="150.0" />
    </HBox>
    <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0">
       <columns>
-         <TableColumn fx:id="bezCol" prefWidth="140.0" text="Bezeichnung"/>
-         <TableColumn fx:id="valCol" prefWidth="58.0" text="Note"/>
+         <TableColumn fx:id="bezCol" prefWidth="140.0" text="Bezeichnung" />
+         <TableColumn fx:id="valCol" prefWidth="58.0" text="Note" />
       </columns>
    </TableView>
    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
       <Label contentDisplay="RIGHT" text="ø :" textAlignment="RIGHT">
          <padding>
-            <Insets right="50.0"/>
+            <Insets right="50.0" />
          </padding>
       </Label>
-      <Label fx:id="avgLabel"/>
+      <Label fx:id="avgLabel" />
    </HBox>
 </VBox>
+</Tab>
+   <Tab text="Passwort">
+      <VBox alignment="CENTER" spacing="20.0">
+         <children>
+            <Label text="Geben Sie ihre EMail und ihr neues Passwort ein!">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="299.0" promptText="EMail" />
+            <TextField fx:id="passwordTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="300.0" promptText="Neues Passwort" />
+            <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#onChangePasswordButtonClick" text="Passwort ändern">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children></VBox>
+   </Tab>
+   <Tab text="Ausloggen">
+      <VBox alignment="CENTER" spacing="20.0">
+         <children>
+            <Label text="Wollen Sie sich wirklich ausloggen?">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#onLogOutButtonClick" text="Ausloggen">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children></VBox>
+   </Tab>
+   <Tab text="Ausloggen">
+      <VBox alignment="CENTER" spacing="20.0">
+         <children>
+            <Label text="Wollen Sie sich wirklich ausloggen?">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#onLogOutButtonClick" prefHeight="39.0" prefWidth="158.0" text="Ausloggen">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </Tab>
+</TabPane>

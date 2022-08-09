@@ -5,6 +5,7 @@ import db.DBHelper;
 import javafx.MainApplication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -65,6 +66,10 @@ public class AdminMenuController implements Initializable {
     public TextField classTextField;
     @FXML
     public ChoiceBox<Subject> subjectChoiceBox;
+    @FXML
+    public TextField passwordTextField;
+    @FXML
+    public TextField emailTextField;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -265,5 +270,23 @@ public class AdminMenuController implements Initializable {
             throw new RuntimeException(e);
         }
         setStudentTableViewItems();
+    }
+
+    public void onLogOutButtonClick() throws IOException {
+        MainApplication.changeScene("login-view.fxml", "Bitte geben Sie ihre Login Daten ein!");
+    }
+
+    public void onAllGradeClick(ActionEvent event) {
+    }
+
+    public void onDeleteClick(ActionEvent event) {
+    }
+
+    public void onChangePasswordButtonClick() throws IOException, SQLException {
+
+            MainApplication.changePassword(emailTextField.getText(),passwordTextField.getText());
+            MainApplication.changeScene("login-view.fxml", "Bitte geben Sie ihre Login Daten ein!");
+
+
     }
 }

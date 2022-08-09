@@ -120,6 +120,7 @@ public class DBHelper {
                 }
             }
         } else {
+            rsCred.close();
             return null;
         }
     }
@@ -190,6 +191,12 @@ public class DBHelper {
 
             default -> {return null;}
         }
+    }
+
+    public static String getEMail(int uid) throws SQLException {
+        String sql = "SELECT * FROM CREDENTIALS WHERE (UID = '" + uid + "');";
+
+        return executeSqlSelectStatement(sql).getString("EMAIL");
     }
 
     private static boolean addStudentToClass(Student student, String classId) throws SQLException {
@@ -286,7 +293,12 @@ public class DBHelper {
     }
 
     private static String deleteString(String table, int uid){
-        return "DELETE FROM " + table + " WEHERE UID =" + uid + ";";
+        return "DELETE FROM " + table + " WEHERE UID = " + uid + ";";
+    }
+
+    public static boolean changeCredentials(String email, String password) throws SQLException {
+        String sql = "UPDATE CREDENTIALS SET PASSWORD = '" + password + "' WHERE email = '" + email + "';";
+        return executeSqlStatement(sql);
     }
 
     /*public static boolean deleteUser(String email) throws SQLException {

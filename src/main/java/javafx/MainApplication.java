@@ -59,6 +59,10 @@ public class MainApplication extends Application {
         user.onCreation();
         user.switchScene();
     }
+
+    public static void changePassword(String email, String password) throws SQLException {
+        DBHelper.changeCredentials(email, password);
+    }
 }
 
 /*

@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminMenuController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminMenuController">
    <Tab text="Schüler">
       <VBox alignment="CENTER" spacing="20.0">
          <padding>
@@ -72,8 +65,8 @@
             </VBox.margin>
          </Label>
          <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-            <TextField promptText="Klasse" fx:id="classTextField"/>
-            <ChoiceBox prefWidth="150.0" fx:id="subjectChoiceBox"/>
+            <TextField fx:id="classTextField" promptText="Klasse" />
+            <ChoiceBox fx:id="subjectChoiceBox" prefWidth="150.0" />
          </HBox>
          <HBox alignment="CENTER_RIGHT" spacing="20.0">
             <VBox.margin>
@@ -82,7 +75,7 @@
             <padding>
                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
-            <Button mnemonicParsing="false" text="Eintrag hinzufügen" onAction="#addSIC">
+            <Button mnemonicParsing="false" onAction="#addSIC" text="Eintrag hinzufügen">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -101,5 +94,37 @@
          <TextField />
          <TextField />
       </VBox>
+   </Tab>
+   <Tab text="Passwort">
+      <VBox alignment="CENTER" spacing="20.0">
+         <children>
+            <Label text="Geben Sie ihre EMail und ihr neues Passwort ein!">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="299.0" promptText="EMail" />
+            <TextField fx:id="passwordTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="300.0" promptText="Neues Passwort" />
+            <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#onChangePasswordButtonClick" text="Passwort ändern">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children></VBox>
+   </Tab>
+   <Tab text="Ausloggen">
+      <VBox alignment="CENTER" spacing="20.0">
+         <children>
+            <Label text="Wollen Sie sich wirklich ausloggen?">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#onLogOutButtonClick" text="Ausloggen">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children></VBox>
    </Tab>
 </TabPane>

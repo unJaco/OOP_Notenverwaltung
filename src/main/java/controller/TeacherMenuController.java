@@ -55,6 +55,10 @@ public class TeacherMenuController implements Initializable {
     private Label avgLabel;
     @FXML
     private Label errorLabel;
+    @FXML
+    public TextField passwordTextField;
+    @FXML
+    public TextField emailTextField;
 
 
     @Override
@@ -211,5 +215,14 @@ public class TeacherMenuController implements Initializable {
             tableView.getItems().addAll(grades);
             avgLabel.setText(String.valueOf(selectedStudent.calcAverage(grades)));
         }
+    }
+
+    public void onLogOutButtonClick() throws IOException {
+        MainApplication.changeScene("login-view.fxml","Bitte geben Sie ihre Login Daten ein!");
+    }
+
+    public void onChangePasswordButtonClick() throws SQLException, IOException {
+        MainApplication.changePassword(emailTextField.getText(),passwordTextField.getText());
+        MainApplication.changeScene("login-view.fxml", "Bitte geben Sie ihre Login Daten ein!");
     }
 }

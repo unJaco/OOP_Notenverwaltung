@@ -30,7 +30,7 @@ class AdminTest {
     @Test
     void tryCreateExistingUser(){
         try{
-            System.out.println("User wurde erstellt.");
+            a.createUser("A", "A", "admin4",Role.ADMIN,"13/3");
             Assertions.assertTrue(a.createUser("Foo", "Boo", "foo@boo.de",Role.TEACHER,"13/3"));
         }
         catch (SQLException e){
@@ -42,12 +42,12 @@ class AdminTest {
 
     @Test
     void addSubjectToTeacher() throws SQLException {
-        Assertions.assertTrue(a.addSubjectToTeacher(12,Subject.MATHE,"13/3"));
+        Assertions.assertTrue(a.addSubjectToTeacher(3,Subject.MATHE,"7B"));
     }
 
 
     @Test
     void deleteUser() {
-        Assertions.assertTrue(a.deleteUser(12));
+        Assertions.assertTrue(a.deleteUser(120));
     }
 }
