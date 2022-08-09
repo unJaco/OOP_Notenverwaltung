@@ -137,11 +137,11 @@ public class TeacherMenuController implements Initializable {
         });
     }
 
-    private void updateSelectedStudentGrades(){
-        try{
+    private void updateSelectedStudentGrades() {
+        try {
             selectedStudent.onCreation();
             setTableViewItems();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             errorLabel.setText("Fehler beim laden der Noten");
         }
     }
@@ -166,12 +166,12 @@ public class TeacherMenuController implements Initializable {
 
     @FXML
     protected void onDeleteClick() {
-        try{
+        try {
             Grade selectedGrade = tableView.getSelectionModel().getSelectedItem();
             tableView.getItems().remove(selectedGrade);
-            DBHelper.deleteGrade(selectedGrade.getGradeId(), selectedStudent.getId());
+            teacher.deleteGrade(selectedGrade.getGradeId(), selectedStudent.getId());
             updateSelectedStudentGrades();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             errorLabel.setText("Löschen fehlgeschlagen");
         }
     }
@@ -191,7 +191,7 @@ public class TeacherMenuController implements Initializable {
 
     }
 
-    private void onDialogClose(WindowEvent windowEvent){
+    private void onDialogClose(WindowEvent windowEvent) {
         /*
             TODO what if in dialog another student is selected
          */
@@ -203,11 +203,11 @@ public class TeacherMenuController implements Initializable {
         setTableViewItems();
     }
 
-    private void setTableViewItems(){
+    private void setTableViewItems() {
 
         tableView.getItems().clear();
         avgLabel.setText("");
-        if(selectedStudent!=null) {
+        if (selectedStudent != null) {
             SubjectInClass subjectInClass = selectedSubjectInClass;
 
             List<Grade> grades = selectedStudent.displayGrades(subjectInClass.getSubject());

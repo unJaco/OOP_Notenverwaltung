@@ -12,6 +12,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
          <HBox alignment="CENTER_RIGHT" spacing="20">
+            <Button mnemonicParsing="false" text="Schüler löschen" onAction="#deleteStudent"/>
             <ChoiceBox fx:id="classesChoiceBox" prefWidth="150.0" />
             <ChoiceBox fx:id="studentChoiceBox" prefWidth="150.0" />
          </HBox>
@@ -50,8 +51,12 @@
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
-         <HBox alignment="CENTER_RIGHT">
+         <HBox alignment="CENTER_RIGHT" spacing="20.0">
+            <Button mnemonicParsing="false" text="Lehrer löschen" onAction="#deleteTeacher"/>
             <ChoiceBox fx:id="teacherChoiceBox" prefWidth="150.0" />
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
          </HBox>
          <TableView fx:id="tableViewTeacher" prefHeight="200.0" prefWidth="200.0">
             <columns>
@@ -80,19 +85,36 @@
                   <Insets />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onSubjectInClassDeleteClick" text="Eintrag löschen" />
+            <Button mnemonicParsing="false" onAction="#deleteSIC" text="Eintrag löschen" />
          </HBox>
       </VBox>
    </Tab>
    <Tab text="User anlegen">
-      <VBox alignment="CENTER_RIGHT" spacing="20.0">
+      <VBox alignment="TOP_RIGHT" spacing="20.0">
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
-         <ChoiceBox prefWidth="150.0" />
-         <TextField alignment="CENTER" />
-         <TextField />
-         <TextField />
+         <ChoiceBox fx:id="roleChoiceBox" prefWidth="150.0" />
+         <TextField fx:id="vornameTextField" promptText="Vorname" />
+         <TextField fx:id="nameTextField" promptText="Nachname" />
+         <TextField fx:id="emailTextField" promptText="Email" />
+         <HBox alignment="CENTER">
+            <Label fx:id="errLabelUser">
+               <HBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </HBox.margin>
+            </Label>
+         </HBox>
+         <HBox alignment="CENTER_RIGHT" spacing="20.0">
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+            <padding>
+               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <TextField fx:id="insertClassTextField" promptText="Klasse" />
+            <Button mnemonicParsing="false" onAction="#insertUserButton" text="User anlegen" />
+         </HBox>
       </VBox>
    </Tab>
    <Tab text="Passwort">
