@@ -122,6 +122,7 @@ public class TeacherMenuController implements Initializable {
             } else {
 
                 selectedSubjectInClass = newSelectedSubjectInClass;
+                System.out.println("LOL");
                 setTableViewItems();
             }
         });
@@ -201,14 +202,14 @@ public class TeacherMenuController implements Initializable {
     private void setTableViewItems(){
 
         tableView.getItems().clear();
-        SubjectInClass subjectInClass = selectedSubjectInClass;
+        avgLabel.setText("");
+        if(selectedStudent!=null) {
+            SubjectInClass subjectInClass = selectedSubjectInClass;
 
+            List<Grade> grades = selectedStudent.displayGrades(subjectInClass.getSubject());
 
-        //List<Grade> grades = teacher.getSchoolClassMap().get(subjectInClass.getClassId()).getStudent(student.getId()).displayGrades(subjectInClass.getSubject());
-
-        List<Grade> grades = selectedStudent.displayGrades(subjectInClass.getSubject());
-
-        tableView.getItems().addAll(grades);
-        avgLabel.setText(String.valueOf(selectedStudent.calcAverage(grades)));
+            tableView.getItems().addAll(grades);
+            avgLabel.setText(String.valueOf(selectedStudent.calcAverage(grades)));
+        }
     }
 }

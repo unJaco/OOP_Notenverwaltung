@@ -147,10 +147,13 @@ public class AdminMenuController implements Initializable {
     private void setStudentTableViewItems() {
 
         tableViewStudent.getItems().clear();
+        avgLabelStudent.setText("");
+        if(selectedStudent!= null){
+            List<Grade> grades = selectedStudent.displayGrades(selectedSubjectInClass.getSubject());
+            tableViewStudent.getItems().addAll(grades);
+            avgLabelStudent.setText(String.valueOf(selectedStudent.calcAverage(grades)));
+        }
 
-        List<Grade> grades = selectedStudent.displayGrades(selectedSubjectInClass.getSubject());
-        tableViewStudent.getItems().addAll(grades);
-        avgLabelStudent.setText(String.valueOf(selectedStudent.calcAverage(grades)));
     }
 
     private void updateSelectedStudentGrades() {
