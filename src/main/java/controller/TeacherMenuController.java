@@ -67,9 +67,6 @@ public class TeacherMenuController implements Initializable {
         bezCol.setCellValueFactory(new PropertyValueFactory<>("gradeBez"));
         valCol.setCellValueFactory(new PropertyValueFactory<>("gradeVal"));
 
-        bezCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        valCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-
         tableView.setEditable(true);
 
         bezCol.setOnEditCommit(event -> {

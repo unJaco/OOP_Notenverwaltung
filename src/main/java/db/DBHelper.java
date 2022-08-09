@@ -33,7 +33,8 @@ public class DBHelper {
             "CLASS_ID TEXT NOT NULL);";
 
     static final String sqlTableTeacher = "CREATE TABLE IF NOT EXISTS TEACHER " +
-            "(UID INT NOT NULL," +
+            "(SIC_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+            "UID INT NOT NULL," +
             "CLASS_ID TEXT NOT NULL," +
             "SUBJECT TEXT NOT NULL);";
 
@@ -55,24 +56,13 @@ public class DBHelper {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:NOTENVERWALTUNG.db");
 
-        /*
-            executeSqlStatement("DROP TABLE GRADES");
-            executeSqlStatement("DROP TABLE USER");
-            executeSqlStatement("DROP TABLE CREDENTIALS");
-            executeSqlStatement("DROP TABLE STUDENTS");
-            executeSqlStatement("DROP TABLE TEACHER");
-        */
 
             executeSqlStatement(sqlTableCredentials);
             executeSqlStatement(sqlTableUser);
             executeSqlStatement(sqlTableGrades);
             executeSqlStatement(sqlTableStudents);
             executeSqlStatement(sqlTableTeacher);
-        /*
-            insertUser(new Student(null, "S", "S", Role.STUDENT), "student", "7B");
-            insertUser(new Teacher(null, "T", "T", Role.TEACHER), "teacher", null);
-            insertUser(new Admin(null, "A", "A", Role.ADMIN), "admin", null);
-        */
+
 
         } catch (Exception e) {
 
@@ -216,21 +206,6 @@ public class DBHelper {
         return studentToClassSuccess;
     }
 
-    /*
-        TODO high important - add Teacher to a class with Subject
-     */
-
-    private static boolean addTeacherToClass(Teacher teacher) throws SQLException {
-
-        PreparedStatement pSAddTeacherToClass;
-        pSAddTeacherToClass = c.prepareStatement(sqlAddTeacherWithSubjectToClass);
-
-        return false;
-    }
-
-    /*
-        TODO subject and classId
-    */
     public static boolean insertGrade(String classId, int studentID,  Grade grade) throws SQLException {
 
         PreparedStatement pSGrade;
@@ -250,35 +225,20 @@ public class DBHelper {
     }
 
     public static boolean deleteGrade(int gradeId, int uid) throws SQLException {
-
         String sql = "DELETE FROM GRADES WHERE (GRADE_ID = '" + gradeId + "' AND UID = '" + uid + "');";
         return executeSqlStatement(sql);
     }
 
     public static boolean updateGradeVal(Grade grade) throws SQLException {
 
-        String sql = "UPDATE GRADES SET GRADE_VAL = '" + grade.getGradeVal() + "' WHERE GRADE_ID = '" + grade.getGradeId() + "'";
+        String sql = "UPDATE GRADES SET GRADE_VAL = '" + grade.getGradeVal() + "' WHERE GRADE_ID = '" + grade.getGradeId() + "';";
         return executeSqlStatement(sql);
     }
 
     public static boolean updateGradeBez(Grade grade) throws SQLException {
 
-        String sql = "UPDATE GRADES SET GRADE_BEZ = '" + grade.getGradeBez() + "' WHERE GRADE_ID = '" + grade.getGradeId() + "'";
+        String sql = "UPDATE GRADES SET GRADE_BEZ = '" + grade.getGradeBez() + "' WHERE GRADE_ID = '" + grade.getGradeId() + "';";
         return executeSqlStatement(sql);
-    }
-
-    public static boolean addStudentToClass(int studetnId, String classId) throws SQLException {
-
-        PreparedStatement ps;
-
-        ps = c.prepareStatement(sqlAddStudentToClass);
-
-        ps.setInt(1, studetnId);
-        ps.setString(2, classId);
-
-        int i = ps.executeUpdate();
-
-        return i == 1;
     }
 
     public static boolean addTeacherWithSubjectToClass(int teacherId, String classId, Subject subject) throws SQLException {
@@ -297,7 +257,20 @@ public class DBHelper {
         return i == 1;
     }
 
+    public static boolean updateTeacherSubject(SubjectInClass subjectInClass) throws SQLException {
+        String sql = "UPDATE TEACHER SET SUBJECT = '" + subjectInClass.getSubject() + "' WHERE '" + subjectInClass.getId() + "';";
+        return executeSqlStatement(sql);
+    }
 
+    public static boolean updateTeacherClass(SubjectInClass subjectInClass) throws SQLException {
+        String sql = "UPDATE TEACHER SET CLASS_ID = '" + subjectInClass.getClassId() + "' WHERE '" + subjectInClass.getId() + "';";
+        return executeSqlStatement(sql);
+    }
+
+    public static boolean deleteTeacherEntry(int sicId, int uid) throws SQLException {
+        String sql = "DELETE FROM TEACHER WHERE (SIC_ID = '" + sicId + "' AND UID = '" + uid + "');";
+        return executeSqlStatement(sql);
+    }
 
     /*
         TODO finish Delete function

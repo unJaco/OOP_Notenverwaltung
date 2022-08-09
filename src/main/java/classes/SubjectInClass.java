@@ -6,19 +6,30 @@ import java.util.Objects;
 
 public class SubjectInClass {
 
+    private Integer id;
     private String classId;
     private Subject subject;
 
 
     public SubjectInClass(){}
-    public SubjectInClass(String classId, Subject subject) {
+    public SubjectInClass(Integer id,String classId, Subject subject) {
+        this.id = id;
         this.classId = classId;
         this.subject = subject;
     }
 
     public SubjectInClass(ResultSet resultSet) throws SQLException {
-        this.classId = resultSet.getString("class_id");
+        this.id = resultSet.getInt("SIC_ID");
+        this.classId = resultSet.getString("CLASS_ID");
         this.subject = Subject.valueOf(resultSet.getString("SUBJECT"));
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getClassId() {
