@@ -5,13 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="16045e34-ed57-469f-ac12-869f3d7028ea" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/OOP_Notenverwaltung.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/OOP_Notenverwaltung.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/176ff83a-d212-4dad-90a5-cedfd05d392d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/176ff83a-d212-4dad-90a5-cedfd05d392d.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NOTENVERWALTUNG.db" beforeDir="false" afterPath="$PROJECT_DIR$/NOTENVERWALTUNG.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/SubjectInClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/SubjectInClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Teacher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AdminMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AdminMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/TeacherMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/TeacherMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/DBHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javafx/menu-view-admin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javafx/menu-view-admin.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -39,9 +56,16 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/jacob/Documents/GitHub/OOP_Notenverwaltung&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="javafx" />
+      <recent name="" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Application" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="javafx.MainApplication" />
@@ -67,6 +91,11 @@
       <workItem from="1658268003868" duration="978000" />
       <workItem from="1658311976066" duration="464000" />
       <workItem from="1658350484100" duration="179000" />
+      <workItem from="1659690128568" duration="10404000" />
+      <workItem from="1659872661266" duration="4860000" />
+      <workItem from="1659984375187" duration="1617000" />
+      <workItem from="1659988000319" duration="2023000" />
+      <workItem from="1660029114007" duration="8066000" />
     </task>
     <servers />
   </component>
