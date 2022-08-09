@@ -1,7 +1,7 @@
 package classes;
 
 public abstract class User implements OnCreation, SwitchScene {
-    
+
     private Integer id;
     private String firstname;
     private String lastname;
@@ -85,7 +85,7 @@ public abstract class User implements OnCreation, SwitchScene {
 
     @Override
     public String toString() {
-        return firstname + " " + lastname;
+        return firstname + ", " + lastname;
     }
 }
 

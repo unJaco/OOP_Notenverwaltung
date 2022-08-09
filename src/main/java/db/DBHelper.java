@@ -157,9 +157,7 @@ public class DBHelper {
 
         switch (user.getRole()){
 
-            case STUDENT -> {
-                userSpecificSuccess = addStudentToClass((Student) user, classId);
-            }
+            case STUDENT -> userSpecificSuccess = addStudentToClass((Student) user, classId);
             case TEACHER -> {
                 System.out.println("TEACHER");
             }
@@ -275,7 +273,7 @@ public class DBHelper {
     /*
         TODO finish Delete function
      */
-    public static void deleteUser(int uid){
+    public static void deleteUser(int uid) throws SQLException {
 
         String credentials = deleteString("CREDENTIALS", uid);
         String user = deleteString("USER", uid);
@@ -283,20 +281,15 @@ public class DBHelper {
         String students = deleteString("STUDENTS", uid);
         String teacher = deleteString("TEACHER", uid);
 
+        executeSqlStatement(credentials);
+        executeSqlStatement(user);
+        executeSqlStatement(grades);
+        executeSqlStatement(students);
+        executeSqlStatement(teacher);
+
     }
 
     private static String deleteString(String table, int uid){
         return "DELETE FROM " + table + " WEHERE UID =" + uid + ";";
     }
-
-    /*public static boolean deleteUser(String email) throws SQLException {
-
-
-        PreparedStatement preparedStatement;
-        preparedStatement = c.prepareStatement(sqlDeleteUser);
-        // set the corresponding param
-        preparedStatement.setString(1, email);
-        // execute the delete statement
-        return preparedStatement.executeUpdate() == 1;
-    }*/
 }

@@ -64,25 +64,10 @@ public class Admin extends User {
     }
 
     public boolean addSubjectToTeacher(int teacherId, Subject subject, String class_id) throws SQLException {
-
         return DBHelper.addTeacherWithSubjectToClass(teacherId, class_id, subject);
     }
 
-    /*
-        TODO DB add CLASS_IDS Table
-     */
-
-    public boolean createClass_Id(String class_id){
-
-        return false;
-    }
-
-    /*
-        TODO delete stuff
-     */
-
-    public boolean deleteUser(int uid){
-
+    public boolean deleteUser(int uid) throws SQLException {
         DBHelper.deleteUser(uid);
         return true;
     }
@@ -128,35 +113,11 @@ public class Admin extends User {
         getStudents();
         getTeacher();
 
-        /*
-
-        String sql = "SELECT * FROM GRADES AS g INNER JOIN GRADES AS s ON g.UID = s.UID INNER JOIN TEACHER AS t ON s.CLASS_ID = t.CLASS_ID INNER JOIN USER AS u ON u.UID = s.UID";
-        ResultSet rs = DBHelper.executeSqlSelectStatement(sql);
-
-        //TODO Ausgabe ändern
-        //BEZKL könnte falsch sein
-
-        while (rs.next()) { 
-               System.out.println(rs.getString("VORNAME") + "   " +
-                               rs.getString("NAME") + "   " +
-                               rs.getString("SUBJECT") + "   " +
-                               rs.getInt("GRADE_Val")+ "   " +
-                               rs.getString("GRADE_BEZ"));    
-        }*/
-        
     }
 
     @Override
     public void switchScene() throws IOException {
         MainApplication.changeScene("menu-view-admin.fxml", "Admin Ansicht");
     }
-
-    //public boolean createClassroom(){}
-
-    //public boolean deleteClassroom(){}
-
-    //public boolean insertStudentToClassroom(){}
-
-    //public boolean deleteStudentFromClassroom(){}
 
 }

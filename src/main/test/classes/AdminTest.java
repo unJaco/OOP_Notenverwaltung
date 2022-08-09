@@ -47,7 +47,7 @@ class AdminTest {
 
 
     @Test
-    void deleteUser() {
+    void deleteUser() throws SQLException {
         Assertions.assertTrue(a.deleteUser(12));
     }
 }
