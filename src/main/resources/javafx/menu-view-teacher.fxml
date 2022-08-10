@@ -60,6 +60,7 @@
             </Label>
             <TextField fx:id="emailTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="299.0" promptText="EMail" />
             <TextField fx:id="passwordTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="300.0" promptText="Neues Passwort" />
+            <Label fx:id="errLabelChangePassword" />
             <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#onChangePasswordButtonClick" text="Passwort ändern">
                <font>
                   <Font size="18.0" />

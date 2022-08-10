@@ -47,6 +47,8 @@ public class StudentMenuController implements Initializable {
     public TextField passwordTextField;
     @FXML
     public TextField emailTextField;
+    @FXML
+    public Label errLabelChangePassword;
 
     private Stage stage;
     private Scene scene;
@@ -80,7 +82,11 @@ public class StudentMenuController implements Initializable {
     }
 
     public void onChangePasswordButtonClick() throws SQLException, IOException {
-        MainApplication.changePassword(emailTextField.getText(),passwordTextField.getText());
-        MainApplication.changeScene("login-view.fxml", "Bitte geben Sie ihre Login Daten ein!");
+        try {
+            MainApplication.changePassword(emailTextField.getText(), passwordTextField.getText());
+            MainApplication.changeScene("login-view.fxml", "Bitte geben Sie ihre Login Daten ein!");
+        }catch (Exception e){
+            errLabelChangePassword.setText("Passwort ändern fehlgeschlagen");
+        }
     }
 }

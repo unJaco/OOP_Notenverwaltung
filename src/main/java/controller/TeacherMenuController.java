@@ -70,6 +70,9 @@ public class TeacherMenuController implements Initializable {
     private javafx.scene.control.Label errorLabelStudent;
     @FXML
     private javafx.scene.control.Label avgLabelStudent;
+    @FXML
+    public javafx.scene.control.Label errLabelChangePassword;
+
     private final String[] gradeVal = {"1", "2", "3", "4", "5", "6"};
 
     private final ObservableList<String> gradeValList = FXCollections.observableList(Arrays.asList(gradeVal));
@@ -236,7 +239,11 @@ public class TeacherMenuController implements Initializable {
     }
 
     public void onChangePasswordButtonClick() throws SQLException, IOException {
-        MainApplication.changePassword(emailTextField.getText(),passwordTextField.getText());
-        MainApplication.changeScene("login-view.fxml", "Bitte geben Sie ihre Login Daten ein!");
+        try {
+            MainApplication.changePassword(emailTextField.getText(), passwordTextField.getText());
+            MainApplication.changeScene("login-view.fxml", "Bitte geben Sie ihre Login Daten ein!");
+        }catch (Exception e){
+            errLabelChangePassword.setText("Passwort ändern fehlgeschlagen");
+        }
     }
 }
