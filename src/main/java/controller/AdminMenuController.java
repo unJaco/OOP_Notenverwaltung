@@ -236,12 +236,12 @@ public class AdminMenuController implements Initializable {
     }
 
     @FXML
-    protected void onGradeClick() throws IOException {
-        //try {
+    protected void onGradeClick(){
+        try {
             openDialog();
-       // } catch (IOException e) {
+        } catch (IOException e) {
             errorLabelStudent.setText("Öffnen fehlgeschlagen");
-       // }
+        }
     }
 
     @FXML
