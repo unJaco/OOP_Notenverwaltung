@@ -38,15 +38,17 @@
          <HBox alignment="CENTER_RIGHT">
             <Button mnemonicParsing="false" onAction="#onGradeDeleteClick" text="Note löschen" />
          </HBox>
-         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
-            <Button mnemonicParsing="false" onAction="#onGradeClick" text="Schüler benoten">
+         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+            <TextField promptText="Bezeichnung" fx:id="gradeBezTextField"/>
+            <ChoiceBox prefWidth="150.0" fx:id="gradeValChoiceBox"/>
+            <Button mnemonicParsing="false" onAction="#onGradeClick" text="Eintragen">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>
             </Button>
             <Label contentDisplay="RIGHT" text="ø :" textAlignment="RIGHT">
                <padding>
-                  <Insets right="50.0" />
+                  <Insets right="20.0" />
                </padding>
             </Label>
             <Label fx:id="avgLabelStudent" />
@@ -128,18 +130,15 @@
       <VBox alignment="CENTER" spacing="20.0">
          <Label text="Geben Sie ihre EMail und ihr neues Passwort ein!">
             <font>
-               <Font size="18.0"/>
+               <Font size="18.0" />
             </font>
          </Label>
-         <TextField fx:id="emailTextField2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                    minWidth="-Infinity" prefHeight="25.0" prefWidth="299.0" promptText="EMail"/>
-         <TextField fx:id="passwordTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                    minWidth="-Infinity" prefHeight="25.0" prefWidth="300.0" promptText="Neues Passwort"/>
-         <Label fx:id="errLabelChangePassword"/>
-         <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#onChangePasswordButtonClick"
-                 text="Passwort ändern">
+         <TextField fx:id="emailTextField2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="299.0" promptText="EMail" />
+         <TextField fx:id="passwordTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="300.0" promptText="Neues Passwort" />
+         <Label fx:id="errLabelChangePassword" />
+         <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#onChangePasswordButtonClick" text="Passwort ändern">
             <font>
-               <Font size="18.0"/>
+               <Font size="18.0" />
             </font>
          </Button>
       </VBox>
@@ -148,15 +147,15 @@
       <VBox alignment="CENTER" spacing="20.0">
          <Label text="Wollen Sie sich wirklich ausloggen?">
             <font>
-               <Font size="18.0"/>
+               <Font size="18.0" />
             </font>
          </Label>
          <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#onLogOutButtonClick" text="Ausloggen">
             <font>
-               <Font size="18.0"/>
+               <Font size="18.0" />
             </font>
          </Button>
-         <Label fx:id="errLabelLogout"/>
+         <Label fx:id="errLabelLogout" />
       </VBox>
    </Tab>
 </TabPane>

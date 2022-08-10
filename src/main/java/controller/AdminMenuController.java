@@ -16,13 +16,9 @@ import javafx.stage.WindowEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class AdminMenuController implements Initializable {
-
 
 
     private Admin admin;
@@ -33,7 +29,11 @@ public class AdminMenuController implements Initializable {
 
     private Teacher selectedTeacher = new Teacher();
 
+    private final String[] gradeVal = {"1", "2", "3", "4", "5", "6"};
+
+    private final ObservableList<String> gradeValList = FXCollections.observableList(Arrays.asList(gradeVal));
     private final ObservableList<Subject> subjectList = FXCollections.observableList(Arrays.stream(Subject.values()).toList());
+
 
     private final ObservableList<Role> roleList = FXCollections.observableList(Arrays.stream(Role.values()).toList());
 
@@ -51,7 +51,10 @@ public class AdminMenuController implements Initializable {
     private Label errorLabelStudent;
     @FXML
     private Label avgLabelStudent;
-
+    @FXML
+    public ChoiceBox<String> gradeValChoiceBox;
+    @FXML
+    public TextField gradeBezTextField;
     @FXML
     private ChoiceBox<Teacher> teacherChoiceBox;
     @FXML
@@ -99,6 +102,8 @@ public class AdminMenuController implements Initializable {
     }
 
     private void setUpStudentTab() {
+
+        gradeValChoiceBox.setItems(gradeValList);
 
         classesChoiceBox.getItems().clear();
 
@@ -238,9 +243,17 @@ public class AdminMenuController implements Initializable {
     @FXML
     protected void onGradeClick(){
         try {
-            openDialog();
-        } catch (IOException e) {
-            errorLabelStudent.setText("Öffnen fehlgeschlagen");
+
+            String gradeBezeichnug = gradeBezTextField.getText();
+            int gradeVal = Integer.parseInt(gradeValChoiceBox.getValue());
+
+            if(!gradeBezeichnug.isBlank()  && selectedStudent != null && selectedSubjectInClass != null){
+                Grade grade = new Grade(null, gradeVal, gradeBezeichnug, selectedSubjectInClass.getSubject());
+                DBHelper.insertGrade(selectedSubjectInClass.getClassId(), selectedStudent.getId(), grade);
+                updateSelectedStudentGrades();
+            }
+        } catch (Exception e) {
+            errorLabelStudent.setText("Eintragen fehlgeschalgen");
         }
     }
 
@@ -328,7 +341,7 @@ public class AdminMenuController implements Initializable {
             errLabelTeacher.setText("Löschen fehlgeschlagen");
         }
     }
-
+/*
     private void openDialog() throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("input-grade-view.fxml"));
@@ -353,7 +366,7 @@ public class AdminMenuController implements Initializable {
         }
         setStudentTableViewItems();
     }
-
+*/
     public void onLogOutButtonClick() throws IOException {
         try {
             MainApplication.changeScene("login-view.fxml", "Bitte geben Sie ihre Login Daten ein!");
