@@ -294,7 +294,7 @@ public class DBHelper {
     }
 
     private static String deleteString(String table, int uid){
-        return "DELETE FROM " + table + " WEHERE UID = " + uid + ";";
+        return "DELETE FROM " + table + " WHERE UID = " + uid + ";";
     }
 
     public static boolean changeCredentials(String email, String password) throws SQLException {
