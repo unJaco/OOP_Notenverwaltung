@@ -4,27 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="16045e34-ed57-469f-ac12-869f3d7028ea" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NOTENVERWALTUNG.db" beforeDir="false" afterPath="$PROJECT_DIR$/NOTENVERWALTUNG.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Grade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Grade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classes/OnCreation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/OnCreation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classes/SchoolClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/SchoolClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classes/SubjectInClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/SubjectInClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Teacher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/classes/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AdminMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AdminMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GradeDialogController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/StudentMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/StudentMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/TeacherMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/TeacherMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/db/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/DBHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/javafx/menu-view-student.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/javafx/menu-view-student.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/javafx/menu-view-teacher.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/javafx/menu-view-teacher.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="16045e34-ed57-469f-ac12-869f3d7028ea" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -241,7 +221,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660141135368</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="comments">
+      <created>1660156228938</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1660156228938</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,7 +253,8 @@
     <MESSAGE value="better tests" />
     <MESSAGE value="teacher noten" />
     <MESSAGE value="push" />
-    <option name="LAST_COMMIT_MESSAGE" value="push" />
+    <MESSAGE value="comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="comments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
