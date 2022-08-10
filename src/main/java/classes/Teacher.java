@@ -14,7 +14,9 @@ public class Teacher extends User {
 
     private Map<String, SchoolClass> schoolClassMap = new HashMap<>();
 
-    public Teacher(){}
+    public Teacher() {
+    }
+
     public Teacher(Integer id, String firstname, String lastname, Role role) {
         super(id, firstname, lastname, role);
     }
@@ -54,6 +56,7 @@ public class Teacher extends User {
 
     }
 
+    //inserts a grade
     public boolean insertGrade(String class_id, Subject subject, int studentId, int gradeVal, String gradeBez) throws SQLException {
 
         SubjectInClass sic = new SubjectInClass(null, class_id, subject);
@@ -74,15 +77,11 @@ public class Teacher extends User {
         return DBHelper.insertGrade(class_id, studentId, new Grade(null, gradeVal, gradeBez, subject));
     }
 
-
-    /*
-        TODO delete Grade
-     */
-
     public void deleteGrade(int gradeId, int uid) throws SQLException {
         DBHelper.deleteGrade(gradeId, uid);
     }
 
+    //fills schoolClassMap with pupils
     private void getSchoolClass(String classId) throws SQLException {
 
         SchoolClass schoolClass = new SchoolClass(classId, new HashMap<>());
@@ -122,18 +121,6 @@ public class Teacher extends User {
                 getSchoolClass(s.getClassId());
             }
         }
-
-        /*
-            TODO is this necessary
-         */
-
-        /*
-
-        String sql = "SELECT * FROM GRADES AS g INNER JOIN STUDENTS AS s ON g.UID = s.UID INNER JOIN TEACHER AS t ON s.CLASS_ID = t.CLASS_ID INNER JOIN USER AS u ON u.UID = s.UID";
-        ResultSet rs = DBHelper.executeSqlSelectStatement(sql);*/
-
-        //TODO Ausgabe ändern
-
 
     }
 

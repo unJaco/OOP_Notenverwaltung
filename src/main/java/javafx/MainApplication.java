@@ -8,14 +8,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
+//this is the Main Applications
+//to start the Applications run this file
 public class MainApplication extends Application {
 
     private static User user = null;
     private static Stage stage;
 
+    //this is the main finction of the Application
     public static void main(String[] args) {
         try {
             DBHelper.connectToDb();
@@ -27,6 +31,7 @@ public class MainApplication extends Application {
         launch();
     }
 
+    //sets up the start page of the Application (Login View)
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -46,7 +51,7 @@ public class MainApplication extends Application {
         stage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, MainApplication::onWindowClose);
     }
 
-    public static void onWindowClose(WindowEvent windowEvent){
+    public static void onWindowClose(WindowEvent windowEvent) {
         System.exit(0);
     }
 
@@ -64,76 +69,6 @@ public class MainApplication extends Application {
         DBHelper.changeCredentials(email, password);
     }
 }
-
-/*
-
-System.out.println("Email und Passwort eingeben:");
-        while (!loggedIn) {
-
-            Scanner scanner = new Scanner(System.in);
-
-            String email = scanner.next();
-
-            String pass = scanner.next();
-
-            User userFromLogin = DBHelper.tryToLogin(email, pass);
-            if (userFromLogin != null) {
-                loggedIn = true;
-                user = userFromLogin;
-            } else {
-                System.out.println("Falsche Eingabe.\nBitte erneut eingeben!");
-            }
-
-        }
-
-        System.out.println("Success!");
-        System.out.println("Actions... \n1 für Noten eintragen");
-
-        Scanner scanner = new Scanner(System.in);
-
-        user.onCreation();
-        int input = scanner.nextInt();
-
-        if (input == 1) {
-
-            Student student = (Student) user;
-
-            List<Grade> g = student.displayGrades(Subject.DEUTSCH);
-
-            double d = student.calcAverage(g);
-
-            System.out.println(g);
-            System.out.println(d);
-        } else if (input == 2) {
-            if (user.getClass() == Admin.class) {
-                Admin admin = (Admin) user;
-
-                boolean b = admin.addSubjectToTeacher(2, Subject.DEUTSCH, "7B");
-                System.out.println(b);
-
-
-            } else {
-                System.out.println("You're not authorized to do that!");
-            }
-        } else if (input == 3) {
-
-            Teacher teacher = (Teacher) user;
-
-            /*
-            teacher.deleteGrade(12);
-            teacher.deleteGrade(13);
-            teacher.deleteGrade(14);
-            */
-
-
-            /*
-            DBHelper.insertGrade(new Grade(null, 5, "MITARBEIT", Subject.INFORMATIK), (Student) user, Subject.INFORMATIK, "7B");
-            DBHelper.insertGrade(new Grade(null, 1, "TEST", Subject.INFORMATIK), (Student) user, Subject.INFORMATIK, "7B");
-            DBHelper.insertGrade(new Grade(null, 2, "TEST", Subject.INFORMATIK), (Student) user, Subject.INFORMATIK, "7B");
-            DBHelper.insertGrade(new Grade(null, 2, "TEST", Subject.INFORMATIK), (Student) user, Subject.INFORMATIK, "7B");
-            DBHelper.insertGrade(new Grade(null, 3, "TEST", Subject.INFORMATIK), (Student) user, Subject.INFORMATIK, "7B");
-            DBHelper.insertGrade(new Grade(null, 3, "TEST", Subject.DEUTSCH), (Student) user, Subject.DEUTSCH, "7B");
-            */
 
 
 

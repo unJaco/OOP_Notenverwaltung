@@ -16,12 +16,13 @@ public class Admin extends User {
     private ArrayList<Teacher> teachersList;
 
     private ArrayList<SubjectInClass> allSubjectsInAllClasses;
+
     public Admin(Integer id, String firstname, String lastname, Role role) {
         super(id, firstname, lastname, role);
     }
 
     public Admin(ResultSet resultSet) throws SQLException {
-        super(resultSet.getInt("UID"), resultSet.getString("VORNAME"), resultSet.getString("NAME"),Role.valueOf(resultSet.getString("ROLE")));
+        super(resultSet.getInt("UID"), resultSet.getString("VORNAME"), resultSet.getString("NAME"), Role.valueOf(resultSet.getString("ROLE")));
     }
 
     public ArrayList<Student> getStudentsList() {
@@ -48,15 +49,17 @@ public class Admin extends User {
         this.allSubjectsInAllClasses = allSubjectsInAllClasses;
     }
 
+    //create an User
+    //no id is needed because id is added automatically
     public boolean createUser(String firstname, String lastname, String email, Role role, String class_id) throws SQLException {
 
         User toCreate = null;
-        switch (role){
-            case ADMIN -> toCreate = new Admin(1,firstname, lastname, role);
+        switch (role) {
+            case ADMIN -> toCreate = new Admin(1, firstname, lastname, role);
 
             case STUDENT -> toCreate = new Student(1, firstname, lastname, role);
 
-            case TEACHER -> toCreate = new Teacher(1, firstname, lastname,role);
+            case TEACHER -> toCreate = new Teacher(1, firstname, lastname, role);
         }
 
         DBHelper.insertUser(toCreate, email, class_id);
@@ -73,11 +76,12 @@ public class Admin extends User {
         return true;
     }
 
-    private void getStudents(){
+    //fills studentList with all students
+    private void getStudents() {
         String sql = "SELECT * FROM USER WHERE ROLE = 'STUDENT'";
         try {
             ResultSet rs = DBHelper.executeSqlSelectStatement(sql);
-            while (rs.next()){
+            while (rs.next()) {
                 Student student = new Student(rs);
                 student.onCreation();
                 studentsList.add(student);
@@ -87,16 +91,17 @@ public class Admin extends User {
         }
     }
 
-    private void getTeacher(){
+    //fills teacherList with all teachers
+    private void getTeacher() {
         String sql = "SELECT * FROM USER WHERE ROLE = 'TEACHER'";
         try {
             ResultSet rs = DBHelper.executeSqlSelectStatement(sql);
-            while (rs.next()){
+            while (rs.next()) {
                 Teacher teacher = new Teacher(rs);
                 teacher.onCreation();
                 teachersList.add(teacher);
             }
-            for (Teacher teacher : teachersList){
+            for (Teacher teacher : teachersList) {
                 allSubjectsInAllClasses.addAll(teacher.getSubjectsInClasses());
             }
         } catch (SQLException e) {

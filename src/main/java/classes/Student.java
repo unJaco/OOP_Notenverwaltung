@@ -16,7 +16,8 @@ public class Student extends User {
 
     DecimalFormat df = new DecimalFormat("#.##");
 
-    public Student(){}
+    public Student() {
+    }
 
     //when creating User manually there is no Id - so Id is manually set to null therefore the Type needs to be Integer not int
     public Student(Integer id, String firstname, String lastname, Role role) {
@@ -42,15 +43,17 @@ public class Student extends User {
         }
     }
 
-    public List<Grade> displayGrades(Subject subject){
+    //displays the Grades on the scene
+    public List<Grade> displayGrades(Subject subject) {
         return grades.stream().filter(grade -> grade.getSubject() == subject).toList();
     }
 
-    public double calcAverage(List<Grade> grades){
+    //calculates the average of the notes
+    public double calcAverage(List<Grade> grades) {
         return (double) grades.stream().mapToInt(Grade::getGradeVal).sum() / grades.size();
     }
 
-    public List<Grade> showAllGrades(){
+    public List<Grade> showAllGrades() {
         return grades;
     }
 

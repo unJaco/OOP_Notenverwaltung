@@ -10,9 +10,11 @@ public class SubjectInClass {
     private String classId;
     private Subject subject;
 
+    //Object combines a teacher, a subject and the class in which he teaches teh subject
+    public SubjectInClass() {
+    }
 
-    public SubjectInClass(){}
-    public SubjectInClass(Integer id,String classId, Subject subject) {
+    public SubjectInClass(Integer id, String classId, Subject subject) {
         this.id = id;
         this.classId = classId;
         this.subject = subject;

@@ -77,9 +77,11 @@ public class TeacherMenuController implements Initializable {
 
     private final ObservableList<String> gradeValList = FXCollections.observableList(Arrays.asList(gradeVal));
 
+    // Please notice that many functions will the same as in AdminMenuController and not be commented here
+    // Please go to AdminMenuController for more detailed comments
 
-
-
+    // sets up the initial scene
+    // fills the table with the choosen content
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -156,6 +158,7 @@ public class TeacherMenuController implements Initializable {
         });
     }
 
+    //updates on which Grade you click in the gui
     private void updateSelectedStudentGrades() {
         try {
             selectedStudent.onCreation();
@@ -171,7 +174,7 @@ public class TeacherMenuController implements Initializable {
             String gradeBezeichnug = gradeBezTextField.getText();
             int gradeVal = Integer.parseInt(gradeValChoiceBox.getValue());
 
-            if(!gradeBezeichnug.isBlank()  && selectedStudent != null && selectedSubjectInClass != null){
+            if (!gradeBezeichnug.isBlank() && selectedStudent != null && selectedSubjectInClass != null) {
                 Grade grade = new Grade(null, gradeVal, gradeBezeichnug, selectedSubjectInClass.getSubject());
                 DBHelper.insertGrade(selectedSubjectInClass.getClassId(), selectedStudent.getId(), grade);
                 updateSelectedStudentGrades();
@@ -193,25 +196,7 @@ public class TeacherMenuController implements Initializable {
         }
     }
 
-    private void openDialog() throws IOException {
-
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("input-grade-view.fxml"));
-        Parent parent = fxmlLoader.load();
-        GradeDialogController controller = fxmlLoader.getController();
-        controller.initData(studentChoiceBox.getValue(), classesChoiceBox.getValue());
-        Stage stage = new Stage();
-        stage.setScene(new Scene(parent));
-        stage.setTitle("Geben Sie eine Note ein");
-        stage.show();
-
-        stage.getScene().getWindow().addEventFilter(WindowEvent.ANY, this::onDialogClose);
-
-    }
-
     private void onDialogClose(WindowEvent windowEvent) {
-        /*
-            TODO what if in dialog another student is selected
-         */
         try {
             selectedStudent.onCreation();
         } catch (SQLException e) {
@@ -221,7 +206,6 @@ public class TeacherMenuController implements Initializable {
     }
 
     private void setTableViewItems() {
-
         tableView.getItems().clear();
         avgLabelStudent.setText("");
         if (selectedStudent != null) {
@@ -235,14 +219,14 @@ public class TeacherMenuController implements Initializable {
     }
 
     public void onLogOutButtonClick() throws IOException {
-        MainApplication.changeScene("login-view.fxml","Bitte geben Sie ihre Login Daten ein!");
+        MainApplication.changeScene("login-view.fxml", "Bitte geben Sie ihre Login Daten ein!");
     }
 
     public void onChangePasswordButtonClick() throws SQLException, IOException {
         try {
             MainApplication.changePassword(emailTextField.getText(), passwordTextField.getText());
             MainApplication.changeScene("login-view.fxml", "Bitte geben Sie ihre Login Daten ein!");
-        }catch (Exception e){
+        } catch (Exception e) {
             errLabelChangePassword.setText("Passwort ändern fehlgeschlagen");
         }
     }

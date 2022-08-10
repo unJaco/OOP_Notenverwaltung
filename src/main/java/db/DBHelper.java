@@ -9,6 +9,7 @@ public class DBHelper {
 
     static Connection c = null;
 
+    //tables of the database
     static final String sqlTableCredentials = "CREATE TABLE IF NOT EXISTS CREDENTIALS " +
             "(UID INTEGER PRIMARY KEY AUTOINCREMENT," +
             "EMAIL           TEXT    UNIQUE NOT NULL, " +
@@ -38,6 +39,7 @@ public class DBHelper {
             "CLASS_ID TEXT NOT NULL," +
             "SUBJECT TEXT NOT NULL);";
 
+    //prepared sql Statements
     static final String sqlInsertUserCredentials = "INSERT INTO CREDENTIALS(EMAIL, PASSWORD) VALUES(?,?);";
 
     static final String sqlInsertUserData = "INSERT INTO USER(UID, NAME, VORNAME, ROLE) VALUES(?,?,?,?);";
@@ -48,7 +50,7 @@ public class DBHelper {
 
     static final String sqlAddTeacherWithSubjectToClass = "INSERT INTO TEACHER (UID, CLASS_ID, SUBJECT) VALUES(?,?, ?);";
 
-
+    //establishes a connection with th db file
     public static void connectToDb() throws SQLException {
 
         try {
@@ -87,6 +89,7 @@ public class DBHelper {
         return statement.executeQuery(sql);
     }
 
+    //checks that the login values are true (password and email)
     public static User tryToLogin(String email, String password) throws SQLException {
 
         String sqlCred = "SELECT * FROM CREDENTIALS WHERE (EMAIL = '" + email + "' AND PASSWORD = '" + password + "');";
@@ -124,6 +127,7 @@ public class DBHelper {
         }
     }
 
+    //inserts User in db
     public static void insertUser(User user, String email, String classId) throws SQLException {
 
         PreparedStatement pSCredentials;
@@ -157,7 +161,7 @@ public class DBHelper {
         if (user.getRole() == Role.STUDENT) addStudentToClass((Student) user, classId);
     }
 
-
+    //gets a User by its id
     public static User getUser(int uid) throws SQLException {
 
         String sql = "SELECT * FROM USER WHERE (UID = '" + uid + "');";
@@ -166,35 +170,44 @@ public class DBHelper {
 
         Role role = Role.valueOf(rs.getString("ROLE"));
 
-        switch (role){
+        switch (role) {
 
-            case STUDENT -> {return new Student(rs);}
+            case STUDENT -> {
+                return new Student(rs);
+            }
 
-            case TEACHER -> {return new Teacher(rs);}
+            case TEACHER -> {
+                return new Teacher(rs);
+            }
 
-            case ADMIN -> {return new Admin(rs);}
+            case ADMIN -> {
+                return new Admin(rs);
+            }
 
-            default -> {return null;}
+            default -> {
+                return null;
+            }
         }
     }
 
     public static int getIDEmail(String email) throws SQLException {
 
-    String sql = "SELECT * FROM CREDENTIALS WHERE (EMAIL = '" + email + "');";
+        String sql = "SELECT * FROM CREDENTIALS WHERE (EMAIL = '" + email + "');";
 
-    ResultSet rs = executeSqlSelectStatement(sql);
+        ResultSet rs = executeSqlSelectStatement(sql);
 
-    return rs.getInt("UID");
+        return rs.getInt("UID");
 
     }
 
-
+    //gets a Users id by its email (email is unique)
     public static String getEMail(int uid) throws SQLException {
         String sql = "SELECT * FROM CREDENTIALS WHERE (UID = '" + uid + "');";
 
         return executeSqlSelectStatement(sql).getString("EMAIL");
     }
 
+    // adds a student to a class
     private static boolean addStudentToClass(Student student, String classId) throws SQLException {
 
         PreparedStatement pSAddStudentToClass;
@@ -209,7 +222,8 @@ public class DBHelper {
         return studentToClassSuccess;
     }
 
-    public static boolean insertGrade(String classId, int studentID,  Grade grade) throws SQLException {
+    //inserts a grade in the db
+    public static boolean insertGrade(String classId, int studentID, Grade grade) throws SQLException {
 
         PreparedStatement pSGrade;
 
@@ -227,23 +241,27 @@ public class DBHelper {
         return insertGrade == 1;
     }
 
+    //deletes a grade out of the db
     public static boolean deleteGrade(int gradeId, int uid) throws SQLException {
         String sql = "DELETE FROM GRADES WHERE (GRADE_ID = '" + gradeId + "' AND UID = '" + uid + "');";
         return executeSqlStatement(sql);
     }
 
+    //updates a grade
     public static boolean updateGradeVal(Grade grade) throws SQLException {
 
         String sql = "UPDATE GRADES SET GRADE_VAL = '" + grade.getGradeVal() + "' WHERE GRADE_ID = '" + grade.getGradeId() + "';";
         return executeSqlStatement(sql);
     }
 
+    //updates the comment of the grade
     public static boolean updateGradeBez(Grade grade) throws SQLException {
 
         String sql = "UPDATE GRADES SET GRADE_BEZ = '" + grade.getGradeBez() + "' WHERE GRADE_ID = '" + grade.getGradeId() + "';";
         return executeSqlStatement(sql);
     }
 
+    //adds a teacher with a subject in class to the db
     public static boolean addTeacherWithSubjectToClass(int teacherId, String classId, Subject subject) throws SQLException {
 
         PreparedStatement pS;
@@ -270,11 +288,13 @@ public class DBHelper {
         return executeSqlStatement(sql);
     }
 
+    //deletes a Teacher Entry (deletes that teacher a teaches subject b in class c)
     public static boolean deleteTeacherEntry(int sicId, int uid) throws SQLException {
         String sql = "DELETE FROM TEACHER WHERE (SIC_ID = '" + sicId + "' AND UID = '" + uid + "');";
         return executeSqlStatement(sql);
     }
 
+    //delete User out of db
     public static void deleteUser(int uid) throws SQLException {
 
         String credentials = deleteString("CREDENTIALS", uid);
@@ -291,10 +311,11 @@ public class DBHelper {
 
     }
 
-    private static String deleteString(String table, int uid){
+    private static String deleteString(String table, int uid) {
         return "DELETE FROM " + table + " WHERE UID = '" + uid + "';";
     }
 
+    //changes the credentials (password and email) of a user
     public static boolean changeCredentials(String email, String password) throws SQLException {
         String sql = "UPDATE CREDENTIALS SET PASSWORD = '" + password + "' WHERE email = '" + email + "';";
         return executeSqlStatement(sql);

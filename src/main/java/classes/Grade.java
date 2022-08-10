@@ -20,9 +20,6 @@ public class Grade {
         this.subject = subject;
     }
 
-    /*
-        TODO what if resultset wrong string for subject
-     */
     public Grade(ResultSet resultSet) throws SQLException {
 
         this.gradeId = resultSet.getInt("GRADE_ID");
@@ -73,14 +70,4 @@ public class Grade {
                 ", subject=" + subject +
                 '}';
     }
-
-    /*
-     * public boolean deleteGrade(){}
-     * 
-     * public boolean insertGrade(){}
-     * 
-     * public boolean changeGrade(){
-     * //über delete und change
-     * }
-     */
 }

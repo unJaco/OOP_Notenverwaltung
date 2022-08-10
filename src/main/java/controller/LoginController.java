@@ -21,6 +21,7 @@ public class LoginController {
     @FXML
     private TextField passField;
 
+    //onClick Handler for login Button
     @FXML
     protected void onLoginButtonClick() {
 

@@ -10,7 +10,6 @@ public class SchoolClass {
     private String class_id;
     Map<Integer, Student> studentMap;
 
-
     public SchoolClass(String class_id, Map<Integer, Student> studentMap) {
         this.class_id = class_id;
         this.studentMap = studentMap;
@@ -32,11 +31,11 @@ public class SchoolClass {
         this.studentMap = studentMap;
     }
 
-    public void addStudent(Student student){
+    public void addStudent(Student student) {
         studentMap.put(student.getId(), student);
     }
 
-    public Student getStudent(int uid){
+    public Student getStudent(int uid) {
         return studentMap.get(uid);
     }
 

@@ -8,7 +8,8 @@ public abstract class User implements OnCreation, SwitchScene {
 
     private Role role;
 
-    public User(){}
+    public User() {
+    }
 
     public User(Integer id, String firstname, String lastname, Role role) {
         this.id = id;
@@ -62,16 +63,7 @@ public abstract class User implements OnCreation, SwitchScene {
     /**
      * @return String return the email
      */
-    /*public String getEmail() {
-        return email;
-    }
 
-    /**
-     * @param email the lastname to set
-     */
-    /*public void setEmail(String email) {
-        this.email = email;
-    }*/
     public Role getRole() {
         return role;
     }

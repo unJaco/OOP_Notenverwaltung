@@ -6,10 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="16045e34-ed57-469f-ac12-869f3d7028ea" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NOTENVERWALTUNG.db" beforeDir="false" afterPath="$PROJECT_DIR$/NOTENVERWALTUNG.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Grade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Grade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/OnCreation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/OnCreation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/SchoolClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/SchoolClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/SubjectInClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/SubjectInClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Teacher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AdminMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AdminMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GradeDialogController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/StudentMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/StudentMenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/TeacherMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/TeacherMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/javafx/menu-view-student.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javafx/menu-view-student.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/javafx/menu-view-teacher.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javafx/menu-view-teacher.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/DBHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/javafx/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/javafx/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/javafx/menu-view-student.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/javafx/menu-view-student.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/javafx/menu-view-teacher.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/javafx/menu-view-teacher.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +58,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
   </component>
   <component name="RecentsManager">
@@ -219,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660140405761</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="push">
+      <created>1660141135368</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1660141135368</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,7 +265,8 @@
     <MESSAGE value="delete solved" />
     <MESSAGE value="better tests" />
     <MESSAGE value="teacher noten" />
-    <option name="LAST_COMMIT_MESSAGE" value="teacher noten" />
+    <MESSAGE value="push" />
+    <option name="LAST_COMMIT_MESSAGE" value="push" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

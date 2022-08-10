@@ -54,6 +54,9 @@ public class StudentMenuController implements Initializable {
     private Scene scene;
     private Parent root;
 
+    // Please notice that many functions will the same as in AdminMenuController and not be commented here
+    // Please go to AdminMenuController for more detailed comments
+
     @Override
     public void initialize(URL url, ResourceBundle resources) {
 

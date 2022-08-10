@@ -1,4 +1,5 @@
 package controller;
+
 import classes.*;
 import db.DBHelper;
 import javafx.MainApplication;
@@ -13,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -32,8 +34,8 @@ public class AdminMenuController implements Initializable {
     private final String[] gradeVal = {"1", "2", "3", "4", "5", "6"};
 
     private final ObservableList<String> gradeValList = FXCollections.observableList(Arrays.asList(gradeVal));
-    private final ObservableList<Subject> subjectList = FXCollections.observableList(Arrays.stream(Subject.values()).toList());
 
+    private final ObservableList<Subject> subjectList = FXCollections.observableList(Arrays.stream(Subject.values()).toList());
 
     private final ObservableList<Role> roleList = FXCollections.observableList(Arrays.stream(Role.values()).toList());
 
@@ -69,7 +71,6 @@ public class AdminMenuController implements Initializable {
     private TextField classTextField;
     @FXML
     private ChoiceBox<Subject> subjectChoiceBox;
-
     @FXML
     private TextField vornameTextField;
     @FXML
@@ -100,7 +101,8 @@ public class AdminMenuController implements Initializable {
         setUpUserTab();
 
     }
-
+    //sets up the tap of the student
+    //mostly fills the Table with the choosen values
     private void setUpStudentTab() {
 
         gradeValChoiceBox.setItems(gradeValList);
@@ -168,6 +170,7 @@ public class AdminMenuController implements Initializable {
             setStudentTableViewItems();
         });
     }
+
     private void setStudentTableViewItems() {
 
         tableViewStudent.getItems().clear();
@@ -178,6 +181,7 @@ public class AdminMenuController implements Initializable {
             avgLabelStudent.setText(String.valueOf(selectedStudent.calcAverage(grades)));
         }
     }
+
     private void updateSelectedStudentGrades() {
         try {
             selectedStudent.onCreation();
@@ -187,6 +191,7 @@ public class AdminMenuController implements Initializable {
         }
     }
 
+    //sets up the teacher tab
     private void setUpTeacherTab() {
 
         teacherChoiceBox.setItems(FXCollections.observableList(admin.getTeachersList()));
@@ -204,19 +209,21 @@ public class AdminMenuController implements Initializable {
 
         tableViewTeacher.getItems().clear();
 
-        if(selectedTeacher != null) {
+        if (selectedTeacher != null) {
             List<SubjectInClass> subjectInClasses = selectedTeacher.getSubjectsInClasses();
             tableViewTeacher.getItems().addAll(subjectInClasses);
         }
 
     }
 
+    //sets up User Tab
     private void setUpUserTab() {
         roleChoiceBox.setItems(roleList);
         insertClassTextField.setVisible(false);
         roleChoiceBox.setOnAction(actionEvent -> insertClassTextField.setVisible(Objects.equals(roleChoiceBox.getValue(), Role.STUDENT)));
     }
 
+    //onClick Handler for Grade Delete Button
     @FXML
     protected void onGradeDeleteClick() {
         try {
@@ -229,6 +236,7 @@ public class AdminMenuController implements Initializable {
         }
     }
 
+    //onClick Handler for delete SubjectInClass Button
     @FXML
     protected void deleteSIC() {
         try {
@@ -240,14 +248,15 @@ public class AdminMenuController implements Initializable {
         }
     }
 
+    //onClick Handler for insert of Grade Button
     @FXML
-    protected void onGradeClick(){
+    protected void onGradeClick() {
         try {
 
             String gradeBezeichnug = gradeBezTextField.getText();
             int gradeVal = Integer.parseInt(gradeValChoiceBox.getValue());
 
-            if(!gradeBezeichnug.isBlank()  && selectedStudent != null && selectedSubjectInClass != null){
+            if (!gradeBezeichnug.isBlank() && selectedStudent != null && selectedSubjectInClass != null) {
                 Grade grade = new Grade(null, gradeVal, gradeBezeichnug, selectedSubjectInClass.getSubject());
                 DBHelper.insertGrade(selectedSubjectInClass.getClassId(), selectedStudent.getId(), grade);
                 updateSelectedStudentGrades();
@@ -257,10 +266,11 @@ public class AdminMenuController implements Initializable {
         }
     }
 
+    //onClick Handler for insert of SubjectInClass Button
     @FXML
     protected void addSIC() {
         try {
-            admin.addSubjectToTeacher(selectedTeacher.getId(), subjectChoiceBox.getValue(),classTextField.getText());
+            admin.addSubjectToTeacher(selectedTeacher.getId(), subjectChoiceBox.getValue(), classTextField.getText());
             selectedTeacher.onCreation();
             admin.onCreation();
             setTeacherTableViewItems();
@@ -270,6 +280,7 @@ public class AdminMenuController implements Initializable {
         }
     }
 
+    //onClick Handler for insert User Button
     @FXML
     protected void insertUserButton() {
 
@@ -281,33 +292,32 @@ public class AdminMenuController implements Initializable {
 
         if (!vorname.isBlank() && !nachname.isBlank() && !email.isBlank() && role != null) {
             try {
-                if(role == Role.STUDENT){
+                if (role == Role.STUDENT) {
                     classId = insertClassTextField.getText();
                 }
-                admin.createUser(vorname,nachname, email, role, classId);
+                admin.createUser(vorname, nachname, email, role, classId);
 
                 try {
                     admin.onCreation();
                 } catch (Exception e) {
                     errLabelUser.setText("Laden des neuen Users fehlgeschlagen. Probieren Sie das System neu zu starten");
                 }
-                if(role == Role.STUDENT){
+                if (role == Role.STUDENT) {
                     setUpStudentTab();
-                } else if(role == Role.TEACHER){
+                } else if (role == Role.TEACHER) {
                     setUpTeacherTab();
                 }
 
             } catch (SQLException e) {
-                if(e.getErrorCode() == 19){
+                if (e.getErrorCode() == 19) {
                     errLabelUser.setText("Email existiert bereits");
-                }else {
+                } else {
                     errLabelUser.setText("Erstellen fehlgeschlagen");
                 }
             }
         } else {
             errLabelUser.setText("Alle Felder müssen ausgefüllt sein");
         }
-
 
 
         vornameTextField.clear();
@@ -317,8 +327,9 @@ public class AdminMenuController implements Initializable {
 
     }
 
+    //onClick Handler for delete Student Button
     @FXML
-    protected void deleteStudent(){
+    protected void deleteStudent() {
         try {
             admin.deleteUser(selectedStudent.getId());
             selectedStudent = null;
@@ -330,8 +341,9 @@ public class AdminMenuController implements Initializable {
         }
     }
 
+    //onClick Handler for delete Teacher Button
     @FXML
-    protected void deleteTeacher(){
+    protected void deleteTeacher() {
         try {
             admin.deleteUser(selectedTeacher.getId());
             selectedTeacher = null;
@@ -341,45 +353,22 @@ public class AdminMenuController implements Initializable {
             errLabelTeacher.setText("Löschen fehlgeschlagen");
         }
     }
-/*
-    private void openDialog() throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("input-grade-view.fxml"));
-        Parent parent = fxmlLoader.load();
-        GradeDialogController controller = fxmlLoader.getController();
-        controller.initData(studentChoiceBox.getValue(), classesChoiceBox.getValue());
-        Stage stage = new Stage();
-        stage.setScene(new Scene(parent));
-        stage.setTitle("Geben Sie eine Note ein");
-        stage.show();
-
-        stage.getScene().getWindow().addEventFilter(WindowEvent.ANY, this::onDialogClose);
-
-    }
-
-    private void onDialogClose(WindowEvent windowEvent) {
-
-        try {
-            selectedStudent.onCreation();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        setStudentTableViewItems();
-    }
-*/
+    //onClick Handler for logOut Button
     public void onLogOutButtonClick() throws IOException {
         try {
             MainApplication.changeScene("login-view.fxml", "Bitte geben Sie ihre Login Daten ein!");
-        }catch (Exception e){
+        } catch (Exception e) {
             errLabelLogout.setText("Ausloggen fehlgeschlagen");
         }
     }
 
+    // onClick Handler for changePassword Button
     public void onChangePasswordButtonClick() throws IOException, Exception {
         try {
             MainApplication.changePassword(emailTextField2.getText(), passwordTextField.getText());
             MainApplication.changeScene("login-view.fxml", "Bitte geben Sie ihre Login Daten ein!");
-        }catch (Exception e){
+        } catch (Exception e) {
             errLabelChangePassword.setText("Passwort ändern fehlgeschlagen");
         }
 
