@@ -1,11 +1,9 @@
 package controller;
-
 import classes.*;
 import db.DBHelper;
 import javafx.MainApplication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,12 +13,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class AdminMenuController implements Initializable {
@@ -28,68 +26,82 @@ public class AdminMenuController implements Initializable {
 
     private Admin admin;
 
-    ObservableList<SubjectInClass> subjectInClassesList;
+    private SubjectInClass selectedSubjectInClass = new SubjectInClass();
 
-    SubjectInClass selectedSubjectInClass = new SubjectInClass();
+    private Student selectedStudent = new Student();
 
-    Student selectedStudent = new Student();
+    private Teacher selectedTeacher = new Teacher();
 
-    Teacher selectedTeacher = new Teacher();
+    private final ObservableList<Subject> subjectList = FXCollections.observableList(Arrays.stream(Subject.values()).toList());
 
-    ObservableList<Subject> subjectList = FXCollections.observableList(Arrays.stream(Subject.values()).toList());
-    @FXML
-    public ChoiceBox<SubjectInClass> classesChoiceBox;
-    @FXML
-    public ChoiceBox<Student> studentChoiceBox;
-    @FXML
-    public TableView<Grade> tableViewStudent;
-    @FXML
-    public TableColumn<Grade, String> bezColStudent;
-    @FXML
-    public TableColumn<Grade, Integer> valColStudent;
-    @FXML
-    public Label errorLabelStudent;
-    @FXML
-    public Label avgLabelStudent;
+    private final ObservableList<Role> roleList = FXCollections.observableList(Arrays.stream(Role.values()).toList());
 
     @FXML
-    public ChoiceBox<Teacher> teacherChoiceBox;
+    private ChoiceBox<SubjectInClass> classesChoiceBox;
     @FXML
-    public TableView<SubjectInClass> tableViewTeacher;
+    private ChoiceBox<Student> studentChoiceBox;
     @FXML
-    public TableColumn<SubjectInClass, String> classColTeacher;
+    private TableView<Grade> tableViewStudent;
     @FXML
-    public TableColumn<SubjectInClass, Subject> subjectColTeacher;
+    private TableColumn<Grade, String> bezColStudent;
     @FXML
-    public Label errLabelTeacher;
+    private TableColumn<Grade, Integer> valColStudent;
     @FXML
-    public TextField classTextField;
+    private Label errorLabelStudent;
     @FXML
-    public ChoiceBox<Subject> subjectChoiceBox;
+    private Label avgLabelStudent;
+
     @FXML
-    public TextField passwordTextField;
+    private ChoiceBox<Teacher> teacherChoiceBox;
     @FXML
-    public TextField emailTextField;
+    private TableView<SubjectInClass> tableViewTeacher;
+    @FXML
+    private TableColumn<SubjectInClass, String> classColTeacher;
+    @FXML
+    private TableColumn<SubjectInClass, Subject> subjectColTeacher;
+    @FXML
+    private Label errLabelTeacher;
+    @FXML
+    private TextField classTextField;
+    @FXML
+    private ChoiceBox<Subject> subjectChoiceBox;
+
+    @FXML
+    private TextField vornameTextField;
+    @FXML
+    private TextField nameTextField;
+    @FXML
+    private TextField emailTextField;
+    @FXML
+    private TextField insertClassTextField;
+    @FXML
+    private ChoiceBox<Role> roleChoiceBox;
+    @FXML
+    private Label errLabelUser;
+    @FXML
+    private TextField passwordTextField;
+    @FXML
+    private TextField emailTextField2;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         admin = (Admin) MainApplication.getUser();
 
         setUpStudentTab();
         setUpTeacherTab();
-
+        setUpUserTab();
 
     }
-    private void setUpStudentTab(){
+
+    private void setUpStudentTab() {
+
+        classesChoiceBox.getItems().clear();
 
         classesChoiceBox.setItems(FXCollections.observableList(admin.getAllSubjectsInAllClasses()));
 
         bezColStudent.setCellValueFactory(new PropertyValueFactory<>("gradeBez"));
         valColStudent.setCellValueFactory(new PropertyValueFactory<>("gradeVal"));
-
         tableViewStudent.setEditable(true);
-
         bezColStudent.setOnEditCommit(event -> {
             Grade gradeToUpdate = event.getRowValue();
             String newBezVal = event.getNewValue();
@@ -100,9 +112,7 @@ public class AdminMenuController implements Initializable {
             } catch (SQLException e) {
                 errorLabelStudent.setText("Update fehlgeschlagen!");
             }
-
         });
-
         valColStudent.setOnEditCommit(event -> {
             Grade gradeToUpdate = event.getRowValue();
             int newGradeVal = event.getNewValue();
@@ -114,32 +124,32 @@ public class AdminMenuController implements Initializable {
                 errorLabelStudent.setText("Update fehlgeschlagen!");
             }
         });
-
         classesChoiceBox.setOnAction(actionEvent -> {
 
             //get the selected SubjectInClass (subject In Combination With a Class)
             SubjectInClass newSelectedSubjectInClass = classesChoiceBox.getValue();
+            if (newSelectedSubjectInClass != null) {
+                //get the classId / identifier
+                String classId = newSelectedSubjectInClass.getClassId();
 
-            //get the classId / identifier
-            String classId = newSelectedSubjectInClass.getClassId();
+                if (!newSelectedSubjectInClass.getClassId().equals(selectedSubjectInClass.getClassId())) {
 
-            if (!newSelectedSubjectInClass.getClassId().equals(selectedSubjectInClass.getClassId())) {
+                    selectedSubjectInClass = newSelectedSubjectInClass;
 
-                selectedSubjectInClass = newSelectedSubjectInClass;
+                    //create observableList for choice-box with the student from the selected SchoolClass
+                    Teacher teacher = admin.getTeachersList().stream().filter(teacher1 -> teacher1.getSubjectsInClasses().contains(classesChoiceBox.getValue())).toList().get(0);
+                    var schoolClass = teacher.getSchoolClassMap().get(classId);
 
-                //create observableList for choice-box with the student from the selected SchoolClass
-                Teacher teacher = admin.getTeachersList().stream().filter(teacher1 -> teacher1.getSubjectsInClasses().contains(classesChoiceBox.getValue())).toList().get(0);
-                var schoolClass = teacher.getSchoolClassMap().get(classId);
+                    var observableList = FXCollections.observableList(schoolClass.getStudents().values().stream().toList());
 
-                var observableList = FXCollections.observableList(schoolClass.getStudents().values().stream().toList());
+                    studentChoiceBox.getSelectionModel().clearSelection();
+                    studentChoiceBox.setItems(observableList);
 
-                studentChoiceBox.getSelectionModel().clearSelection();
-                studentChoiceBox.setItems(observableList);
+                } else {
 
-            } else {
-
-                selectedSubjectInClass = newSelectedSubjectInClass;
-                setStudentTableViewItems();
+                    selectedSubjectInClass = newSelectedSubjectInClass;
+                    setStudentTableViewItems();
+                }
             }
         });
 
@@ -148,19 +158,16 @@ public class AdminMenuController implements Initializable {
             setStudentTableViewItems();
         });
     }
-
     private void setStudentTableViewItems() {
 
         tableViewStudent.getItems().clear();
         avgLabelStudent.setText("");
-        if(selectedStudent!= null){
+        if (selectedStudent != null) {
             List<Grade> grades = selectedStudent.displayGrades(selectedSubjectInClass.getSubject());
             tableViewStudent.getItems().addAll(grades);
             avgLabelStudent.setText(String.valueOf(selectedStudent.calcAverage(grades)));
         }
-
     }
-
     private void updateSelectedStudentGrades() {
         try {
             selectedStudent.onCreation();
@@ -170,24 +177,20 @@ public class AdminMenuController implements Initializable {
         }
     }
 
-    private void setUpTeacherTab(){
+    private void setUpTeacherTab() {
 
         teacherChoiceBox.setItems(FXCollections.observableList(admin.getTeachersList()));
 
         classColTeacher.setCellValueFactory(new PropertyValueFactory<>("classId"));
         subjectColTeacher.setCellValueFactory(new PropertyValueFactory<>("subject"));
-
         teacherChoiceBox.setOnAction(actionEvent -> {
-
             selectedTeacher = teacherChoiceBox.getValue();
             setTeacherTableViewItems();
-
         });
-
         subjectChoiceBox.setItems(subjectList);
     }
 
-    private void setTeacherTableViewItems(){
+    private void setTeacherTableViewItems() {
 
         tableViewTeacher.getItems().clear();
 
@@ -196,53 +199,102 @@ public class AdminMenuController implements Initializable {
 
     }
 
+    private void setUpUserTab() {
+        roleChoiceBox.setItems(roleList);
+        insertClassTextField.setVisible(false);
+        roleChoiceBox.setOnAction(actionEvent -> insertClassTextField.setVisible(Objects.equals(roleChoiceBox.getValue(), Role.STUDENT)));
+    }
+
     @FXML
     protected void onGradeDeleteClick() {
-        try{
+        try {
             Grade selectedGrade = tableViewStudent.getSelectionModel().getSelectedItem();
             tableViewStudent.getItems().remove(selectedGrade);
-            DBHelper.deleteGrade(selectedGrade.getGradeId(), selectedStudent.getId());
+            selectedTeacher.deleteGrade(selectedGrade.getGradeId(), selectedStudent.getId());
             updateSelectedStudentGrades();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             errorLabelStudent.setText("Löschen fehlgeschlagen");
         }
     }
+
     @FXML
-    protected void onSubjectInClassDeleteClick() {
+    protected void deleteSIC() {
         try {
             SubjectInClass subjectInClass = tableViewTeacher.getSelectionModel().getSelectedItem();
             DBHelper.deleteTeacherEntry(subjectInClass.getId(), selectedTeacher.getId());
             tableViewTeacher.getItems().remove(subjectInClass);
-
         } catch (SQLException e) {
             errLabelTeacher.setText("Löschen fehlgeschlagen");
         }
     }
+
     @FXML
-    protected void onGradeClick() {
-        try {
+    protected void onGradeClick() throws IOException {
+        //try {
             openDialog();
-        } catch (IOException e) {
+       // } catch (IOException e) {
             errorLabelStudent.setText("Öffnen fehlgeschlagen");
-        }
+       // }
     }
 
     @FXML
-    protected void addSIC(){
+    protected void addSIC() {
         try {
-            DBHelper.addTeacherWithSubjectToClass(selectedTeacher.getId(), classTextField.getText(), subjectChoiceBox.getValue());
+            admin.addSubjectToTeacher(selectedTeacher.getId(), subjectChoiceBox.getValue(),classTextField.getText());
             selectedTeacher.onCreation();
             admin.onCreation();
             setTeacherTableViewItems();
+            setUpStudentTab();
         } catch (SQLException e) {
             errLabelTeacher.setText("Hinzufügen fehlgeschlagen");
         }
     }
 
     @FXML
-    protected void deleteSIC(){
+    protected void insertUserButton() {
 
+        Role role = roleChoiceBox.getValue();
+        String vorname = vornameTextField.getText();
+        String nachname = nameTextField.getText();
+        String email = emailTextField.getText();
+        String classId = null;
 
+        if (!vorname.isBlank() && !nachname.isBlank() && !email.isBlank() && role != null) {
+            try {
+                if(role == Role.STUDENT){
+                    classId = insertClassTextField.getText();
+                }
+                admin.createUser(vorname,nachname, email, role, classId);
+            } catch (SQLException e) {
+                errLabelUser.setText("Erstellen fehlgeschlagen");
+            }
+        } else {
+            errLabelUser.setText("Alle Felder müssen ausgefüllt sein");
+        }
+
+        vornameTextField.clear();
+        nameTextField.clear();
+        emailTextField.clear();
+        insertClassTextField.clear();
+
+    }
+
+    @FXML
+    protected void deleteStudent(){
+        try {
+            admin.deleteUser(selectedStudent.getId());
+        } catch (SQLException e) {
+            errorLabelStudent.setText("Löschen fehlgeschlagen");
+        }
+    }
+
+    @FXML
+    protected void deleteTeacher(){
+        try {
+            admin.deleteUser(selectedTeacher.getId());
+        } catch (SQLException e) {
+            errLabelTeacher.setText("Löschen fehlgeschlagen");
+        }
     }
 
     private void openDialog() throws IOException {
@@ -260,10 +312,8 @@ public class AdminMenuController implements Initializable {
 
     }
 
-    private void onDialogClose(WindowEvent windowEvent){
-        /*
-            TODO what if in dialog another student is selected
-         */
+    private void onDialogClose(WindowEvent windowEvent) {
+
         try {
             selectedStudent.onCreation();
         } catch (SQLException e) {
@@ -276,16 +326,10 @@ public class AdminMenuController implements Initializable {
         MainApplication.changeScene("login-view.fxml", "Bitte geben Sie ihre Login Daten ein!");
     }
 
-    public void onAllGradeClick(ActionEvent event) {
-    }
-
-    public void onDeleteClick(ActionEvent event) {
-    }
-
     public void onChangePasswordButtonClick() throws IOException, SQLException {
 
-            MainApplication.changePassword(emailTextField.getText(),passwordTextField.getText());
-            MainApplication.changeScene("login-view.fxml", "Bitte geben Sie ihre Login Daten ein!");
+        MainApplication.changePassword(emailTextField2.getText(),passwordTextField.getText());
+        MainApplication.changeScene("login-view.fxml", "Bitte geben Sie ihre Login Daten ein!");
 
 
     }

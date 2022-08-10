@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="16045e34-ed57-469f-ac12-869f3d7028ea" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_05_08_2022_10_20__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_05_08_2022_10_20__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_05_08_2022_10_21__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_05_08_2022_10_21__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_05_08_2022_10_29__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_05_08_2022_10_29__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/test/classes/AdminTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/classes/AdminTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NOTENVERWALTUNG.db" beforeDir="false" afterPath="$PROJECT_DIR$/NOTENVERWALTUNG.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AdminMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AdminMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GradeDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GradeDialogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/db/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/DBHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javafx/menu-view-admin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javafx/menu-view-admin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javafx/menu-view-student.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javafx/menu-view-student.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/javafx/menu-view-admin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/javafx/menu-view-admin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/javafx/menu-view-student.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/javafx/menu-view-student.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +32,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="1ebfc6d6982dc4055ba22edd5c078f206a555960" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">

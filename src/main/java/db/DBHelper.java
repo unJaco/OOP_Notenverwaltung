@@ -277,9 +277,6 @@ public class DBHelper {
         return executeSqlStatement(sql);
     }
 
-    /*
-        TODO finish Delete function
-     */
     public static void deleteUser(int uid) throws SQLException {
 
         String credentials = deleteString("CREDENTIALS", uid);

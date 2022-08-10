@@ -1,0 +1,155 @@
+Index: target/classes/javafx/menu-view-admin.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.geometry.Insets?>\r\n<?import javafx.scene.control.Button?>\r\n<?import javafx.scene.control.ChoiceBox?>\r\n<?import javafx.scene.control.Label?>\r\n<?import javafx.scene.control.Tab?>\r\n<?import javafx.scene.control.TabPane?>\r\n<?import javafx.scene.control.TableColumn?>\r\n<?import javafx.scene.control.TableView?>\r\n<?import javafx.scene.layout.HBox?>\r\n<?import javafx.scene.layout.VBox?>\r\n\r\n<TabPane maxHeight=\"-Infinity\" maxWidth=\"-Infinity\" minHeight=\"-Infinity\" minWidth=\"-Infinity\" prefHeight=\"400.0\" prefWidth=\"600.0\" side=\"BOTTOM\" tabClosingPolicy=\"UNAVAILABLE\" xmlns=\"http://javafx.com/javafx/18\" xmlns:fx=\"http://javafx.com/fxml/1\" fx:controller=\"controller.AdminMenuController\">\r\n   <Tab text=\"Lehrer\">\r\n      <VBox alignment=\"CENTER\" spacing=\"20.0\">\r\n         <padding>\r\n            <Insets bottom=\"20.0\" left=\"20.0\" right=\"20.0\" top=\"20.0\" />\r\n         </padding>\r\n         <HBox alignment=\"CENTER_RIGHT\" spacing=\"20\">\r\n            <ChoiceBox fx:id=\"classesChoiceBox\" prefWidth=\"150.0\" />\r\n            <ChoiceBox fx:id=\"studentChoiceBox\" prefWidth=\"150.0\" />\r\n         </HBox>\r\n         <TableView fx:id=\"tableViewTeacher\" prefHeight=\"200.0\" prefWidth=\"200.0\">\r\n            <columns>\r\n               <TableColumn fx:id=\"bezColTeacher\" prefWidth=\"140.0\" text=\"Bezeichnung\" />\r\n               <TableColumn fx:id=\"valColTeacher\" prefWidth=\"58.0\" text=\"Note\" />\r\n            </columns>\r\n         </TableView>\r\n         <Label fx:id=\"errorLabel\">\r\n            <padding>\r\n               <Insets left=\"200.0\" />\r\n            </padding>\r\n         </Label>\r\n         <HBox alignment=\"CENTER_RIGHT\">\r\n            <Button mnemonicParsing=\"false\" onAction=\"#onDeleteClick\" text=\"Note löschen\" />\r\n         </HBox>\r\n         <HBox alignment=\"CENTER_RIGHT\" prefHeight=\"100.0\" prefWidth=\"200.0\">\r\n            <Button mnemonicParsing=\"false\" onAction=\"#onGradeClick\" text=\"Schüler benoten\">\r\n               <HBox.margin>\r\n                  <Insets right=\"20.0\" />\r\n               </HBox.margin>\r\n            </Button>\r\n            <Button mnemonicParsing=\"false\" onAction=\"#onAllGradeClick\" text=\"Klasse benoten\">\r\n               <HBox.margin>\r\n                  <Insets right=\"50.0\" />\r\n               </HBox.margin>\r\n            </Button>\r\n            <Label contentDisplay=\"RIGHT\" text=\"ø :\" textAlignment=\"RIGHT\">\r\n               <padding>\r\n                  <Insets right=\"50.0\" />\r\n               </padding>\r\n            </Label>\r\n            <Label fx:id=\"avgLabelTeacher\" />\r\n         </HBox>\r\n      </VBox>\r\n   </Tab>\r\n   <Tab text=\"Schüler\">\r\n      <VBox prefHeight=\"200.0\" prefWidth=\"100.0\" spacing=\"20.0\">\r\n         <padding>\r\n            <Insets bottom=\"20.0\" left=\"20.0\" right=\"20.0\" top=\"20.0\" />\r\n         </padding>\r\n         <HBox alignment=\"CENTER_RIGHT\">\r\n            <ChoiceBox fx:id=\"subjectChoiceBox\" prefWidth=\"150.0\" />\r\n         </HBox>\r\n         <TableView fx:id=\"tableViewStudent\" prefHeight=\"200.0\" prefWidth=\"200.0\">\r\n            <columns>\r\n               <TableColumn fx:id=\"bezColStudent\" prefWidth=\"140.0\" text=\"Bezeichnung\" />\r\n               <TableColumn fx:id=\"valColStudent\" prefWidth=\"58.0\" text=\"Note\" />\r\n            </columns>\r\n         </TableView>\r\n         <HBox alignment=\"CENTER_RIGHT\" prefHeight=\"100.0\" prefWidth=\"200.0\">\r\n            <Label contentDisplay=\"RIGHT\" text=\"ø :\" textAlignment=\"RIGHT\">\r\n               <padding>\r\n                  <Insets right=\"50.0\" />\r\n               </padding>\r\n            </Label>\r\n            <Label fx:id=\"avgLabelStudent\" />\r\n         </HBox>\r\n      </VBox>\r\n   </Tab>\r\n</TabPane>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/target/classes/javafx/menu-view-admin.fxml b/target/classes/javafx/menu-view-admin.fxml
+--- a/target/classes/javafx/menu-view-admin.fxml	
++++ b/target/classes/javafx/menu-view-admin.fxml	
+@@ -8,32 +8,34 @@
+ <?import javafx.scene.control.TabPane?>
+ <?import javafx.scene.control.TableColumn?>
+ <?import javafx.scene.control.TableView?>
++<?import javafx.scene.control.TextField?>
+ <?import javafx.scene.layout.HBox?>
+ <?import javafx.scene.layout.VBox?>
+ 
+ <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminMenuController">
+-   <Tab text="Lehrer">
++   <Tab text="Schüler">
+       <VBox alignment="CENTER" spacing="20.0">
+          <padding>
+             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+          </padding>
+          <HBox alignment="CENTER_RIGHT" spacing="20">
++            <Button mnemonicParsing="false" text="Schüler löschen" onAction="#deleteStudent"/>
+             <ChoiceBox fx:id="classesChoiceBox" prefWidth="150.0" />
+             <ChoiceBox fx:id="studentChoiceBox" prefWidth="150.0" />
+          </HBox>
+-         <TableView fx:id="tableViewTeacher" prefHeight="200.0" prefWidth="200.0">
++         <TableView fx:id="tableViewStudent" prefHeight="200.0" prefWidth="200.0">
+             <columns>
+-               <TableColumn fx:id="bezColTeacher" prefWidth="140.0" text="Bezeichnung" />
+-               <TableColumn fx:id="valColTeacher" prefWidth="58.0" text="Note" />
++               <TableColumn fx:id="bezColStudent" prefWidth="140.0" text="Bezeichnung" />
++               <TableColumn fx:id="valColStudent" prefWidth="58.0" text="Note" />
+             </columns>
+          </TableView>
+-         <Label fx:id="errorLabel">
++         <Label fx:id="errorLabelStudent">
+             <padding>
+                <Insets left="200.0" />
+             </padding>
+          </Label>
+          <HBox alignment="CENTER_RIGHT">
+-            <Button mnemonicParsing="false" onAction="#onDeleteClick" text="Note löschen" />
++            <Button mnemonicParsing="false" onAction="#onGradeDeleteClick" text="Note löschen" />
+          </HBox>
+          <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+             <Button mnemonicParsing="false" onAction="#onGradeClick" text="Schüler benoten">
+@@ -41,41 +43,84 @@
+                   <Insets right="20.0" />
+                </HBox.margin>
+             </Button>
+-            <Button mnemonicParsing="false" onAction="#onAllGradeClick" text="Klasse benoten">
+-               <HBox.margin>
+-                  <Insets right="50.0" />
+-               </HBox.margin>
+-            </Button>
++
+             <Label contentDisplay="RIGHT" text="ø :" textAlignment="RIGHT">
+                <padding>
+                   <Insets right="50.0" />
+                </padding>
+             </Label>
+-            <Label fx:id="avgLabelTeacher" />
++            <Label fx:id="avgLabelStudent" />
+          </HBox>
+       </VBox>
+    </Tab>
+-   <Tab text="Schüler">
+-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
++   <Tab text="Lehrer">
++      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+          <padding>
+             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+          </padding>
+-         <HBox alignment="CENTER_RIGHT">
+-            <ChoiceBox fx:id="subjectChoiceBox" prefWidth="150.0" />
++         <HBox alignment="CENTER_RIGHT" spacing="20.0">
++            <Button mnemonicParsing="false" text="Lehrer löschen" onAction="#deleteTeacher"/>
++            <ChoiceBox fx:id="teacherChoiceBox" prefWidth="150.0" />
++            <VBox.margin>
++               <Insets />
++            </VBox.margin>
+          </HBox>
+-         <TableView fx:id="tableViewStudent" prefHeight="200.0" prefWidth="200.0">
++         <TableView fx:id="tableViewTeacher" prefHeight="200.0" prefWidth="200.0">
+             <columns>
+-               <TableColumn fx:id="bezColStudent" prefWidth="140.0" text="Bezeichnung" />
+-               <TableColumn fx:id="valColStudent" prefWidth="58.0" text="Note" />
++               <TableColumn fx:id="classColTeacher" prefWidth="140.0" text="Klasse" />
++               <TableColumn fx:id="subjectColTeacher" prefWidth="58.0" text="Fach" />
+             </columns>
+          </TableView>
+-         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+-            <Label contentDisplay="RIGHT" text="ø :" textAlignment="RIGHT">
+-               <padding>
+-                  <Insets right="50.0" />
+-               </padding>
++         <Label fx:id="errLabelTeacher">
++            <VBox.margin>
++               <Insets />
++            </VBox.margin>
++         </Label>
++         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
++            <TextField fx:id="classTextField" promptText="Klasse" />
++            <ChoiceBox fx:id="subjectChoiceBox" prefWidth="150.0" />
++         </HBox>
++         <HBox alignment="CENTER_RIGHT" spacing="20.0">
++            <VBox.margin>
++               <Insets />
++            </VBox.margin>
++            <padding>
++               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
++            </padding>
++            <Button mnemonicParsing="false" onAction="#addSIC" text="Eintrag hinzufügen">
++               <HBox.margin>
++                  <Insets />
++               </HBox.margin>
++            </Button>
++            <Button mnemonicParsing="false" onAction="#deleteSIC" text="Eintrag löschen" />
++         </HBox>
++      </VBox>
++   </Tab>
++   <Tab text="User anlegen">
++      <VBox alignment="TOP_RIGHT" spacing="20.0">
++         <padding>
++            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
++         </padding>
++         <ChoiceBox fx:id="roleChoiceBox" prefWidth="150.0" />
++         <TextField fx:id="vornameTextField" promptText="Vorname" />
++         <TextField fx:id="nameTextField" promptText="Nachname" />
++         <TextField fx:id="emailTextField" promptText="Email" />
++         <HBox alignment="CENTER">
++            <Label fx:id="errLabelUser">
++               <HBox.margin>
++                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
++               </HBox.margin>
+             </Label>
+-            <Label fx:id="avgLabelStudent" />
++         </HBox>
++         <HBox alignment="CENTER_RIGHT" spacing="20.0">
++            <VBox.margin>
++               <Insets />
++            </VBox.margin>
++            <padding>
++               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
++            </padding>
++            <TextField fx:id="insertClassTextField" promptText="Klasse" />
++            <Button mnemonicParsing="false" onAction="#insertUserButton" text="User anlegen" />
+          </HBox>
+       </VBox>
+    </Tab>

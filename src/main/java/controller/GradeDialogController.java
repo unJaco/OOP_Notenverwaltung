@@ -1,9 +1,6 @@
 package controller;
 
-import classes.Grade;
-import classes.Student;
-import classes.SubjectInClass;
-import classes.Teacher;
+import classes.*;
 import db.DBHelper;
 import javafx.MainApplication;
 import javafx.collections.FXCollections;
@@ -76,43 +73,45 @@ public class GradeDialogController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Teacher teacher = (Teacher) MainApplication.getUser();
 
-        ObservableList<SubjectInClass> subjectInClassesList = FXCollections.observableList(teacher.getSubjectsInClasses());
+            Teacher teacher = (Teacher) MainApplication.getUser();
 
-        classesChoiceBox.setItems(subjectInClassesList);
+            ObservableList<SubjectInClass> subjectInClassesList = FXCollections.observableList(teacher.getSubjectsInClasses());
 
-        classesChoiceBox.setOnAction(actionEvent -> {
+            classesChoiceBox.setItems(subjectInClassesList);
 
-            //get the selected SubjectInClass (subject In Combination With a Class)
-            SubjectInClass newSelectedSubjectInClass = classesChoiceBox.getValue();
+            classesChoiceBox.setOnAction(actionEvent -> {
 
-            //get the classId / identifier
-            String classId = newSelectedSubjectInClass.getClassId();
+                //get the selected SubjectInClass (subject In Combination With a Class)
+                SubjectInClass newSelectedSubjectInClass = classesChoiceBox.getValue();
 
-            //get the selected SchoolClass by Id
-            var schoolClass = teacher.getSchoolClassMap().get(classId);
+                //get the classId / identifier
+                String classId = newSelectedSubjectInClass.getClassId();
+
+                //get the selected SchoolClass by Id
+                var schoolClass = teacher.getSchoolClassMap().get(classId);
 
 
-            if (!newSelectedSubjectInClass.getClassId().equals(selectedSubjectInClass.getClassId())) {
+                if (!newSelectedSubjectInClass.getClassId().equals(selectedSubjectInClass.getClassId())) {
 
-                selectedSubjectInClass = newSelectedSubjectInClass;
+                    selectedSubjectInClass = newSelectedSubjectInClass;
 
-                //create observableList for choice-box with the student from the selected SchoolClass
-                var observableList = FXCollections.observableList(schoolClass.getStudents().values().stream().toList());
+                    //create observableList for choice-box with the student from the selected SchoolClass
+                    var observableList = FXCollections.observableList(schoolClass.getStudents().values().stream().toList());
 
-                studentChoiceBox.getSelectionModel().clearSelection();
-                studentChoiceBox.setItems(observableList);
+                    studentChoiceBox.getSelectionModel().clearSelection();
+                    studentChoiceBox.setItems(observableList);
 
-            } else {
+                } else {
 
-                selectedSubjectInClass = newSelectedSubjectInClass;
-            }
-        });
+                    selectedSubjectInClass = newSelectedSubjectInClass;
+                }
+            });
 
-        studentChoiceBox.setOnAction(actionEvent -> {
-            selectedStudent = studentChoiceBox.getValue();
-        });
+            studentChoiceBox.setOnAction(actionEvent -> {
+                selectedStudent = studentChoiceBox.getValue();
+            });
+
     }
 
     public void initData(Student student, SubjectInClass subjectInClass){

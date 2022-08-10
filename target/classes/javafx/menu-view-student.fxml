@@ -62,20 +62,4 @@
             </Button>
          </children></VBox>
    </Tab>
-   <Tab text="Ausloggen">
-      <VBox alignment="CENTER" spacing="20.0">
-         <children>
-            <Label text="Wollen Sie sich wirklich ausloggen?">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#onLogOutButtonClick" prefHeight="39.0" prefWidth="158.0" text="Ausloggen">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-         </children>
-      </VBox>
-   </Tab>
 </TabPane>
