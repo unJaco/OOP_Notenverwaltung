@@ -4,6 +4,7 @@ module OOP_Notenverwaltung {
     requires javafx.fxml;
     requires java.sql;
     requires org.xerial.sqlitejdbc;
+    requires java.desktop;
 
 
     exports javafx;

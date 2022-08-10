@@ -20,9 +20,11 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.converter.IntegerStringConverter;
 
+import java.awt.Label;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -59,6 +61,20 @@ public class TeacherMenuController implements Initializable {
     public TextField passwordTextField;
     @FXML
     public TextField emailTextField;
+    @FXML
+    public ChoiceBox<String> gradeValChoiceBox;
+    @FXML
+    public TextField gradeBezTextField;
+    private TableColumn<Grade, Integer> valColStudent;
+    @FXML
+    private javafx.scene.control.Label errorLabelStudent;
+    @FXML
+    private javafx.scene.control.Label avgLabelStudent;
+    private final String[] gradeVal = {"1", "2", "3", "4", "5", "6"};
+
+    private final ObservableList<String> gradeValList = FXCollections.observableList(Arrays.asList(gradeVal));
+
+
 
 
     @Override
@@ -100,7 +116,7 @@ public class TeacherMenuController implements Initializable {
 
 
         classesChoiceBox.setItems(subjectInClassesList);
-
+        gradeValChoiceBox.setItems(gradeValList);
         classesChoiceBox.setOnAction(actionEvent -> {
 
             //get the selected SubjectInClass (subject In Combination With a Class)
@@ -149,18 +165,16 @@ public class TeacherMenuController implements Initializable {
     @FXML
     protected void onGradeClick() {
         try {
-            openDialog();
-        } catch (IOException e) {
-            errorLabel.setText("Öffnen fehlgeschlagen");
-        }
-    }
+            String gradeBezeichnug = gradeBezTextField.getText();
+            int gradeVal = Integer.parseInt(gradeValChoiceBox.getValue());
 
-    @FXML
-    protected void onAllGradeClick() {
-        try {
-            openDialog();
-        } catch (IOException e) {
-            errorLabel.setText("Öffnen fehlgeschlagen");
+            if(!gradeBezeichnug.isBlank()  && selectedStudent != null && selectedSubjectInClass != null){
+                Grade grade = new Grade(null, gradeVal, gradeBezeichnug, selectedSubjectInClass.getSubject());
+                DBHelper.insertGrade(selectedSubjectInClass.getClassId(), selectedStudent.getId(), grade);
+                updateSelectedStudentGrades();
+            }
+        } catch (Exception e) {
+            errorLabelStudent.setText("Eintragen fehlgeschalgen");
         }
     }
 
@@ -206,14 +220,14 @@ public class TeacherMenuController implements Initializable {
     private void setTableViewItems() {
 
         tableView.getItems().clear();
-        avgLabel.setText("");
+        avgLabelStudent.setText("");
         if (selectedStudent != null) {
             SubjectInClass subjectInClass = selectedSubjectInClass;
 
             List<Grade> grades = selectedStudent.displayGrades(subjectInClass.getSubject());
 
             tableView.getItems().addAll(grades);
-            avgLabel.setText(String.valueOf(selectedStudent.calcAverage(grades)));
+            avgLabelStudent.setText(String.valueOf(selectedStudent.calcAverage(grades)));
         }
     }
 

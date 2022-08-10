@@ -23,7 +23,7 @@
             <TableColumn fx:id="valCol" prefWidth="58.0" text="Note" />
          </columns>
       </TableView>
-   <Label fx:id="errorLabel">
+   <Label fx:id="errorLabelStudent">
       <padding>
          <Insets left="200.0" />
       </padding>
@@ -33,23 +33,20 @@
          <Button mnemonicParsing="false" onAction="#onDeleteClick" text="Note löschen" />
       </children>
    </HBox>
-   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
-      <Button mnemonicParsing="false" onAction="#onGradeClick" text="Schüler benoten">
+   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+      <TextField promptText="Bezeichnung" fx:id="gradeBezTextField"/>
+      <ChoiceBox prefWidth="150.0" fx:id="gradeValChoiceBox"/>
+      <Button mnemonicParsing="false" onAction="#onGradeClick" text="Eintragen">
          <HBox.margin>
             <Insets right="20.0" />
          </HBox.margin>
       </Button>
-      <Button mnemonicParsing="false" onAction="#onAllGradeClick" text="Klasse benoten">
-         <HBox.margin>
-            <Insets right="50.0" />
-         </HBox.margin>
-      </Button>
       <Label contentDisplay="RIGHT" text="ø :" textAlignment="RIGHT">
          <padding>
-            <Insets right="50.0" />
+            <Insets right="20.0" />
          </padding>
       </Label>
-      <Label fx:id="avgLabel" />
+      <Label fx:id="avgLabelStudent" />
    </HBox>
 </VBox>
 </Tab>
