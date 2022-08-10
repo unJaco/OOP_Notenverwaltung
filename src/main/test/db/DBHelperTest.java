@@ -24,6 +24,6 @@ class DBHelperTest {
 
     @Test
     void deleteGrade() throws SQLException {
-        dbHelper.deleteGrade(12,23);
+        dbHelper.deleteGrade(12,DBHelper.getIDEmail("student"));
     }
 }

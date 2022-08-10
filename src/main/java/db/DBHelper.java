@@ -191,6 +191,17 @@ public class DBHelper {
         }
     }
 
+    public static int getIDEmail(String email) throws SQLException {
+
+    String sql = "SELECT * FROM CREDENTIALS WHERE (EMAIL = '" + email + "');";
+
+    ResultSet rs = executeSqlSelectStatement(sql);
+
+    return rs.getInt("UID");
+
+    }
+
+
     public static String getEMail(int uid) throws SQLException {
         String sql = "SELECT * FROM CREDENTIALS WHERE (UID = '" + uid + "');";
 

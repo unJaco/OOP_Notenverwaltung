@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 class AdminTest {
 
-    Admin a = new Admin(1, "A", "dmin",Role.ADMIN);
+    Admin a = new Admin(null, "A", "dmin",Role.ADMIN);
 
     @BeforeAll
     static void setup(){
@@ -41,6 +41,6 @@ class AdminTest {
 
     @Test
     void deleteUser() throws SQLException {
-        Assertions.assertTrue(a.deleteUser(120));
+        Assertions.assertTrue(a.deleteUser(DBHelper.getIDEmail("foo@boo.de")));
     }
 }
