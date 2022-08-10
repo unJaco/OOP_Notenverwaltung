@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
 public class AdminMenuController implements Initializable {
 
 
+
     private Admin admin;
 
     private SubjectInClass selectedSubjectInClass = new SubjectInClass();
@@ -82,6 +83,10 @@ public class AdminMenuController implements Initializable {
     private TextField passwordTextField;
     @FXML
     private TextField emailTextField2;
+    @FXML
+    public Label errLabelChangePassword;
+    @FXML
+    public Label errLabelLogout;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -109,7 +114,7 @@ public class AdminMenuController implements Initializable {
             try {
                 DBHelper.updateGradeBez(gradeToUpdate);
                 updateSelectedStudentGrades();
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 errorLabelStudent.setText("Update fehlgeschlagen!");
             }
         });
@@ -120,7 +125,7 @@ public class AdminMenuController implements Initializable {
             try {
                 DBHelper.updateGradeVal(gradeToUpdate);
                 updateSelectedStudentGrades();
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 errorLabelStudent.setText("Update fehlgeschlagen!");
             }
         });
@@ -172,7 +177,7 @@ public class AdminMenuController implements Initializable {
         try {
             selectedStudent.onCreation();
             setStudentTableViewItems();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             errorLabelStudent.setText("Fehler beim laden der Noten");
         }
     }
@@ -194,8 +199,10 @@ public class AdminMenuController implements Initializable {
 
         tableViewTeacher.getItems().clear();
 
-        List<SubjectInClass> subjectInClasses = selectedTeacher.getSubjectsInClasses();
-        tableViewTeacher.getItems().addAll(subjectInClasses);
+        if(selectedTeacher != null) {
+            List<SubjectInClass> subjectInClasses = selectedTeacher.getSubjectsInClasses();
+            tableViewTeacher.getItems().addAll(subjectInClasses);
+        }
 
     }
 
@@ -212,7 +219,7 @@ public class AdminMenuController implements Initializable {
             tableViewStudent.getItems().remove(selectedGrade);
             selectedTeacher.deleteGrade(selectedGrade.getGradeId(), selectedStudent.getId());
             updateSelectedStudentGrades();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             errorLabelStudent.setText("Löschen fehlgeschlagen");
         }
     }
@@ -223,7 +230,7 @@ public class AdminMenuController implements Initializable {
             SubjectInClass subjectInClass = tableViewTeacher.getSelectionModel().getSelectedItem();
             DBHelper.deleteTeacherEntry(subjectInClass.getId(), selectedTeacher.getId());
             tableViewTeacher.getItems().remove(subjectInClass);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             errLabelTeacher.setText("Löschen fehlgeschlagen");
         }
     }
@@ -245,7 +252,7 @@ public class AdminMenuController implements Initializable {
             admin.onCreation();
             setTeacherTableViewItems();
             setUpStudentTab();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             errLabelTeacher.setText("Hinzufügen fehlgeschlagen");
         }
     }
@@ -265,12 +272,30 @@ public class AdminMenuController implements Initializable {
                     classId = insertClassTextField.getText();
                 }
                 admin.createUser(vorname,nachname, email, role, classId);
+
+                try {
+                    admin.onCreation();
+                } catch (Exception e) {
+                    errLabelUser.setText("Laden des neuen Users fehlgeschlagen. Probieren Sie das System neu zu starten");
+                }
+                if(role == Role.STUDENT){
+                    setUpStudentTab();
+                } else if(role == Role.TEACHER){
+                    setUpTeacherTab();
+                }
+
             } catch (SQLException e) {
-                errLabelUser.setText("Erstellen fehlgeschlagen");
+                if(e.getErrorCode() == 19){
+                    errLabelUser.setText("Email existiert bereits");
+                }else {
+                    errLabelUser.setText("Erstellen fehlgeschlagen");
+                }
             }
         } else {
             errLabelUser.setText("Alle Felder müssen ausgefüllt sein");
         }
+
+
 
         vornameTextField.clear();
         nameTextField.clear();
@@ -283,7 +308,11 @@ public class AdminMenuController implements Initializable {
     protected void deleteStudent(){
         try {
             admin.deleteUser(selectedStudent.getId());
-        } catch (SQLException e) {
+            selectedStudent = null;
+            admin.onCreation();
+            setUpStudentTab();
+        } catch (Exception e) {
+            System.out.println(e);
             errorLabelStudent.setText("Löschen fehlgeschlagen");
         }
     }
@@ -292,7 +321,10 @@ public class AdminMenuController implements Initializable {
     protected void deleteTeacher(){
         try {
             admin.deleteUser(selectedTeacher.getId());
-        } catch (SQLException e) {
+            selectedTeacher = null;
+            admin.onCreation();
+            setUpTeacherTab();
+        } catch (Exception e) {
             errLabelTeacher.setText("Löschen fehlgeschlagen");
         }
     }
@@ -316,21 +348,27 @@ public class AdminMenuController implements Initializable {
 
         try {
             selectedStudent.onCreation();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         setStudentTableViewItems();
     }
 
     public void onLogOutButtonClick() throws IOException {
-        MainApplication.changeScene("login-view.fxml", "Bitte geben Sie ihre Login Daten ein!");
+        try {
+            MainApplication.changeScene("login-view.fxml", "Bitte geben Sie ihre Login Daten ein!");
+        }catch (Exception e){
+            errLabelLogout.setText("Ausloggen fehlgeschlagen");
+        }
     }
 
-    public void onChangePasswordButtonClick() throws IOException, SQLException {
-
-        MainApplication.changePassword(emailTextField2.getText(),passwordTextField.getText());
-        MainApplication.changeScene("login-view.fxml", "Bitte geben Sie ihre Login Daten ein!");
-
+    public void onChangePasswordButtonClick() throws IOException, Exception {
+        try {
+            MainApplication.changePassword(emailTextField2.getText(), passwordTextField.getText());
+            MainApplication.changeScene("login-view.fxml", "Bitte geben Sie ihre Login Daten ein!");
+        }catch (Exception e){
+            errLabelChangePassword.setText("Passwort ändern fehlgeschlagen");
+        }
 
     }
 }

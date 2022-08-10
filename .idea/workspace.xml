@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="16045e34-ed57-469f-ac12-869f3d7028ea" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NOTENVERWALTUNG.db" beforeDir="false" afterPath="$PROJECT_DIR$/NOTENVERWALTUNG.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classes/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classes/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AdminMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AdminMenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/db/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/db/DBHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/test/classes/AdminTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/classes/AdminTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/test/classes/TeacherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/classes/TeacherTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/test/db/DBHelperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/db/DBHelperTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/javafx/menu-view-admin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/javafx/menu-view-admin.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660134696043</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="better tests">
+      <created>1660137817455</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1660137817455</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,7 +221,8 @@
     <MESSAGE value="logOut and change password" />
     <MESSAGE value="merge conflicts solved" />
     <MESSAGE value="delete solved" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete solved" />
+    <MESSAGE value="better tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="better tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

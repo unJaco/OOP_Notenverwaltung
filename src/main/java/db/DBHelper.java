@@ -63,7 +63,6 @@ public class DBHelper {
             executeSqlStatement(sqlTableStudents);
             executeSqlStatement(sqlTableTeacher);
 
-
         } catch (Exception e) {
 
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -125,7 +124,7 @@ public class DBHelper {
         }
     }
 
-    public static boolean insertUser(User user, String email, String classId) throws SQLException {
+    public static void insertUser(User user, String email, String classId) throws SQLException {
 
         PreparedStatement pSCredentials;
         PreparedStatement pSUserData;
@@ -137,7 +136,7 @@ public class DBHelper {
         pSCredentials.setString(1, email);
         pSCredentials.setString(2, user.getFirstname() + "." + user.getLastname());
 
-        boolean credentialsSuccess = pSCredentials.execute();
+        pSCredentials.execute();
 
         pSCredentials.close();
 
@@ -154,20 +153,8 @@ public class DBHelper {
 
         pSUserData.execute();
 
-        boolean userSpecificSuccess = true;
 
-        switch (user.getRole()){
-
-            case STUDENT -> userSpecificSuccess = addStudentToClass((Student) user, classId);
-            case TEACHER -> {
-                System.out.println("TEACHER");
-            }
-        }
-
-        /*
-            TODO low importance - both bools are false lol
-         */
-        return userSpecificSuccess && credentialsSuccess;
+        if (user.getRole() == Role.STUDENT) addStudentToClass((Student) user, classId);
     }
 
 
@@ -305,7 +292,7 @@ public class DBHelper {
     }
 
     private static String deleteString(String table, int uid){
-        return "DELETE FROM " + table + " WHERE UID = " + uid + ";";
+        return "DELETE FROM " + table + " WHERE UID = '" + uid + "';";
     }
 
     public static boolean changeCredentials(String email, String password) throws SQLException {

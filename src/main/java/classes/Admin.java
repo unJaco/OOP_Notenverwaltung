@@ -59,7 +59,8 @@ public class Admin extends User {
             case TEACHER -> toCreate = new Teacher(1, firstname, lastname,role);
         }
 
-        return DBHelper.insertUser(toCreate, email, class_id);
+        DBHelper.insertUser(toCreate, email, class_id);
+        return true;
 
     }
 
